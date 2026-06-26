@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: theme("fontFamily.sans");
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Цвет фона страницы под скролл-зоной для светлой и тёмной тем. */
+html {
+  background-color: #f8fafc; /* slate-50 */
+}
+html.dark {
+  background-color: #020617; /* slate-950 */
+}

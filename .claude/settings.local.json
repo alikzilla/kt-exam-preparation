@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"C:\\\\Users\\\\nuspekov_62421\\\\Desktop\\\\repos\\\\kt-exam-preparation\" -type f 2>/dev/null | head -50; echo \"=== repos dir ===\"; ls -la \"C:\\\\Users\\\\nuspekov_62421\\\\Desktop\\\\repos\" 2>/dev/null)",
+      "Bash(grep -iE \"\\\\.\\(pdf|docx|xlsx|csv|txt|json\\)$\")"
+    ]
+  }
+}
