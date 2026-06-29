@@ -2,18 +2,24 @@ import type { QuestionOption } from "../types";
 
 type Variant = "default" | "correct" | "incorrect" | "missed";
 
-const variantClasses: Record<Variant, string> = {
-  default: "",
-  correct:
-    "border-emerald-400 bg-emerald-50 dark:border-emerald-500/60 dark:bg-emerald-500/10",
-  incorrect:
-    "border-rose-400 bg-rose-50 dark:border-rose-500/60 dark:bg-rose-500/10",
-  missed:
-    "border-emerald-400 bg-emerald-50/60 dark:border-emerald-500/50 dark:bg-emerald-500/5",
-};
-
 /** Русские буквы вариантов ответа: А, Б, В, Г, Д, Е, ... */
 export const OPTION_LETTERS = ["А", "Б", "В", "Г", "Д", "Е", "Ж", "З"];
+
+// Цвет рамки/фона карточки в режиме разбора.
+const shellVariant: Record<Variant, string> = {
+  default: "border-line",
+  correct: "border-success/50 bg-success/8",
+  incorrect: "border-danger/50 bg-danger/8",
+  missed: "border-success/40 bg-success/5 border-dashed",
+};
+
+// Цвет бейджа с буквой в режиме разбора.
+const badgeVariant: Record<Variant, string> = {
+  default: "",
+  correct: "bg-success text-white border-transparent",
+  incorrect: "bg-danger text-white border-transparent",
+  missed: "border-success/60 text-success",
+};
 
 export default function OptionCard({
   option,
@@ -32,39 +38,42 @@ export default function OptionCard({
   variant?: Variant;
   onToggle?: (optionId: string) => void;
 }) {
-  const base =
-    "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition";
-  const interactive = disabled
-    ? "cursor-default"
-    : "cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 dark:hover:border-indigo-500 dark:hover:bg-indigo-500/10";
-  const selectedRing =
-    selected && variant === "default"
-      ? "border-indigo-500 bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-500/10"
+  const isReview = variant !== "default";
+
+  const interactive =
+    disabled || isReview
+      ? "cursor-default"
+      : "cursor-pointer hover:border-accent/60 hover:bg-accent/5";
+
+  const selectedShell =
+    selected && !isReview
+      ? "border-accent bg-accent/8 ring-1 ring-accent/30"
       : "";
-  const border =
-    variant === "default"
-      ? "border-slate-200 text-slate-700 dark:border-slate-700 dark:text-slate-200"
-      : "text-slate-700 dark:text-slate-100";
+
+  const shell = isReview ? shellVariant[variant] : "border-line";
+
+  const badge = isReview
+    ? badgeVariant[variant] || "border-line bg-surface text-ink-faint"
+    : selected
+      ? "bg-accent text-white border-transparent"
+      : "border-line bg-surface text-ink-faint";
 
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={() => onToggle?.(option.id)}
-      className={`${base} ${border} ${interactive} ${selectedRing} ${variantClasses[variant]}`}
+      aria-pressed={selected}
+      className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm text-ink transition duration-150 ${shell} ${interactive} ${selectedShell}`}
     >
       <span
-        className={`flex h-7 w-7 shrink-0 items-center justify-center text-xs font-semibold ${
-          multiCorrect ? "rounded" : "rounded-full"
-        } ${
-          selected
-            ? "bg-indigo-500 text-white"
-            : "border border-slate-300 bg-white text-slate-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-400"
-        }`}
+        className={`flex h-7 w-7 shrink-0 items-center justify-center border font-mono text-xs font-semibold transition ${
+          multiCorrect ? "rounded-md" : "rounded-full"
+        } ${badge}`}
       >
         {letter ?? (selected ? "✓" : "")}
       </span>
-      <span className="flex-1">{option.text}</span>
+      <span className="flex-1 leading-snug">{option.text}</span>
     </button>
   );
 }

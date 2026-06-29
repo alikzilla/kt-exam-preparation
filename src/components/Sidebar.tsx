@@ -1,10 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {
-  DashboardIcon,
-  TestsIcon,
-  HistoryIcon,
-  CloseIcon,
-} from "./icons";
+import { DashboardIcon, TestsIcon, HistoryIcon, CloseIcon } from "./icons";
 
 const NAV = [
   { to: "/", label: "Дашборд", Icon: DashboardIcon, end: true },
@@ -14,7 +9,7 @@ const NAV = [
 
 function NavItems({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <nav className="space-y-1 px-3">
+    <nav className="space-y-1 px-4">
       {NAV.map(({ to, label, Icon, end }) => (
         <NavLink
           key={to}
@@ -22,15 +17,25 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
           end={end}
           onClick={onNavigate}
           className={({ isActive }) =>
-            `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+            `group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
               isActive
-                ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300"
-                : "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/60 dark:hover:text-slate-200"
+                ? "bg-surface-2 text-ink"
+                : "text-ink-soft hover:bg-surface-2/60 hover:text-ink"
             }`
           }
         >
-          <Icon className="h-5 w-5" />
-          {label}
+          {({ isActive }) => (
+            <>
+              {/* Акцентная вертикальная засечка активного пункта. */}
+              <span
+                className={`absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-accent transition-all duration-200 ${
+                  isActive ? "opacity-100" : "opacity-0 group-hover:opacity-40"
+                }`}
+              />
+              <Icon className="h-5 w-5 shrink-0" />
+              {label}
+            </>
+          )}
         </NavLink>
       ))}
     </nav>
@@ -39,15 +44,41 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
 
 function Brand() {
   return (
-    <div className="flex items-center gap-2 px-6 py-5">
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-sm font-bold text-white">
+    <div className="flex items-center gap-3 px-6 py-6">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink font-display text-sm font-bold text-paper">
         КТ
       </div>
       <div className="leading-tight">
-        <div className="text-sm font-bold text-slate-900 dark:text-white">
+        <div className="font-display text-sm font-bold tracking-tight text-ink">
           Подготовка
         </div>
-        <div className="text-xs text-slate-400">магистратура М094</div>
+        <div className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-faint">
+          магистратура М094
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExamMeta() {
+  return (
+    <div className="mt-auto px-4 pb-6">
+      <div className="surface-2 space-y-2 p-4">
+        <div className="eyebrow">Формат КТ</div>
+        <dl className="space-y-1.5 text-xs text-ink-soft">
+          <div className="flex justify-between">
+            <dt>Вопросов</dt>
+            <dd className="font-mono font-semibold text-ink">50</dd>
+          </div>
+          <div className="flex justify-between">
+            <dt>Время</dt>
+            <dd className="font-mono font-semibold text-ink">100 мин</dd>
+          </div>
+          <div className="flex justify-between">
+            <dt>Порог</dt>
+            <dd className="font-mono font-semibold text-ink">≥ 7 / дисц.</dd>
+          </div>
+        </dl>
       </div>
     </div>
   );
@@ -63,32 +94,43 @@ export default function Sidebar({
   return (
     <>
       {/* Десктоп: фиксированная боковая панель */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-slate-200 bg-white md:block dark:border-slate-800 dark:bg-slate-900">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 flex-col border-r border-line bg-surface/70 backdrop-blur-sm md:flex">
         <Brand />
         <NavItems />
+        <ExamMeta />
       </aside>
 
       {/* Мобайл: выезжающая панель */}
-      {open && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div
-            className="absolute inset-0 bg-slate-900/50"
+      <div
+        className={`fixed inset-0 z-40 md:hidden ${
+          open ? "" : "pointer-events-none"
+        }`}
+        aria-hidden={!open}
+      >
+        <div
+          className={`absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity duration-300 ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={onClose}
+        />
+        <aside
+          className={`absolute inset-y-0 left-0 flex w-72 flex-col border-r border-line bg-surface shadow-lift transition-transform duration-300 ease-out ${
+            open ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <button
+            type="button"
             onClick={onClose}
-          />
-          <aside className="absolute inset-y-0 left-0 w-64 border-r border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-            <button
-              type="button"
-              onClick={onClose}
-              className="absolute right-3 top-4 rounded-md p-1 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
-              aria-label="Закрыть меню"
-            >
-              <CloseIcon className="h-5 w-5" />
-            </button>
-            <Brand />
-            <NavItems onNavigate={onClose} />
-          </aside>
-        </div>
-      )}
+            className="absolute right-3 top-5 rounded-lg p-1.5 text-ink-faint transition hover:bg-surface-2 hover:text-ink"
+            aria-label="Закрыть меню"
+          >
+            <CloseIcon className="h-5 w-5" />
+          </button>
+          <Brand />
+          <NavItems onNavigate={onClose} />
+          <ExamMeta />
+        </aside>
+      </div>
     </>
   );
 }

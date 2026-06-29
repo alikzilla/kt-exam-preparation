@@ -6,9 +6,12 @@ import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
-
-const surface =
-  "rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900";
+import {
+  CheckIcon,
+  CloseIcon,
+  ArrowRightIcon,
+  RefreshIcon,
+} from "../components/icons";
 
 export default function ResultsPage() {
   const { attemptId } = useParams();
@@ -31,14 +34,30 @@ export default function ResultsPage() {
 
   return (
     <div className="space-y-6">
-      <div className={`${surface} p-6`}>
-        <div className="flex items-center justify-between">
+      {/* ── Сводка ── */}
+      <div className="surface relative overflow-hidden p-6 sm:p-7">
+        <div
+          className={`pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full blur-3xl ${
+            isExam
+              ? passedExam
+                ? "bg-success/15"
+                : "bg-danger/15"
+              : "bg-accent/12"
+          }`}
+        />
+        <div className="relative flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-              {isExam ? (attempt.examTitle ?? "Экзамен") : "Тренировка"}
+            <div className="eyebrow">{isExam ? "Экзамен" : "Тренировка"}</div>
+            <h1 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
+              {isExam ? (attempt.examTitle ?? "Экзамен") : "Свободный режим"}
             </h1>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              Правильных {result.correct} из {result.total}
+            <p className="mt-1 text-sm text-ink-soft">
+              Правильных{" "}
+              <span className="font-mono font-semibold text-ink">
+                {result.correct}
+              </span>{" "}
+              из{" "}
+              <span className="font-mono text-ink-soft">{result.total}</span>
             </p>
           </div>
           <ScoreBadge percent={percent} />
@@ -46,39 +65,50 @@ export default function ResultsPage() {
 
         {isExam && (
           <div
-            className={`mt-4 rounded-xl px-4 py-3 text-sm font-semibold ${
+            className={`relative mt-5 flex items-center gap-3 rounded-xl px-4 py-3.5 ${
               passedExam
-                ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
-                : "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-400"
+                ? "bg-success/12 text-success"
+                : "bg-danger/12 text-danger"
             }`}
           >
-            {passedExam
-              ? "Сдал — порог пройден по всем дисциплинам"
-              : `Не сдал — нужно не менее ${threshold} баллов по каждой дисциплине`}
+            <div
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                passedExam ? "bg-success/20" : "bg-danger/20"
+              }`}
+            >
+              {passedExam ? (
+                <CheckIcon className="h-4 w-4" strokeWidth={2.6} />
+              ) : (
+                <CloseIcon className="h-4 w-4" strokeWidth={2.6} />
+              )}
+            </div>
+            <span className="text-sm font-semibold">
+              {passedExam
+                ? "Сдал — порог пройден по всем дисциплинам"
+                : `Не сдал — нужно не менее ${threshold} баллов по каждой дисциплине`}
+            </span>
           </div>
         )}
 
-        <div className="mt-5 grid gap-2 sm:grid-cols-2">
+        <div className="relative mt-5 grid gap-3 sm:grid-cols-2">
           {result.perSubject.map((s) => {
             const passed = disciplinePassed(s.correct);
             return (
-              <div
-                key={s.subjectId}
-                className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-800/40"
-              >
-                <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
+              <div key={s.subjectId} className="surface-2 p-4">
+                <div className="text-xs font-medium text-ink-soft">
                   {getSubjectName(s.subjectId)}
                 </div>
-                <div className="mt-1 flex items-center justify-between">
-                  <span className="text-lg font-semibold text-slate-900 dark:text-white">
-                    {s.correct}/{s.total}
+                <div className="mt-1.5 flex items-center justify-between">
+                  <span className="font-mono text-xl font-semibold text-ink">
+                    {s.correct}
+                    <span className="text-ink-faint">/{s.total}</span>
                   </span>
                   {isExam && (
                     <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                         passed
-                          ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400"
-                          : "bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-400"
+                          ? "bg-success/12 text-success"
+                          : "bg-danger/12 text-danger"
                       }`}
                     >
                       {passed ? "Порог пройден" : "Ниже порога"}
@@ -90,48 +120,54 @@ export default function ResultsPage() {
           })}
         </div>
 
-        <div className="mt-6 flex gap-3">
-          <Link
-            to="/tests"
-            className="rounded-lg bg-indigo-600 px-5 py-2 font-semibold text-white transition hover:bg-indigo-700"
-          >
+        <div className="relative mt-6 flex flex-wrap gap-3">
+          <Link to="/tests" className="btn-accent">
+            <RefreshIcon className="h-4 w-4" />
             Новый тест
           </Link>
-          <Link
-            to="/"
-            className="rounded-lg border border-slate-300 px-5 py-2 font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
-          >
+          <Link to="/" className="btn-secondary">
             На дашборд
+            <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
       </div>
 
+      {/* ── Разбор ответов ── */}
       <div>
-        <h2 className="mb-3 text-lg font-semibold text-slate-900 dark:text-white">
-          Разбор ответов
-        </h2>
+        <div className="mb-4">
+          <div className="eyebrow">Разбор</div>
+          <h2 className="mt-1 font-display text-xl font-bold tracking-tight text-ink">
+            Ответы по вопросам
+          </h2>
+        </div>
         <div className="space-y-4">
           {test.questions.map((q, i) => {
             const r = resultById.get(q.id);
             const selected = r?.selectedOptionIds ?? [];
             const correctSet = new Set(q.correctOptionIds);
             return (
-              <div key={q.id} className={`${surface} p-5`}>
+              <div key={q.id} className="surface p-5">
                 <div className="mb-2 flex items-start justify-between gap-3">
-                  <h3 className="font-semibold text-slate-900 dark:text-white">
-                    {i + 1}. {q.text}
+                  <h3 className="font-semibold leading-snug text-ink">
+                    <span className="font-mono text-ink-faint">{i + 1}.</span>{" "}
+                    {q.text}
                   </h3>
                   <span
-                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                    className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                       r?.correct
-                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400"
-                        : "bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-400"
+                        ? "bg-success/12 text-success"
+                        : "bg-danger/12 text-danger"
                     }`}
                   >
+                    {r?.correct ? (
+                      <CheckIcon className="h-3 w-3" strokeWidth={2.8} />
+                    ) : (
+                      <CloseIcon className="h-3 w-3" strokeWidth={2.8} />
+                    )}
                     {r?.correct ? "Верно" : "Неверно"}
                   </span>
                 </div>
-                <div className="text-xs text-slate-400">
+                <div className="font-mono text-xs uppercase tracking-wider text-ink-faint">
                   {getSubjectName(q.subjectId)}
                 </div>
 
@@ -161,11 +197,13 @@ export default function ResultsPage() {
                 </div>
 
                 {selected.length === 0 && (
-                  <p className="mt-2 text-xs text-rose-500">Без ответа</p>
+                  <p className="mt-2 text-xs font-medium text-danger">
+                    Без ответа
+                  </p>
                 )}
 
                 {q.explanation && (
-                  <p className="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-600 dark:bg-slate-800/50 dark:text-slate-300">
+                  <p className="mt-3 rounded-xl border-l-2 border-accent bg-surface-2 p-3 text-sm leading-relaxed text-ink-soft">
                     {q.explanation}
                   </p>
                 )}

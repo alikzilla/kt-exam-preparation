@@ -1,33 +1,43 @@
 import { useTheme, type Theme } from "./ThemeProvider";
+import { SunIcon, MoonIcon, MonitorIcon } from "../components/icons";
 
-const OPTIONS: { value: Theme; label: string; icon: string }[] = [
-  { value: "light", label: "Светлая", icon: "☀" },
-  { value: "system", label: "Системная", icon: "🖥" },
-  { value: "dark", label: "Тёмная", icon: "☾" },
+const OPTIONS: {
+  value: Theme;
+  label: string;
+  Icon: typeof SunIcon;
+}[] = [
+  { value: "light", label: "Светлая", Icon: SunIcon },
+  { value: "system", label: "Системная", Icon: MonitorIcon },
+  { value: "dark", label: "Тёмная", Icon: MoonIcon },
 ];
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="inline-flex items-center gap-0.5 rounded-lg border border-slate-200 bg-slate-100 p-0.5 dark:border-slate-700 dark:bg-slate-800">
-      {OPTIONS.map((opt) => {
-        const active = theme === opt.value;
+    <div
+      role="radiogroup"
+      aria-label="Тема оформления"
+      className="inline-flex items-center gap-0.5 rounded-full border border-line bg-surface-2 p-1"
+    >
+      {OPTIONS.map(({ value, label, Icon }) => {
+        const active = theme === value;
         return (
           <button
-            key={opt.value}
+            key={value}
             type="button"
-            onClick={() => setTheme(opt.value)}
-            title={opt.label}
-            aria-label={opt.label}
-            aria-pressed={active}
-            className={`flex h-7 w-7 items-center justify-center rounded-md text-sm transition ${
+            role="radio"
+            aria-checked={active}
+            onClick={() => setTheme(value)}
+            title={label}
+            aria-label={label}
+            className={`flex h-8 w-8 items-center justify-center rounded-full transition ${
               active
-                ? "bg-white text-indigo-600 shadow-sm dark:bg-slate-950 dark:text-indigo-400"
-                : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                ? "bg-surface text-accent shadow-card"
+                : "text-ink-faint hover:text-ink"
             }`}
           >
-            <span aria-hidden>{opt.icon}</span>
+            <Icon className="h-4 w-4" />
           </button>
         );
       })}

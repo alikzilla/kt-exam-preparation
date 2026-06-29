@@ -4,33 +4,36 @@ import { clearAttempts, loadAttempts } from "../lib/storage";
 import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
-
-const surface =
-  "rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900";
+import ConfirmDialog from "../components/ConfirmDialog";
+import { HistoryIcon, TrashIcon, ArrowRightIcon } from "../components/icons";
 
 export default function HistoryPage() {
   const [attempts, setAttempts] = useState(() => loadAttempts());
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const clear = () => {
-    if (!window.confirm("Очистить всю историю попыток?")) return;
     clearAttempts();
     setAttempts([]);
+    setConfirmOpen(false);
   };
 
   if (attempts.length === 0) {
     return (
-      <div className={`${surface} flex flex-col items-center gap-3 p-10 text-center`}>
-        <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-          Пока нет попыток
-        </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
-          Пройдите тест, и результаты появятся здесь.
-        </p>
-        <Link
-          to="/tests"
-          className="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700"
-        >
+      <div className="surface flex flex-col items-center gap-4 p-12 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-2 text-ink-faint">
+          <HistoryIcon className="h-7 w-7" />
+        </div>
+        <div>
+          <h1 className="font-display text-xl font-bold tracking-tight text-ink">
+            Пока нет попыток
+          </h1>
+          <p className="mt-1.5 text-sm text-ink-soft">
+            Пройдите тест, и результаты появятся здесь.
+          </p>
+        </div>
+        <Link to="/tests" className="btn-primary">
           Перейти к тестам
+          <ArrowRightIcon className="h-4 w-4" />
         </Link>
       </div>
     );
@@ -38,40 +41,61 @@ export default function HistoryPage() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-slate-900 dark:text-white">
-          Все попытки ({attempts.length})
-        </h1>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <div className="eyebrow">Журнал</div>
+          <h1 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
+            Все попытки{" "}
+            <span className="font-mono text-ink-faint">({attempts.length})</span>
+          </h1>
+        </div>
         <button
           type="button"
-          onClick={clear}
-          className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-rose-50 hover:text-rose-600 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-rose-500/10"
+          onClick={() => setConfirmOpen(true)}
+          className="btn-ghost btn-sm hover:bg-danger/10 hover:text-danger"
         >
-          Очистить историю
+          <TrashIcon className="h-4 w-4" />
+          Очистить
         </button>
       </div>
 
-      <div className="space-y-3">
+      <ul className="space-y-3">
         {attempts.map((a) => (
-          <Link
-            key={a.id}
-            to={`/results/${a.id}`}
-            className={`${surface} flex items-center justify-between p-4 transition hover:border-indigo-300 hover:shadow-sm dark:hover:border-indigo-500/40`}
-          >
-            <div>
-              <div className="font-medium text-slate-900 dark:text-white">
-                {a.mode === "exam" ? (a.examTitle ?? "Экзамен") : "Тренировка"} ·{" "}
-                {a.result.correct}/{a.result.total} верно
+          <li key={a.id}>
+            <Link
+              to={`/results/${a.id}`}
+              className="surface-interactive flex items-center justify-between gap-3 p-4"
+            >
+              <div className="min-w-0">
+                <div className="truncate font-medium text-ink">
+                  {a.mode === "exam"
+                    ? (a.examTitle ?? "Экзамен")
+                    : "Тренировка"}{" "}
+                  <span className="font-mono text-ink-soft">
+                    · {a.result.correct}/{a.result.total}
+                  </span>
+                </div>
+                <div className="mt-0.5 truncate font-mono text-xs text-ink-faint">
+                  {new Date(a.takenAt).toLocaleString("ru-RU")} ·{" "}
+                  {a.test.subjectIds.map(getSubjectName).join(", ")}
+                </div>
               </div>
-              <div className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
-                {new Date(a.takenAt).toLocaleString("ru-RU")} ·{" "}
-                {a.test.subjectIds.map(getSubjectName).join(", ")}
-              </div>
-            </div>
-            <ScoreBadge percent={scorePercent(a.result)} />
-          </Link>
+              <ScoreBadge percent={scorePercent(a.result)} />
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title="Очистить историю?"
+        message="Все сохранённые попытки будут удалены без возможности восстановления."
+        confirmLabel="Очистить"
+        cancelLabel="Отмена"
+        tone="danger"
+        onConfirm={clear}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </div>
   );
 }

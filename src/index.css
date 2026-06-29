@@ -2,22 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Дизайн-токены «Academic Ink»
+   Светлая тема — тёплая бумага, тёмная — глубокие чернила.
+   Цвета хранятся как тройки RGB, чтобы Tailwind управлял alpha.
+   ============================================================ */
+:root {
+  --c-paper: 244 240 231; /* тёплая бумага */
+  --c-surface: 255 253 248;
+  --c-surface-2: 238 233 222;
+  --c-line: 222 215 200;
+  --c-ink: 28 26 23; /* почти чёрные чернила */
+  --c-ink-soft: 99 92 80;
+  --c-ink-faint: 150 142 127;
+  --c-accent: 233 74 41; /* вермильон */
+  --c-accent-soft: 233 74 41;
+  --c-success: 22 135 90;
+  --c-danger: 200 58 58;
+  --c-warning: 184 122 20;
+  --c-shadow: 60 50 35;
+
+  --grid-line: rgba(28, 26, 23, 0.045);
+  --grain-opacity: 0.4;
+
+  color-scheme: light;
+}
+
+html.dark {
+  --c-paper: 18 16 13; /* глубокий эспрессо-чёрный */
+  --c-surface: 28 25 21;
+  --c-surface-2: 38 34 28;
+  --c-line: 58 52 44;
+  --c-ink: 242 237 227;
+  --c-ink-soft: 168 159 142;
+  --c-ink-faint: 117 108 92;
+  --c-accent: 255 107 71; /* ярче вермильон для тёмного фона */
+  --c-accent-soft: 255 107 71;
+  --c-success: 52 211 153;
+  --c-danger: 248 113 113;
+  --c-warning: 217 164 70;
+  --c-shadow: 0 0 0;
+
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --grain-opacity: 0.5;
+
+  color-scheme: dark;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
 }
 
+html {
+  background-color: rgb(var(--c-paper));
+}
+
 body {
   margin: 0;
   font-family: theme("fontFamily.sans");
+  color: rgb(var(--c-ink));
+  background-color: rgb(var(--c-paper));
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Тонкая «миллиметровка» + зерно создают атмосферу экзаменационного листа. */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
 }
 
-/* Цвет фона страницы под скролл-зоной для светлой и тёмной тем. */
-html {
-  background-color: #f8fafc; /* slate-50 */
+/* Зернистость поверх всего, не мешает кликам. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
-html.dark {
-  background-color: #020617; /* slate-950 */
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Выделение текста в фирменном акценте. */
+::selection {
+  background-color: rgb(var(--c-accent) / 0.22);
+  color: rgb(var(--c-ink));
+}
+
+/* Видимая, но аккуратная фокус-обводка для доступности. */
+:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Тонкий кастомный скроллбар. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--c-line)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--c-line));
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================
+   Переиспользуемые компонентные утилиты
+   (раньше класс surface копировался в каждый файл).
+   ============================================================ */
+@layer components {
+  .surface {
+    @apply rounded-card border border-line bg-surface shadow-card;
+  }
+
+  .surface-2 {
+    @apply rounded-card border border-line bg-surface-2;
+  }
+
+  /* Карточка-кнопка с лёгким подъёмом при наведении. */
+  .surface-interactive {
+    @apply surface transition duration-200 hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  /* Подпись-надзаголовок: моноширинный капс с трекингом. */
+  .eyebrow {
+    @apply font-mono text-[0.7rem] font-medium uppercase tracking-[0.18em] text-ink-faint;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold
+      transition duration-200 disabled:cursor-not-allowed disabled:opacity-40 disabled:saturate-50;
+  }
+
+  /* Главная кнопка: инверсия чернил/бумаги — строго и контрастно. */
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-ink/90 active:scale-[0.98];
+  }
+
+  /* Акцентная кнопка — для самого важного действия (экзамен/завершить). */
+  .btn-accent {
+    @apply btn bg-accent text-white hover:shadow-accent active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply btn border border-line bg-surface text-ink hover:bg-surface-2 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn text-ink-soft hover:bg-surface-2 hover:text-ink;
+  }
+
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs;
+  }
+
+  /* Поля ввода. */
+  .field {
+    @apply rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink
+      transition placeholder:text-ink-faint
+      focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+
+  /* Маленькая метка-чип. */
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line bg-surface-2
+      px-2.5 py-1 font-mono text-[0.7rem] font-medium uppercase tracking-wider text-ink-soft;
+  }
+
+  .chip-accent {
+    @apply inline-flex items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1
+      font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-accent;
+  }
+}
+
+/* Утилита для оркестрации поэтапного появления через --i. */
+@layer utilities {
+  .stagger {
+    animation: fade-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
 }

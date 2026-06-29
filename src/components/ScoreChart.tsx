@@ -10,12 +10,12 @@ interface Point {
 export default function ScoreChart({ data }: { data: Point[] }) {
   const W = 600;
   const H = 180;
-  const padX = 12;
-  const padY = 16;
+  const padX = 14;
+  const padY = 18;
 
   if (data.length === 0) {
     return (
-      <div className="flex h-44 items-center justify-center text-sm text-slate-400">
+      <div className="flex h-44 items-center justify-center text-sm text-ink-faint">
         Пока нет данных — пройдите тест.
       </div>
     );
@@ -27,23 +27,28 @@ export default function ScoreChart({ data }: { data: Point[] }) {
   const y = (p: number) => padY + ((100 - p) * (H - 2 * padY)) / 100;
 
   const linePath = data
-    .map((d, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`)
+    .map(
+      (d, i) =>
+        `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`
+    )
     .join(" ");
   const areaPath =
     `M ${x(0).toFixed(1)} ${(H - padY).toFixed(1)} ` +
-    data.map((d, i) => `L ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`).join(" ") +
+    data
+      .map((d, i) => `L ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`)
+      .join(" ") +
     ` L ${x(n - 1).toFixed(1)} ${(H - padY).toFixed(1)} Z`;
 
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className="h-44 w-full"
+      className="h-44 w-full text-accent"
       preserveAspectRatio="none"
     >
       <defs>
         <linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgb(99 102 241)" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="rgb(99 102 241)" stopOpacity="0" />
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
         </linearGradient>
       </defs>
 
@@ -55,8 +60,9 @@ export default function ScoreChart({ data }: { data: Point[] }) {
           x2={W - padX}
           y1={y(p)}
           y2={y(p)}
-          className="stroke-slate-200 dark:stroke-slate-700"
+          className="stroke-line"
           strokeWidth="1"
+          strokeDasharray={p === 50 ? "4 5" : undefined}
         />
       ))}
 
@@ -64,7 +70,7 @@ export default function ScoreChart({ data }: { data: Point[] }) {
       <path
         d={linePath}
         fill="none"
-        className="stroke-indigo-500"
+        stroke="currentColor"
         strokeWidth="2.5"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -74,9 +80,10 @@ export default function ScoreChart({ data }: { data: Point[] }) {
           key={i}
           cx={x(i)}
           cy={y(d.percent)}
-          r="3.5"
-          className="fill-white stroke-indigo-500 dark:fill-slate-900"
-          strokeWidth="2"
+          r="4"
+          className="fill-surface"
+          stroke="currentColor"
+          strokeWidth="2.5"
         />
       ))}
     </svg>
