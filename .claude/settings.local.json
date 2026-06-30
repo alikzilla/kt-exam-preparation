@@ -5,7 +5,10 @@
       "Bash(grep -iE \"\\\\.\\(pdf|docx|xlsx|csv|txt|json\\)$\")",
       "Bash(npm run *)",
       "Bash(npx tsc *)",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(cp \"/Users/nuspekov/Downloads/hf_20260629_175625_484b4fec-567d-42e5-ad99-36a6fb1e6e4b.png\" public/icon.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/icon.png)",
+      "Skill(claude-api)"
     ]
   }
 }
