@@ -44,7 +44,10 @@ export default function ConfirmDialog({
 
   if (!open) return null;
 
-  const confirmClass = tone === "danger" ? "btn-primary !bg-danger" : "btn-primary";
+  const confirmClass =
+    tone === "danger"
+      ? "btn-primary !bg-danger hover:!bg-danger/90"
+      : "btn-primary";
 
   return (
     <div

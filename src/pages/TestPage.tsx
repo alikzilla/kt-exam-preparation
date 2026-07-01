@@ -123,7 +123,7 @@ function TestRunner({
                     ? "bg-accent text-white"
                     : answered
                       ? "bg-accent/10 text-accent hover:bg-accent/20"
-                      : "bg-surface-2 text-ink-soft hover:bg-line"
+                      : "bg-surface-2 text-ink-soft hover:bg-ink/10"
                 }`}
               >
                 {i + 1}
