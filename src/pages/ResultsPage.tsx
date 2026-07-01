@@ -36,7 +36,7 @@ export default function ResultsPage() {
     <div className="space-y-6">
       {/* ── Сводка ── */}
       <div className="surface p-6 sm:p-7">
-        <div className="relative flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-xs font-medium text-ink-faint">
               {isExam ? "Экзамен" : "Тренировка"}

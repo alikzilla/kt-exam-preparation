@@ -6,10 +6,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        // Переходные алиасы: страницы ещё содержат font-display/font-mono,
-        // оба удаляются в финальной уборке.
-        display: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         paper: "rgb(var(--c-paper) / <alpha-value>)",
@@ -23,10 +19,6 @@ export default {
         success: "rgb(var(--c-success) / <alpha-value>)",
         danger: "rgb(var(--c-danger) / <alpha-value>)",
         warning: "rgb(var(--c-warning) / <alpha-value>)",
-      },
-      borderRadius: {
-        // Переходный токен (rounded-card ещё в SubjectPicker), удаляется в уборке.
-        card: "0.5rem",
       },
       boxShadow: {
         modal: "0 10px 40px -10px rgb(0 0 0 / 0.25)",

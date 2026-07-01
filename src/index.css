@@ -109,12 +109,6 @@ body {
     @apply surface transition-colors hover:bg-surface-2/60;
   }
 
-  /* Переходный класс: удаляется в финальной уборке,
-     когда все страницы перестанут его использовать. */
-  .eyebrow {
-    @apply text-xs font-medium text-ink-faint;
-  }
-
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
       transition-colors disabled:cursor-not-allowed disabled:opacity-50;
