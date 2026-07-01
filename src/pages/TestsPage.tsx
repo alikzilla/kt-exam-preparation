@@ -3,7 +3,7 @@ import SubjectPicker from "../components/SubjectPicker";
 import { getQuestionsBySubject, getSubjects, getSubjectName } from "../data";
 import { EXAM_PRESETS, presetTotal } from "../data/exam";
 import { useStartTest } from "../hooks/useStartTest";
-import { TimerIcon, ArrowRightIcon, BookIcon } from "../components/icons";
+import { ArrowRightIcon } from "../components/icons";
 
 export default function TestsPage() {
   const { startPreset, startPractice } = useStartTest();
@@ -59,32 +59,31 @@ export default function TestsPage() {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
       {/* Официальные форматы */}
       <section className="space-y-5">
         <div>
-          <div className="eyebrow">Официальный формат</div>
-          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">
             Экзамены по формату КТ
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
             Выберите формат — вопросы и варианты перемешиваются при каждой
             попытке, по завершении выставляется вердикт по пороговому баллу.
           </p>
+          <p className="mt-1 text-sm text-ink-faint">
+            Формат КТ: 50 вопросов · 100 минут · порог ≥ 7 по каждой дисциплине.
+          </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {EXAM_PRESETS.map((preset) => (
-            <div
-              key={preset.id}
-              className="surface-interactive group flex flex-col p-5"
-            >
-              <div className="flex items-center justify-between">
-                <span className="chip-accent">{preset.short}</span>
-                <span className="font-mono text-xs text-ink-faint">
+            <div key={preset.id} className="surface flex flex-col p-5">
+              <div className="flex items-center justify-between text-xs text-ink-faint">
+                <span className="font-medium text-accent">{preset.short}</span>
+                <span className="tabular-nums">
                   {presetTotal(preset)} вопросов
                 </span>
               </div>
-              <h3 className="mt-3 font-display text-base font-bold tracking-tight text-ink">
+              <h3 className="mt-3 text-base font-semibold text-ink">
                 {preset.title}
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
@@ -94,12 +93,13 @@ export default function TestsPage() {
                 {preset.disciplines.map((d) => (
                   <li key={d.subjectId} className="flex justify-between">
                     <span>{getSubjectName(d.subjectId)}</span>
-                    <span className="font-mono text-ink-faint">{d.count}</span>
+                    <span className="tabular-nums text-ink-faint">
+                      {d.count}
+                    </span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 flex items-center gap-1.5 font-mono text-xs text-ink-faint">
-                <TimerIcon className="h-4 w-4" />
+              <div className="mt-3 text-xs tabular-nums text-ink-faint">
                 {preset.durationMinutes} мин · порог {preset.passThreshold}
               </div>
               <button
@@ -108,7 +108,7 @@ export default function TestsPage() {
                 className="btn-primary mt-4 w-full"
               >
                 Начать экзамен
-                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRightIcon className="h-4 w-4" />
               </button>
             </div>
           ))}
@@ -118,8 +118,7 @@ export default function TestsPage() {
       {/* Тренировка */}
       <section className="space-y-5">
         <div>
-          <div className="eyebrow">Свободный режим</div>
-          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">
             Тренировка
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
@@ -136,7 +135,7 @@ export default function TestsPage() {
           onCountChange={setCount}
         />
 
-        <label className="flex w-fit cursor-pointer items-center gap-2.5 rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink-soft transition hover:bg-surface-2">
+        <label className="flex w-fit cursor-pointer items-center gap-2.5 rounded-lg border border-line bg-surface px-4 py-2.5 text-sm text-ink-soft transition-colors hover:bg-surface-2">
           <input
             type="checkbox"
             checked={timed}
@@ -147,24 +146,17 @@ export default function TestsPage() {
         </label>
 
         <div className="surface flex flex-wrap items-center justify-between gap-4 p-5">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/12 text-accent">
-              <BookIcon className="h-5 w-5" />
+          <div>
+            <div className="text-2xl font-semibold leading-none tabular-nums text-ink">
+              {practiceTotal}
             </div>
-            <div>
-              <div className="font-mono text-2xl font-semibold leading-none text-ink">
-                {practiceTotal}
-              </div>
-              <div className="mt-1 text-xs text-ink-soft">
-                вопросов в наборе
-              </div>
-            </div>
+            <div className="mt-1 text-xs text-ink-soft">вопросов в наборе</div>
           </div>
           <button
             type="button"
             onClick={onStartPractice}
             disabled={practiceTotal === 0}
-            className="btn-accent"
+            className="btn-primary"
           >
             Начать тренировку
             <ArrowRightIcon className="h-4 w-4" />
