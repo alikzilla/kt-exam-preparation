@@ -35,29 +35,22 @@ export default function ResultsPage() {
   return (
     <div className="space-y-6">
       {/* ── Сводка ── */}
-      <div className="surface relative overflow-hidden p-6 sm:p-7">
-        <div
-          className={`pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full blur-3xl ${
-            isExam
-              ? passedExam
-                ? "bg-success/15"
-                : "bg-danger/15"
-              : "bg-accent/12"
-          }`}
-        />
+      <div className="surface p-6 sm:p-7">
         <div className="relative flex items-start justify-between gap-4">
           <div>
-            <div className="eyebrow">{isExam ? "Экзамен" : "Тренировка"}</div>
-            <h1 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
+            <div className="text-xs font-medium text-ink-faint">
+              {isExam ? "Экзамен" : "Тренировка"}
+            </div>
+            <h1 className="mt-1 text-2xl font-semibold tracking-tight text-ink">
               {isExam ? (attempt.examTitle ?? "Экзамен") : "Свободный режим"}
             </h1>
             <p className="mt-1 text-sm text-ink-soft">
               Правильных{" "}
-              <span className="font-mono font-semibold text-ink">
+              <span className="font-semibold tabular-nums text-ink">
                 {result.correct}
               </span>{" "}
               из{" "}
-              <span className="font-mono text-ink-soft">{result.total}</span>
+              <span className="tabular-nums text-ink-soft">{result.total}</span>
             </p>
           </div>
           <ScoreBadge percent={percent} />
@@ -65,10 +58,10 @@ export default function ResultsPage() {
 
         {isExam && (
           <div
-            className={`relative mt-5 flex items-center gap-3 rounded-xl px-4 py-3.5 ${
+            className={`mt-5 flex items-center gap-3 rounded-lg px-4 py-3.5 ${
               passedExam
-                ? "bg-success/12 text-success"
-                : "bg-danger/12 text-danger"
+                ? "bg-success/10 text-success"
+                : "bg-danger/10 text-danger"
             }`}
           >
             <div
@@ -90,7 +83,7 @@ export default function ResultsPage() {
           </div>
         )}
 
-        <div className="relative mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {result.perSubject.map((s) => {
             const passed = disciplinePassed(s.correct);
             return (
@@ -99,7 +92,7 @@ export default function ResultsPage() {
                   {getSubjectName(s.subjectId)}
                 </div>
                 <div className="mt-1.5 flex items-center justify-between">
-                  <span className="font-mono text-xl font-semibold text-ink">
+                  <span className="text-xl tabular-nums font-semibold text-ink">
                     {s.correct}
                     <span className="text-ink-faint">/{s.total}</span>
                   </span>
@@ -107,8 +100,8 @@ export default function ResultsPage() {
                     <span
                       className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                         passed
-                          ? "bg-success/12 text-success"
-                          : "bg-danger/12 text-danger"
+                          ? "bg-success/10 text-success"
+                          : "bg-danger/10 text-danger"
                       }`}
                     >
                       {passed ? "Порог пройден" : "Ниже порога"}
@@ -120,8 +113,8 @@ export default function ResultsPage() {
           })}
         </div>
 
-        <div className="relative mt-6 flex flex-wrap gap-3">
-          <Link to="/tests" className="btn-accent">
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link to="/tests" className="btn-primary">
             <RefreshIcon className="h-4 w-4" />
             Новый тест
           </Link>
@@ -134,12 +127,9 @@ export default function ResultsPage() {
 
       {/* ── Разбор ответов ── */}
       <div>
-        <div className="mb-4">
-          <div className="eyebrow">Разбор</div>
-          <h2 className="mt-1 font-display text-xl font-bold tracking-tight text-ink">
-            Ответы по вопросам
-          </h2>
-        </div>
+        <h2 className="mb-4 text-xl font-semibold tracking-tight text-ink">
+          Ответы по вопросам
+        </h2>
         <div className="space-y-4">
           {test.questions.map((q, i) => {
             const r = resultById.get(q.id);
@@ -149,14 +139,14 @@ export default function ResultsPage() {
               <div key={q.id} className="surface p-5">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <h3 className="font-semibold leading-snug text-ink">
-                    <span className="font-mono text-ink-faint">{i + 1}.</span>{" "}
+                    <span className="tabular-nums text-ink-faint">{i + 1}.</span>{" "}
                     {q.text}
                   </h3>
                   <span
                     className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                       r?.correct
-                        ? "bg-success/12 text-success"
-                        : "bg-danger/12 text-danger"
+                        ? "bg-success/10 text-success"
+                        : "bg-danger/10 text-danger"
                     }`}
                   >
                     {r?.correct ? (
@@ -167,7 +157,7 @@ export default function ResultsPage() {
                     {r?.correct ? "Верно" : "Неверно"}
                   </span>
                 </div>
-                <div className="font-mono text-xs uppercase tracking-wider text-ink-faint">
+                <div className="text-xs text-ink-faint">
                   {getSubjectName(q.subjectId)}
                 </div>
 
@@ -203,7 +193,7 @@ export default function ResultsPage() {
                 )}
 
                 {q.explanation && (
-                  <p className="mt-3 rounded-xl border-l-2 border-accent bg-surface-2 p-3 text-sm leading-relaxed text-ink-soft">
+                  <p className="mt-3 rounded-lg border-l-2 border-accent bg-surface-2 p-3 text-sm leading-relaxed text-ink-soft">
                     {q.explanation}
                   </p>
                 )}

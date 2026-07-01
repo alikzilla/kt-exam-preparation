@@ -20,11 +20,11 @@ export default function HistoryPage() {
   if (attempts.length === 0) {
     return (
       <div className="surface flex flex-col items-center gap-4 p-12 text-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-2 text-ink-faint">
+        <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-surface-2 text-ink-faint">
           <HistoryIcon className="h-7 w-7" />
         </div>
         <div>
-          <h1 className="font-display text-xl font-bold tracking-tight text-ink">
+          <h1 className="text-xl font-semibold tracking-tight text-ink">
             Пока нет попыток
           </h1>
           <p className="mt-1.5 text-sm text-ink-soft">
@@ -42,13 +42,12 @@ export default function HistoryPage() {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <div>
-          <div className="eyebrow">Журнал</div>
-          <h1 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink">
-            Все попытки{" "}
-            <span className="font-mono text-ink-faint">({attempts.length})</span>
-          </h1>
-        </div>
+        <h1 className="text-2xl font-semibold tracking-tight text-ink">
+          Все попытки{" "}
+          <span className="tabular-nums text-ink-faint">
+            ({attempts.length})
+          </span>
+        </h1>
         <button
           type="button"
           onClick={() => setConfirmOpen(true)}
@@ -71,11 +70,11 @@ export default function HistoryPage() {
                   {a.mode === "exam"
                     ? (a.examTitle ?? "Экзамен")
                     : "Тренировка"}{" "}
-                  <span className="font-mono text-ink-soft">
+                  <span className="tabular-nums text-ink-soft">
                     · {a.result.correct}/{a.result.total}
                   </span>
                 </div>
-                <div className="mt-0.5 truncate font-mono text-xs text-ink-faint">
+                <div className="mt-0.5 truncate text-xs tabular-nums text-ink-faint">
                   {new Date(a.takenAt).toLocaleString("ru-RU")} ·{" "}
                   {a.test.subjectIds.map(getSubjectName).join(", ")}
                 </div>
