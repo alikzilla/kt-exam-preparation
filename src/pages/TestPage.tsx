@@ -88,15 +88,15 @@ function TestRunner({
   return (
     <div className="space-y-5">
       {/* Шапка сессии: прогресс + таймер, прилипает при прокрутке. */}
-      <div className="sticky top-[57px] z-10 -mx-4 space-y-3 border-b border-line bg-paper/85 px-4 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
+      <div className="sticky top-[57px] z-10 -mx-4 space-y-3 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
         <div className="flex items-center justify-between gap-3 text-sm">
-          <span className="font-mono text-xs uppercase tracking-wider text-ink-faint">
+          <span className="text-xs text-ink-faint">
             {mode === "exam" ? (examTitle ?? "Экзамен") : "Тренировка"}
-            <span className="text-ink"> · {session.index + 1}</span>
-            <span className="text-ink-faint">/{session.total}</span>
+            <span className="tabular-nums text-ink"> · {session.index + 1}</span>
+            <span className="tabular-nums text-ink-faint">/{session.total}</span>
           </span>
           <div className="flex items-center gap-3">
-            <span className="hidden font-mono text-xs text-ink-soft sm:inline">
+            <span className="hidden text-xs tabular-nums text-ink-soft sm:inline">
               отвечено {session.answeredCount}/{session.total}
             </span>
             {durationSeconds ? <Timer remaining={remaining} /> : null}
@@ -118,11 +118,11 @@ function TestRunner({
                 onClick={() => session.goTo(i)}
                 aria-current={isCurrent}
                 aria-label={`Вопрос ${i + 1}${answered ? ", отвечен" : ""}`}
-                className={`h-8 w-8 rounded-lg font-mono text-xs font-medium transition ${
+                className={`h-8 w-8 rounded-lg text-xs font-medium tabular-nums transition-colors ${
                   isCurrent
-                    ? "bg-accent text-white shadow-accent"
+                    ? "bg-accent text-white"
                     : answered
-                      ? "bg-accent/15 text-accent hover:bg-accent/25"
+                      ? "bg-accent/10 text-accent hover:bg-accent/20"
                       : "bg-surface-2 text-ink-soft hover:bg-line"
                 }`}
               >
@@ -134,15 +134,15 @@ function TestRunner({
       </div>
 
       {/* Карточка вопроса */}
-      <div key={current.id} className="surface animate-fade-rise p-6 sm:p-7">
-        <div className="eyebrow text-accent">
+      <div key={current.id} className="surface p-6 sm:p-7">
+        <div className="text-xs font-medium text-accent">
           {getSubjectName(current.subjectId)}
         </div>
         <h2 className="mt-2 text-lg font-semibold leading-snug text-ink">
           {current.text}
         </h2>
         {current.multiCorrect && (
-          <p className="mt-1.5 inline-flex rounded-md bg-warning/12 px-2 py-0.5 text-xs font-medium text-warning">
+          <p className="mt-1.5 inline-flex rounded-md bg-warning/10 px-2 py-0.5 text-xs font-medium text-warning">
             Выберите все подходящие варианты
           </p>
         )}
@@ -150,7 +150,7 @@ function TestRunner({
           <img
             src={current.imageUrl}
             alt=""
-            className="mt-4 max-h-64 rounded-xl border border-line"
+            className="mt-4 max-h-64 rounded-lg border border-line"
           />
         )}
 
@@ -185,7 +185,7 @@ function TestRunner({
           <button
             type="button"
             onClick={() => setConfirmOpen(true)}
-            className="btn-accent"
+            className="btn-primary"
           >
             <CheckIcon className="h-4 w-4" />
             Завершить
