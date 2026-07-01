@@ -1,0 +1,47 @@
+import { NavLink } from "react-router-dom";
+import ThemeToggle from "../theme/ThemeToggle";
+
+const NAV = [
+  { to: "/", label: "Дашборд", end: true },
+  { to: "/tests", label: "Тесты", end: false },
+  { to: "/history", label: "История", end: false },
+];
+
+export default function Navbar() {
+  return (
+    <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-5xl items-center gap-4 px-4 sm:gap-6 sm:px-6">
+        <NavLink
+          to="/"
+          className="flex shrink-0 items-center gap-2 text-sm font-semibold text-ink"
+        >
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
+            КТ
+          </span>
+          <span className="hidden sm:inline">Подготовка</span>
+        </NavLink>
+        <nav className="flex items-center gap-1">
+          {NAV.map(({ to, label, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) =>
+                `rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "text-accent"
+                    : "text-ink-soft hover:bg-surface-2 hover:text-ink"
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  );
+}
