@@ -15,7 +15,7 @@ export default function ProgressBar({
       aria-valuenow={value}
     >
       <div
-        className="h-full rounded-full bg-accent transition-all duration-500 ease-out"
+        className="h-full rounded-full bg-accent transition-all duration-300 ease-out"
         style={{ width: `${pct}%` }}
       />
     </div>

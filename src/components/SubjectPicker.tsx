@@ -27,10 +27,8 @@ export default function SubjectPicker({
         return (
           <div
             key={subject.id}
-            className={`rounded-card border p-4 transition duration-200 ${
-              isOn
-                ? "border-accent/40 bg-accent/5 shadow-card"
-                : "border-line bg-surface"
+            className={`rounded-lg border p-4 transition-colors duration-200 ${
+              isOn ? "border-accent/40 bg-accent/5" : "border-line bg-surface"
             }`}
           >
             <div className="flex items-center gap-3">
@@ -54,7 +52,9 @@ export default function SubjectPicker({
                 className="flex flex-1 items-center justify-between text-left"
               >
                 <span className="font-medium text-ink">{subject.name}</span>
-                <span className="chip">{pool} в банке</span>
+                <span className="text-xs tabular-nums text-ink-faint">
+                  {pool} в банке
+                </span>
               </button>
             </div>
 
@@ -79,7 +79,7 @@ export default function SubjectPicker({
                     onChange={(e) =>
                       onCountChange(subject.id, clamp(Number(e.target.value)))
                     }
-                    className="field w-16 text-center font-mono [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+                    className="field w-16 text-center tabular-nums [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <button
                     type="button"

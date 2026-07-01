@@ -8,8 +8,8 @@ export const OPTION_LETTERS = ["А", "Б", "В", "Г", "Д", "Е", "Ж", "З"];
 // Цвет рамки/фона карточки в режиме разбора.
 const shellVariant: Record<Variant, string> = {
   default: "border-line",
-  correct: "border-success/50 bg-success/8",
-  incorrect: "border-danger/50 bg-danger/8",
+  correct: "border-success/50 bg-success/5",
+  incorrect: "border-danger/50 bg-danger/5",
   missed: "border-success/40 bg-success/5 border-dashed",
 };
 
@@ -46,9 +46,7 @@ export default function OptionCard({
       : "cursor-pointer hover:border-accent/60 hover:bg-accent/5";
 
   const selectedShell =
-    selected && !isReview
-      ? "border-accent bg-accent/8 ring-1 ring-accent/30"
-      : "";
+    selected && !isReview ? "border-accent bg-accent/5" : "";
 
   const shell = isReview ? shellVariant[variant] : "border-line";
 
@@ -64,10 +62,10 @@ export default function OptionCard({
       disabled={disabled}
       onClick={() => onToggle?.(option.id)}
       aria-pressed={selected}
-      className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm text-ink transition duration-150 ${shell} ${interactive} ${selectedShell}`}
+      className={`flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm text-ink transition-colors duration-150 ${shell} ${interactive} ${selectedShell}`}
     >
       <span
-        className={`flex h-7 w-7 shrink-0 items-center justify-center border font-mono text-xs font-semibold transition ${
+        className={`flex h-7 w-7 shrink-0 items-center justify-center border text-xs font-semibold transition-colors ${
           multiCorrect ? "rounded-md" : "rounded-full"
         } ${badge}`}
       >

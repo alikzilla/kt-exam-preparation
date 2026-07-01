@@ -18,7 +18,7 @@ export default function ThemeToggle() {
     <div
       role="radiogroup"
       aria-label="Тема оформления"
-      className="inline-flex items-center gap-0.5 rounded-full border border-line bg-surface-2 p-1"
+      className="inline-flex items-center gap-0.5 rounded-lg border border-line bg-surface-2 p-0.5"
     >
       {OPTIONS.map(({ value, label, Icon }) => {
         const active = theme === value;
@@ -31,9 +31,9 @@ export default function ThemeToggle() {
             onClick={() => setTheme(value)}
             title={label}
             aria-label={label}
-            className={`flex h-8 w-8 items-center justify-center rounded-full transition ${
+            className={`flex h-7 w-7 items-center justify-center rounded-md transition-colors ${
               active
-                ? "bg-surface text-accent shadow-card"
+                ? "bg-surface text-accent"
                 : "text-ink-faint hover:text-ink"
             }`}
           >

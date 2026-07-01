@@ -7,9 +7,9 @@ export default function Timer({ remaining }: { remaining: number }) {
     <div
       role="timer"
       aria-live={low ? "assertive" : "off"}
-      className={`flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-sm font-semibold tabular-nums ring-1 ring-inset transition ${
+      className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold tabular-nums ring-1 ring-inset transition ${
         low
-          ? "animate-pulse-ring bg-danger/12 text-danger ring-danger/25"
+          ? "animate-pulse-ring bg-danger/10 text-danger ring-danger/25"
           : "bg-surface-2 text-ink ring-line"
       }`}
     >

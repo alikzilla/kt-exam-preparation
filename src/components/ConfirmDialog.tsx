@@ -44,7 +44,7 @@ export default function ConfirmDialog({
 
   if (!open) return null;
 
-  const confirmClass = tone === "danger" ? "btn-accent !bg-danger" : "btn-primary";
+  const confirmClass = tone === "danger" ? "btn-primary !bg-danger" : "btn-primary";
 
   return (
     <div
@@ -53,17 +53,14 @@ export default function ConfirmDialog({
       aria-modal="true"
       aria-labelledby="confirm-title"
     >
-      <div
-        className="absolute inset-0 bg-ink/40 backdrop-blur-sm animate-fade-in"
-        onClick={onCancel}
-      />
-      <div className="surface relative w-full max-w-md animate-scale-in p-6">
+      <div className="absolute inset-0 bg-ink/40" onClick={onCancel} />
+      <div className="surface relative w-full max-w-md p-6 shadow-modal">
         <div className="flex items-start gap-4">
           <div
-            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${
               tone === "danger"
-                ? "bg-danger/12 text-danger"
-                : "bg-accent/12 text-accent"
+                ? "bg-danger/10 text-danger"
+                : "bg-accent/10 text-accent"
             }`}
           >
             <AlertIcon className="h-5 w-5" />
@@ -71,7 +68,7 @@ export default function ConfirmDialog({
           <div className="flex-1">
             <h2
               id="confirm-title"
-              className="font-display text-lg font-bold tracking-tight text-ink"
+              className="text-lg font-semibold tracking-tight text-ink"
             >
               {title}
             </h2>
