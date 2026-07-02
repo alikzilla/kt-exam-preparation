@@ -80,4 +80,30 @@ describe("attempts", () => {
     const own = await asA.query(api.attempts.getByLocalId, { localId: "a1" });
     expect(own?.localId).toBe("a1");
   });
+
+  test("importAttempts bulk-inserts for the caller only", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    await asA.mutation(api.attempts.importAttempts, {
+      attempts: [makeAttempt("m1", 10), makeAttempt("m2", 20)],
+    });
+    const list = await asA.query(api.attempts.myAttempts, {});
+    expect(list).toHaveLength(2);
+    const asB = t.withIdentity({ subject: "user_b", name: "B" });
+    expect(await asB.query(api.attempts.myAttempts, {})).toEqual([]);
+  });
+
+  test("importAttempts rejects unauthenticated and >500 items", async () => {
+    const t = convexTest(schema, modules);
+    await expect(
+      t.mutation(api.attempts.importAttempts, { attempts: [] })
+    ).rejects.toThrow();
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    const many = Array.from({ length: 501 }, (_, i) =>
+      makeAttempt(`x${i}`, i)
+    );
+    await expect(
+      asA.mutation(api.attempts.importAttempts, { attempts: many })
+    ).rejects.toThrow();
+  });
 });

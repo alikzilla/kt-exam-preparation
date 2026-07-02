@@ -11,6 +11,23 @@ export const saveAttempt = mutation({
   },
 });
 
+export const importAttempts = mutation({
+  args: { attempts: v.array(attemptValidator) },
+  handler: async (ctx, { attempts }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Требуется вход в аккаунт");
+    if (attempts.length > 500) {
+      throw new Error("Слишком много попыток за один импорт (макс. 500)");
+    }
+    for (const attempt of attempts) {
+      await ctx.db.insert("attempts", {
+        userId: identity.subject,
+        ...attempt,
+      });
+    }
+  },
+});
+
 export const myAttempts = query({
   args: {},
   handler: async (ctx) => {
