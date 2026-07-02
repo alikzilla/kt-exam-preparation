@@ -19,12 +19,12 @@ Add a read-only page that lists every question in the app's question bank (curre
 - **Filter chips:** a row below the header — «Все» plus one chip per subject from `getSubjects()`, each showing its question count. Exactly one chip active at a time; «Все» is the default.
 - **Question list:** vertical list of `surface` cards. Each card shows:
   - question number (position within the current filter) and question text;
-  - the options as a plain lettered list (a–e), unshuffled, straight from the JSON;
   - a small «Показать ответ» / «Скрыть ответ» toggle button.
+  - The answer options are **not** listed (revised after initial implementation: the card is question-only until revealed).
 
 ## Reveal Behavior
 
-- **Per-card reveal:** clicking the button highlights the correct option(s) — success tint plus check mark, reusing the visual idiom ResultsPage uses for correct answers — and shows the `explanation` (if present) below the options in soft ink.
+- **Per-card reveal:** clicking the button shows the correct answer(s) only — success-tinted rows with a check mark — plus the `explanation` (if present) below in soft ink. Incorrect options are never shown on this page.
 - **Global toggle:** «Показать все ответы» adds all currently filtered question ids to the revealed set; «Скрыть все ответы» clears them. Button label reflects whether all filtered questions are currently revealed.
 - **State:** a single `Set<questionId>` of revealed cards, plus the active subject filter. Plain `useState`, no persistence.
 
