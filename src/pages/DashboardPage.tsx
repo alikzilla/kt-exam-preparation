@@ -6,12 +6,14 @@ import { api } from "../../convex/_generated/api";
 import { useAttempts } from "../hooks/useAttempts";
 import { computeStats } from "../lib/stats";
 import { scorePercent } from "../lib/grading";
-import { getQuestionsBySubject, getSubjectName } from "../data";
+import { getQuestionsBySubject } from "../data";
 import { EXAM_PRESETS } from "../data/exam";
 import { useStartTest } from "../hooks/useStartTest";
 import StatCard from "../components/StatCard";
 import ScoreChart from "../components/ScoreChart";
+import DisciplineChart from "../components/DisciplineChart";
 import ScoreBadge from "../components/ScoreBadge";
+import Loader from "../components/Loader";
 
 export default function DashboardPage() {
   const { startPreset } = useStartTest();
@@ -50,11 +52,7 @@ export default function DashboardPage() {
       </div>
 
       {isLoading ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="surface h-24 animate-pulse p-5" />
-          ))}
-        </div>
+        <Loader label="Загружаем статистику…" />
       ) : (
         <>
       {/* Метрики */}
@@ -89,26 +87,7 @@ export default function DashboardPage() {
           {stats.perDiscipline.length === 0 ? (
             <p className="text-sm text-ink-faint">Пока нет данных.</p>
           ) : (
-            <div className="space-y-4">
-              {stats.perDiscipline.map((d) => (
-                <div key={d.subjectId}>
-                  <div className="mb-1.5 flex items-center justify-between text-sm">
-                    <span className="text-ink-soft">
-                      {getSubjectName(d.subjectId)}
-                    </span>
-                    <span className="font-semibold tabular-nums text-ink">
-                      {d.percent}%
-                    </span>
-                  </div>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-                    <div
-                      className="h-full rounded-full bg-accent transition-all duration-300"
-                      style={{ width: `${d.percent}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <DisciplineChart data={stats.perDiscipline} />
           )}
         </section>
       </div>

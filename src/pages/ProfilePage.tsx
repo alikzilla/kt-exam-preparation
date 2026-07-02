@@ -3,6 +3,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import StatCard from "../components/StatCard";
+import Loader from "../components/Loader";
 
 export default function ProfilePage() {
   const { userId } = useParams();
@@ -16,7 +17,7 @@ export default function ProfilePage() {
   const isOwn = user?.id === userId;
 
   if (profile === undefined) {
-    return <div className="surface h-40 animate-pulse" />;
+    return <Loader label="Загружаем профиль…" />;
   }
 
   const shown = profile ?? (isOwn ? own : null);

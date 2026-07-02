@@ -1,17 +1,34 @@
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { useChartColors, tooltipStyles } from "./chartTheme";
+
 interface Point {
   takenAt: number;
   percent: number;
 }
 
-/**
- * Лёгкий линейный график динамики результатов без внешних зависимостей.
- * Рисуется в системе координат 0..100% по вертикали.
- */
+const fmtTick = (t: number) =>
+  new Date(t).toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit" });
+
+const fmtLabel = (t: number) =>
+  new Date(t).toLocaleString("ru-RU", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+/** График динамики результатов: 0..100% по вертикали, попытки по горизонтали. */
 export default function ScoreChart({ data }: { data: Point[] }) {
-  const W = 600;
-  const H = 180;
-  const padX = 14;
-  const padY = 18;
+  const c = useChartColors();
 
   if (data.length === 0) {
     return (
@@ -21,71 +38,49 @@ export default function ScoreChart({ data }: { data: Point[] }) {
     );
   }
 
-  const n = data.length;
-  const x = (i: number) =>
-    n === 1 ? W / 2 : padX + (i * (W - 2 * padX)) / (n - 1);
-  const y = (p: number) => padY + ((100 - p) * (H - 2 * padY)) / 100;
-
-  const linePath = data
-    .map(
-      (d, i) =>
-        `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`
-    )
-    .join(" ");
-  const areaPath =
-    `M ${x(0).toFixed(1)} ${(H - padY).toFixed(1)} ` +
-    data
-      .map((d, i) => `L ${x(i).toFixed(1)} ${y(d.percent).toFixed(1)}`)
-      .join(" ") +
-    ` L ${x(n - 1).toFixed(1)} ${(H - padY).toFixed(1)} Z`;
-
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className="h-44 w-full text-accent"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="currentColor" stopOpacity="0.22" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-
-      {/* Сетка: 0/50/100% */}
-      {[0, 50, 100].map((p) => (
-        <line
-          key={p}
-          x1={padX}
-          x2={W - padX}
-          y1={y(p)}
-          y2={y(p)}
-          className="stroke-line"
-          strokeWidth="1"
-          strokeDasharray={p === 50 ? "4 5" : undefined}
-        />
-      ))}
-
-      <path d={areaPath} fill="url(#scoreFill)" />
-      <path
-        d={linePath}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      {data.map((d, i) => (
-        <circle
-          key={i}
-          cx={x(i)}
-          cy={y(d.percent)}
-          r="4"
-          className="fill-surface"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        />
-      ))}
-    </svg>
+    <div className="h-44 w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} margin={{ top: 6, right: 8, left: -16, bottom: 0 }}>
+          <defs>
+            <linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={c.accent} stopOpacity={0.22} />
+              <stop offset="100%" stopColor={c.accent} stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid stroke={c.line} strokeDasharray="4 5" vertical={false} />
+          <XAxis
+            dataKey="takenAt"
+            tickFormatter={fmtTick}
+            tick={{ fill: c.inkFaint, fontSize: 11 }}
+            axisLine={{ stroke: c.line }}
+            tickLine={false}
+            minTickGap={28}
+          />
+          <YAxis
+            domain={[0, 100]}
+            ticks={[0, 25, 50, 75, 100]}
+            tickFormatter={(v: number) => `${v}%`}
+            tick={{ fill: c.inkFaint, fontSize: 11 }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip
+            {...tooltipStyles(c)}
+            labelFormatter={(t) => fmtLabel(Number(t))}
+            formatter={(value) => [`${value}%`, "Результат"]}
+          />
+          <Area
+            type="monotone"
+            dataKey="percent"
+            stroke={c.accent}
+            strokeWidth={2.5}
+            fill="url(#scoreFill)"
+            dot={{ r: 3.5, fill: c.surface, stroke: c.accent, strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: c.accent, stroke: c.surface, strokeWidth: 2 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   );
 }

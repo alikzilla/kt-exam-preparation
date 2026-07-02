@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { clearAttempts, loadAttempts } from "../lib/storage";
 import ConfirmDialog from "./ConfirmDialog";
+import { Spinner } from "./Loader";
 
 const declineKey = (userId: string) => `kt-exam:migrate-declined:${userId}`;
 
@@ -46,6 +48,23 @@ export default function MigrationPrompt() {
     localStorage.setItem(declineKey(user.id), "1");
     setDismissed(true);
   };
+
+  // Пока идёт перенос, показываем полноэкранный индикатор вместо диалога.
+  if (busy) {
+    return createPortal(
+      <div
+        role="status"
+        aria-live="polite"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4"
+      >
+        <div className="surface flex items-center gap-3 px-6 py-4 shadow-modal">
+          <Spinner className="h-5 w-5 text-accent" />
+          <span className="text-sm text-ink-soft">Переносим попытки…</span>
+        </div>
+      </div>,
+      document.body
+    );
+  }
 
   return (
     <ConfirmDialog

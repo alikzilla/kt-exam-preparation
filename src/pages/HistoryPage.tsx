@@ -7,6 +7,7 @@ import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
 import ConfirmDialog from "../components/ConfirmDialog";
+import Loader from "../components/Loader";
 import { HistoryIcon, TrashIcon, ArrowRightIcon } from "../components/icons";
 
 export default function HistoryPage() {
@@ -23,7 +24,7 @@ export default function HistoryPage() {
   };
 
   if (isLoading) {
-    return <div className="surface h-40 animate-pulse" />;
+    return <Loader label="Загружаем историю…" />;
   }
 
   if (attempts.length === 0) {

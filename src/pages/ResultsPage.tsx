@@ -5,6 +5,7 @@ import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
+import Loader from "../components/Loader";
 import {
   CheckIcon,
   CloseIcon,
@@ -16,7 +17,7 @@ export default function ResultsPage() {
   const { attemptId } = useParams();
   const { attempt, isLoading } = useAttempt(attemptId);
 
-  if (isLoading) return <div className="surface h-40 animate-pulse" />;
+  if (isLoading) return <Loader label="Загружаем результаты…" />;
   if (!attempt) return <Navigate to="/" replace />;
 
   const { test, result, mode } = attempt;

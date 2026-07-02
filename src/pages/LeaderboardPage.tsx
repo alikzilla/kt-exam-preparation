@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth, useUser, SignInButton } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import Loader from "../components/Loader";
 
 export default function LeaderboardPage() {
   const { isSignedIn } = useAuth();
@@ -10,7 +11,7 @@ export default function LeaderboardPage() {
   const myRank = useQuery(api.profiles.myRank, isSignedIn ? {} : "skip");
 
   if (board === undefined) {
-    return <div className="surface h-40 animate-pulse" />;
+    return <Loader label="Загружаем лидерборд…" />;
   }
 
   const inTop = user && board.some((e) => e.userId === user.id);
