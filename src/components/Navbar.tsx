@@ -4,6 +4,7 @@ import ThemeToggle from "../theme/ThemeToggle";
 const NAV = [
   { to: "/", label: "Дашборд", end: true },
   { to: "/tests", label: "Тесты", end: false },
+  { to: "/questions", label: "Вопросы", end: false },
   { to: "/history", label: "История", end: false },
 ];
 
