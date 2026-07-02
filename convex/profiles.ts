@@ -1,6 +1,7 @@
-import { query } from "./_generated/server";
-import type { MutationCtx } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "./_generated/server";
 import type { UserIdentity } from "convex/server";
+import { v } from "convex/values";
 
 type AttemptLike = {
   mode: "exam" | "practice";
@@ -79,5 +80,78 @@ export const my = query({
       .query("profiles")
       .withIndex("by_user", (q) => q.eq("userId", identity.subject))
       .unique();
+  },
+});
+
+async function rankedProfiles(ctx: QueryCtx) {
+  // Небольшая база: собираем всех публичных участников и сортируем в памяти.
+  const all = await ctx.db
+    .query("profiles")
+    .withIndex("by_best")
+    .order("desc")
+    .collect();
+  return all
+    .filter((p) => p.isPublic && p.examAttempts > 0)
+    .sort(
+      (a, b) =>
+        b.bestExamPercent - a.bestExamPercent ||
+        a.examAttempts - b.examAttempts
+    )
+    .map((p) => ({
+      userId: p.userId,
+      name: p.name,
+      avatarUrl: p.avatarUrl,
+      bestExamPercent: p.bestExamPercent,
+      examAttempts: p.examAttempts,
+    }));
+}
+
+export const leaderboard = query({
+  args: {},
+  handler: async (ctx) => {
+    return (await rankedProfiles(ctx)).slice(0, 50);
+  },
+});
+
+export const myRank = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return null;
+    const ranked = await rankedProfiles(ctx);
+    const i = ranked.findIndex((p) => p.userId === identity.subject);
+    return i === -1 ? null : { rank: i + 1 };
+  },
+});
+
+export const publicProfile = query({
+  args: { userId: v.string() },
+  handler: async (ctx, { userId }) => {
+    const p = await ctx.db
+      .query("profiles")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .unique();
+    if (!p || !p.isPublic) return null;
+    return {
+      userId: p.userId,
+      name: p.name,
+      avatarUrl: p.avatarUrl,
+      bestExamPercent: p.bestExamPercent,
+      examAttempts: p.examAttempts,
+      streakDays: p.streakDays,
+    };
+  },
+});
+
+export const setPublic = mutation({
+  args: { isPublic: v.boolean() },
+  handler: async (ctx, { isPublic }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Требуется вход в аккаунт");
+    const p = await ctx.db
+      .query("profiles")
+      .withIndex("by_user", (q) => q.eq("userId", identity.subject))
+      .unique();
+    if (p) await ctx.db.patch(p._id, { isPublic });
   },
 });

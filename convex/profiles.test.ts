@@ -79,4 +79,36 @@ describe("profiles", () => {
     expect(p?.examAttempts).toBe(1);
     expect(p?.streakDays).toBe(0);
   });
+
+  test("leaderboard orders by best desc, ties by fewer exam attempts, hides private", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    const asB = t.withIdentity({ subject: "user_b", name: "B" });
+    const asC = t.withIdentity({ subject: "user_c", name: "C" });
+
+    await asA.mutation(api.attempts.saveAttempt, {
+      attempt: examAttempt("a1", 40, 50), // 80%
+    });
+    await asB.mutation(api.attempts.saveAttempt, {
+      attempt: examAttempt("b1", 40, 50), // 80% but 2 attempts
+    });
+    await asB.mutation(api.attempts.saveAttempt, {
+      attempt: examAttempt("b2", 30, 50),
+    });
+    await asC.mutation(api.attempts.saveAttempt, {
+      attempt: examAttempt("c1", 45, 50), // 90%
+    });
+    await asC.mutation(api.profiles.setPublic, { isPublic: false });
+
+    const board = await t.query(api.profiles.leaderboard, {});
+    expect(board.map((e) => e.userId)).toEqual(["user_a", "user_b"]);
+
+    expect(await t.query(api.profiles.publicProfile, { userId: "user_c" }))
+      .toBeNull();
+    const a = await t.query(api.profiles.publicProfile, { userId: "user_a" });
+    expect(a?.bestExamPercent).toBe(80);
+
+    const rankB = await asB.query(api.profiles.myRank, {});
+    expect(rankB?.rank).toBe(2);
+  });
 });

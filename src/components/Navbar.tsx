@@ -12,6 +12,7 @@ const NAV = [
   { to: "/tests", label: "Тесты", end: false },
   { to: "/questions", label: "Вопросы", end: false },
   { to: "/history", label: "История", end: false },
+  { to: "/leaderboard", label: "Лидерборд", end: false },
 ];
 
 export default function Navbar() {
