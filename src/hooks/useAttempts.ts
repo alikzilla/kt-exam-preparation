@@ -60,7 +60,9 @@ export function useSaveAttempt(): (attempt: Attempt) => Promise<void> {
       }
       const { id, ...rest } = attempt;
       try {
-        await save({ attempt: { localId: id, ...rest } });
+        // sv-SE даёт YYYY-MM-DD в локальном часовом поясе пользователя.
+        const localDay = new Date().toLocaleDateString("sv-SE");
+        await save({ attempt: { localId: id, ...rest }, localDay });
       } catch {
         // Облако недоступно — сохраняем локально, useAttempt найдёт фолбэк.
         saveLocalAttempt(attempt);

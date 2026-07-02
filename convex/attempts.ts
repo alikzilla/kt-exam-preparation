@@ -1,13 +1,15 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { attemptValidator } from "./validators";
+import { updateProfileAfterAttempts } from "./profiles";
 
 export const saveAttempt = mutation({
-  args: { attempt: attemptValidator },
-  handler: async (ctx, { attempt }) => {
+  args: { attempt: attemptValidator, localDay: v.optional(v.string()) },
+  handler: async (ctx, { attempt, localDay }) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Требуется вход в аккаунт");
     await ctx.db.insert("attempts", { userId: identity.subject, ...attempt });
+    await updateProfileAfterAttempts(ctx, identity, [attempt], localDay);
   },
 });
 
@@ -25,6 +27,7 @@ export const importAttempts = mutation({
         ...attempt,
       });
     }
+    await updateProfileAfterAttempts(ctx, identity, attempts);
   },
 });
 

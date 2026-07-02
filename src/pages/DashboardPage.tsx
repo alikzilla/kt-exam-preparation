@@ -1,5 +1,8 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@clerk/clerk-react";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { useAttempts } from "../hooks/useAttempts";
 import { computeStats } from "../lib/stats";
 import { scorePercent } from "../lib/grading";
@@ -13,6 +16,8 @@ import ScoreBadge from "../components/ScoreBadge";
 export default function DashboardPage() {
   const { startPreset } = useStartTest();
   const { attempts, isLoading } = useAttempts();
+  const { isSignedIn } = useAuth();
+  const profile = useQuery(api.profiles.my, isSignedIn ? {} : "skip");
   const stats = useMemo(() => computeStats(attempts), [attempts]);
   const recent = attempts.slice(0, 5);
 
@@ -53,11 +58,18 @@ export default function DashboardPage() {
       ) : (
         <>
       {/* Метрики */}
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section
+        className={`grid gap-4 sm:grid-cols-2 ${
+          isSignedIn ? "lg:grid-cols-5" : "lg:grid-cols-4"
+        }`}
+      >
         <StatCard label="Всего попыток" value={`${stats.totalAttempts}`} />
         <StatCard label="Средний результат" value={`${stats.averagePercent}%`} />
         <StatCard label="Лучший результат" value={`${stats.bestPercent}%`} />
         <StatCard label="Сдано экзаменов" value={`${stats.examsPassed}`} />
+        {isSignedIn && (
+          <StatCard label="Дней подряд" value={`${profile?.streakDays ?? 0}`} />
+        )}
       </section>
 
       <div className="grid gap-4 lg:grid-cols-5">
