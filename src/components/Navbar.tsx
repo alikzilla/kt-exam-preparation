@@ -1,4 +1,10 @@
 import { NavLink } from "react-router-dom";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import ThemeToggle from "../theme/ThemeToggle";
 
 const NAV = [
@@ -39,8 +45,18 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-3">
           <ThemeToggle />
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button type="button" className="btn-primary btn-sm">
+                Войти
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>
