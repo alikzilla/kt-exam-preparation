@@ -1,3 +1,6 @@
+// Файл выполняется при деплое в Node-окружении; типы node не подключены.
+declare const process: { env: Record<string, string | undefined> };
+
 export default {
   providers: [
     {
