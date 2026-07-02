@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Navigate, useBlocker, useLocation, useNavigate } from "react-router-dom";
 import type { Attempt, GeneratedTest, TestMode } from "../types";
 import { useTestSession } from "../hooks/useTestSession";
 import { useCountdown } from "../hooks/useCountdown";
@@ -61,7 +61,25 @@ function TestRunner({
   const selected = session.answers[current.id] ?? [];
   const [confirmOpen, setConfirmOpen] = useState(false);
 
+  // Пока тест не завершён явно, уход со страницы блокируется: случайный
+  // клик по ссылке не должен молча терять прогресс. Ref, а не state —
+  // finish() ставит флаг синхронно перед navigate().
+  const finishedRef = useRef(false);
+  const blocker = useBlocker(() => !finishedRef.current);
+
+  // Обновление/закрытие вкладки — нативный диалог браузера.
+  useEffect(() => {
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (finishedRef.current) return;
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", onBeforeUnload);
+    return () => window.removeEventListener("beforeunload", onBeforeUnload);
+  }, []);
+
   const finish = useCallback(() => {
+    finishedRef.current = true;
     const result = gradeTest(test, session.answers);
     const attempt: Attempt = {
       id: crypto.randomUUID(),
@@ -77,7 +95,7 @@ function TestRunner({
     onSubmit(attempt);
   }, [test, mode, examTitle, passThreshold, session.answers, onSubmit]);
 
-  const remaining = useCountdown(durationSeconds ?? 0, finish);
+  const remaining = useCountdown(durationSeconds, finish);
 
   const unanswered = session.total - session.answeredCount;
   const confirmMessage =
@@ -206,6 +224,18 @@ function TestRunner({
         cancelLabel="Продолжить"
         onConfirm={finish}
         onCancel={() => setConfirmOpen(false)}
+      />
+
+      {/* Попытка уйти со страницы во время теста: прогресс не сохраняется. */}
+      <ConfirmDialog
+        open={blocker.state === "blocked"}
+        title="Покинуть тестирование?"
+        message="Прогресс не сохранится — ответы будут потеряны."
+        confirmLabel="Покинуть"
+        cancelLabel="Остаться"
+        tone="danger"
+        onConfirm={() => blocker.proceed?.()}
+        onCancel={() => blocker.reset?.()}
       />
     </div>
   );

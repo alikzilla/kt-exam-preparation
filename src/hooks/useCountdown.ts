@@ -2,15 +2,18 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Countdown timer. Starts immediately from `seconds` and calls `onExpire` once
- * when it reaches zero. Returns the remaining seconds.
+ * when it reaches zero. Returns the remaining seconds. If `seconds` is
+ * undefined or 0 the session is untimed: no countdown runs and `onExpire` is
+ * never called.
  */
-export function useCountdown(seconds: number, onExpire: () => void) {
-  const [remaining, setRemaining] = useState(seconds);
+export function useCountdown(seconds: number | undefined, onExpire: () => void) {
+  const [remaining, setRemaining] = useState(seconds ?? 0);
   const expiredRef = useRef(false);
   const onExpireRef = useRef(onExpire);
   onExpireRef.current = onExpire;
 
   useEffect(() => {
+    if (!seconds) return;
     const id = setInterval(() => {
       setRemaining((r) => {
         if (r <= 1) {
@@ -25,7 +28,7 @@ export function useCountdown(seconds: number, onExpire: () => void) {
       });
     }, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [seconds]);
 
   return remaining;
 }

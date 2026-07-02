@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { AlertIcon } from "./icons";
 
 /**
@@ -49,7 +50,10 @@ export default function ConfirmDialog({
       ? "btn-primary !bg-danger hover:!bg-danger/90"
       : "btn-primary";
 
-  return (
+  // Портал в body: fixed-позиционирование не ломается стилями предков
+  // (sticky-шапки с backdrop-blur, transform и т.п.), подложка всегда
+  // покрывает весь экран.
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
       role="dialog"
@@ -94,6 +98,7 @@ export default function ConfirmDialog({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
