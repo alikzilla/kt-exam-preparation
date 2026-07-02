@@ -6,6 +6,7 @@ import {
   UserButton,
 } from "@clerk/clerk-react";
 import ThemeToggle from "../theme/ThemeToggle";
+import Logo from "./Logo";
 
 const NAV = [
   { to: "/", label: "Дашборд", end: true },
@@ -23,10 +24,8 @@ export default function Navbar() {
           to="/"
           className="flex shrink-0 items-center gap-2 text-sm font-semibold text-ink"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
-            КТ
-          </span>
-          <span className="hidden sm:inline">Подготовка</span>
+          <Logo className="h-7 w-7" />
+          <span className="hidden sm:inline">КТ Подготовка</span>
         </NavLink>
         <nav className="flex items-center gap-1">
           {NAV.map(({ to, label, end }) => (
