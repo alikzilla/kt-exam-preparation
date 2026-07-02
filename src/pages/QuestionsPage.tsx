@@ -6,7 +6,7 @@ import {
   getSubjectName,
   getSubjects,
 } from "../data";
-import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
+import { CheckIcon } from "../components/icons";
 
 /** Значение фильтра «Все» — не совпадает ни с одним subjectId. */
 const ALL = "all";
@@ -90,7 +90,6 @@ export default function QuestionsPage() {
       <div className="space-y-4">
         {questions.map((q, i) => {
           const isRevealed = revealed.has(q.id);
-          const multiCorrect = q.correctOptionIds.length > 1;
           const correctSet = new Set(q.correctOptionIds);
           return (
             <div key={q.id} className="surface p-5">
@@ -111,28 +110,27 @@ export default function QuestionsPage() {
                 {getSubjectName(q.subjectId)}
               </div>
 
-              <div className="mt-3 space-y-2">
-                {q.options.map((opt, idx) => (
-                  <OptionCard
-                    key={opt.id}
-                    option={opt}
-                    letter={OPTION_LETTERS[idx]}
-                    selected={false}
-                    multiCorrect={multiCorrect}
-                    disabled
-                    variant={
-                      isRevealed && correctSet.has(opt.id)
-                        ? "correct"
-                        : "default"
-                    }
-                  />
-                ))}
-              </div>
-
-              {isRevealed && q.explanation && (
-                <p className="mt-3 rounded-lg border-l-2 border-accent bg-surface-2 p-3 text-sm leading-relaxed text-ink-soft">
-                  {q.explanation}
-                </p>
+              {isRevealed && (
+                <div className="mt-3 space-y-2">
+                  {q.options
+                    .filter((opt) => correctSet.has(opt.id))
+                    .map((opt) => (
+                      <div
+                        key={opt.id}
+                        className="flex items-center gap-3 rounded-lg border border-success/50 bg-success/5 px-4 py-3 text-sm text-ink"
+                      >
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-success text-white">
+                          <CheckIcon className="h-4 w-4" strokeWidth={2.6} />
+                        </span>
+                        <span className="flex-1 leading-snug">{opt.text}</span>
+                      </div>
+                    ))}
+                  {q.explanation && (
+                    <p className="rounded-lg border-l-2 border-accent bg-surface-2 p-3 text-sm leading-relaxed text-ink-soft">
+                      {q.explanation}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           );
