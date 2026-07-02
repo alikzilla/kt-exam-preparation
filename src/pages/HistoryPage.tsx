@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { clearAttempts, loadAttempts } from "../lib/storage";
+import { clearAttempts } from "../lib/storage";
+import { useAttempts } from "../hooks/useAttempts";
+import { useAuth } from "@clerk/clerk-react";
 import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
@@ -8,14 +10,21 @@ import ConfirmDialog from "../components/ConfirmDialog";
 import { HistoryIcon, TrashIcon, ArrowRightIcon } from "../components/icons";
 
 export default function HistoryPage() {
-  const [attempts, setAttempts] = useState(() => loadAttempts());
+  const { isSignedIn } = useAuth();
+  const { attempts: allAttempts, isLoading } = useAttempts();
+  const [clearedLocal, setClearedLocal] = useState(false);
+  const attempts = clearedLocal ? [] : allAttempts;
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const clear = () => {
     clearAttempts();
-    setAttempts([]);
+    setClearedLocal(true);
     setConfirmOpen(false);
   };
+
+  if (isLoading) {
+    return <div className="surface h-40 animate-pulse" />;
+  }
 
   if (attempts.length === 0) {
     return (
@@ -48,14 +57,16 @@ export default function HistoryPage() {
             ({attempts.length})
           </span>
         </h1>
-        <button
-          type="button"
-          onClick={() => setConfirmOpen(true)}
-          className="btn-ghost btn-sm hover:bg-danger/10 hover:text-danger"
-        >
-          <TrashIcon className="h-4 w-4" />
-          Очистить
-        </button>
+        {!isSignedIn && (
+          <button
+            type="button"
+            onClick={() => setConfirmOpen(true)}
+            className="btn-ghost btn-sm hover:bg-danger/10 hover:text-danger"
+          >
+            <TrashIcon className="h-4 w-4" />
+            Очистить
+          </button>
+        )}
       </div>
 
       <ul className="space-y-3">

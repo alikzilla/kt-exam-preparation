@@ -4,7 +4,7 @@ import type { Attempt, GeneratedTest, TestMode } from "../types";
 import { useTestSession } from "../hooks/useTestSession";
 import { useCountdown } from "../hooks/useCountdown";
 import { gradeTest } from "../lib/grading";
-import { saveAttempt } from "../lib/storage";
+import { useSaveAttempt } from "../hooks/useAttempts";
 import { getSubjectName } from "../data";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
 import ProgressBar from "../components/ProgressBar";
@@ -57,6 +57,7 @@ function TestRunner({
   onSubmit: (attempt: Attempt) => void;
 }) {
   const session = useTestSession(test);
+  const saveAttempt = useSaveAttempt();
   const { current } = session;
   const selected = session.answers[current.id] ?? [];
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -91,9 +92,8 @@ function TestRunner({
       answers: session.answers,
       result,
     };
-    saveAttempt(attempt);
-    onSubmit(attempt);
-  }, [test, mode, examTitle, passThreshold, session.answers, onSubmit]);
+    void saveAttempt(attempt).then(() => onSubmit(attempt));
+  }, [test, mode, examTitle, passThreshold, session.answers, onSubmit, saveAttempt]);
 
   const remaining = useCountdown(durationSeconds, finish);
 

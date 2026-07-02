@@ -1,7 +1,6 @@
-import { useMemo } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { DEFAULT_PASS_THRESHOLD } from "../types";
-import { getAttempt } from "../lib/storage";
+import { useAttempt } from "../hooks/useAttempts";
 import { scorePercent } from "../lib/grading";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
@@ -15,11 +14,9 @@ import {
 
 export default function ResultsPage() {
   const { attemptId } = useParams();
-  const attempt = useMemo(
-    () => (attemptId ? getAttempt(attemptId) : undefined),
-    [attemptId]
-  );
+  const { attempt, isLoading } = useAttempt(attemptId);
 
+  if (isLoading) return <div className="surface h-40 animate-pulse" />;
   if (!attempt) return <Navigate to="/" replace />;
 
   const { test, result, mode } = attempt;

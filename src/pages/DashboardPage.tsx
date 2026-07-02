@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { loadAttempts } from "../lib/storage";
+import { useAttempts } from "../hooks/useAttempts";
 import { computeStats } from "../lib/stats";
 import { scorePercent } from "../lib/grading";
 import { getQuestionsBySubject, getSubjectName } from "../data";
@@ -12,7 +12,7 @@ import ScoreBadge from "../components/ScoreBadge";
 
 export default function DashboardPage() {
   const { startPreset } = useStartTest();
-  const attempts = useMemo(() => loadAttempts(), []);
+  const { attempts, isLoading } = useAttempts();
   const stats = useMemo(() => computeStats(attempts), [attempts]);
   const recent = attempts.slice(0, 5);
 
@@ -44,6 +44,14 @@ export default function DashboardPage() {
         </button>
       </div>
 
+      {isLoading ? (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="surface h-24 animate-pulse p-5" />
+          ))}
+        </div>
+      ) : (
+        <>
       {/* Метрики */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Всего попыток" value={`${stats.totalAttempts}`} />
@@ -141,6 +149,8 @@ export default function DashboardPage() {
           </ul>
         )}
       </section>
+        </>
+      )}
     </div>
   );
 }
