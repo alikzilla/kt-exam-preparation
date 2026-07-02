@@ -3,6 +3,11 @@ dist
 dist-ssr
 *.local
 .vite
+*.tsbuildinfo
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/worktrees/
 
 # Editor
 .vscode/*
