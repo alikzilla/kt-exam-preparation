@@ -39,6 +39,9 @@ export function buildTest(config: TestConfig): GeneratedTest {
     id: crypto.randomUUID(),
     createdAt: Date.now(),
     subjectIds: config.subjectIds.slice(),
-    questions: shuffle(picked),
+    // Keep disciplines as contiguous blocks (in requested order) so the exam can
+    // be rendered group by group. Questions are already shuffled within each
+    // block by `sample`, and options are shuffled per question by `toTestQuestion`.
+    questions: picked,
   };
 }

@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Navigate, useBlocker, useLocation, useNavigate } from "react-router-dom";
 import type { Attempt, GeneratedTest, TestMode } from "../types";
 import { useTestSession } from "../hooks/useTestSession";
 import { useCountdown } from "../hooks/useCountdown";
+import { groupQuestions } from "../lib/groups";
 import { gradeTest } from "../lib/grading";
 import { useSaveAttempt } from "../hooks/useAttempts";
 import { getSubjectName } from "../data";
@@ -62,6 +63,22 @@ function TestRunner({
   const selected = session.answers[current.id] ?? [];
   const [confirmOpen, setConfirmOpen] = useState(false);
 
+  // Дисциплины идут непрерывными блоками — экзамен показывается группа за
+  // группой. Активная группа определяется тем, в какой блок попал текущий индекс.
+  const groups = useMemo(() => groupQuestions(test), [test]);
+  const grouped = groups.length > 1;
+  const activeGroupIndex = Math.max(
+    0,
+    groups.findIndex(
+      (g) =>
+        session.index >= g.startIndex &&
+        session.index < g.startIndex + g.questions.length
+    )
+  );
+  const activeGroup = groups[activeGroupIndex];
+  const answeredInGroup = (g: (typeof groups)[number]) =>
+    g.questions.filter((q) => (session.answers[q.id] ?? []).length > 0).length;
+
   // Пока тест не завершён явно, уход со страницы блокируется: случайный
   // клик по ссылке не должен молча терять прогресс. Ref, а не state —
   // finish() ставит флаг синхронно перед navigate().
@@ -110,8 +127,19 @@ function TestRunner({
         <div className="flex items-center justify-between gap-3 text-sm">
           <span className="text-xs text-ink-faint">
             {mode === "exam" ? (examTitle ?? "Экзамен") : "Тренировка"}
-            <span className="tabular-nums text-ink"> · {session.index + 1}</span>
-            <span className="tabular-nums text-ink-faint">/{session.total}</span>
+            {grouped && (
+              <span className="text-ink-soft">
+                {" · "}
+                {activeGroup.name}
+              </span>
+            )}
+            <span className="tabular-nums text-ink">
+              {" · "}
+              {session.index - activeGroup.startIndex + 1}
+            </span>
+            <span className="tabular-nums text-ink-faint">
+              /{activeGroup.questions.length}
+            </span>
           </span>
           <div className="flex items-center gap-3">
             <span className="hidden text-xs tabular-nums text-ink-soft sm:inline">
@@ -123,10 +151,40 @@ function TestRunner({
         <ProgressBar value={session.index + 1} max={session.total} />
       </div>
 
-      {/* Навигатор по вопросам */}
+      {/* Вкладки дисциплин — показываем, когда групп больше одной. */}
+      {grouped && (
+        <div className="flex flex-wrap gap-2" role="tablist">
+          {groups.map((g, gi) => {
+            const isActive = gi === activeGroupIndex;
+            const done = answeredInGroup(g);
+            return (
+              <button
+                key={g.subjectId}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => session.goTo(g.startIndex)}
+                className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "border-accent bg-accent/10 text-accent"
+                    : "border-line text-ink-soft hover:bg-surface-2 hover:text-ink"
+                }`}
+              >
+                {g.name}{" "}
+                <span className="tabular-nums opacity-70">
+                  ({done}/{g.questions.length})
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Навигатор по вопросам активной дисциплины */}
       <div>
         <div className="flex flex-wrap gap-1.5">
-          {test.questions.map((q, i) => {
+          {activeGroup.questions.map((q, local) => {
+            const i = activeGroup.startIndex + local;
             const answered = (session.answers[q.id] ?? []).length > 0;
             const isCurrent = i === session.index;
             return (
@@ -135,7 +193,7 @@ function TestRunner({
                 type="button"
                 onClick={() => session.goTo(i)}
                 aria-current={isCurrent}
-                aria-label={`Вопрос ${i + 1}${answered ? ", отвечен" : ""}`}
+                aria-label={`Вопрос ${local + 1}${answered ? ", отвечен" : ""}`}
                 className={`h-8 w-8 rounded-lg text-xs font-medium tabular-nums transition-colors ${
                   isCurrent
                     ? "bg-accent text-white"
@@ -144,7 +202,7 @@ function TestRunner({
                       : "bg-surface-2 text-ink-soft hover:bg-ink/10"
                 }`}
               >
-                {i + 1}
+                {local + 1}
               </button>
             );
           })}
