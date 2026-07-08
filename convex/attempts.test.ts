@@ -32,15 +32,21 @@ function makeAttempt(localId: string, takenAt: number) {
     result: {
       correct: 1,
       total: 1,
+      points: 1,
+      maxPoints: 1,
       perQuestion: [
         {
           questionId: "q1",
           correct: true,
           selectedOptionIds: ["o1"],
           correctOptionIds: ["o1"],
+          pointsEarned: 1,
+          maxPoints: 1,
         },
       ],
-      perSubject: [{ subjectId: "asd", correct: 1, total: 1 }],
+      perSubject: [
+        { subjectId: "asd", correct: 1, total: 1, points: 1, maxPoints: 1 },
+      ],
     },
   };
 }

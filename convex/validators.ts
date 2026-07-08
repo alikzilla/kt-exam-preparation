@@ -28,17 +28,23 @@ const questionResult = v.object({
   correct: v.boolean(),
   selectedOptionIds: v.array(v.string()),
   correctOptionIds: v.array(v.string()),
+  pointsEarned: v.number(),
+  maxPoints: v.number(),
 });
 
 const subjectScore = v.object({
   subjectId: v.string(),
   correct: v.number(),
   total: v.number(),
+  points: v.number(),
+  maxPoints: v.number(),
 });
 
 const gradeResult = v.object({
   correct: v.number(),
   total: v.number(),
+  points: v.number(),
+  maxPoints: v.number(),
   perQuestion: v.array(questionResult),
   perSubject: v.array(subjectScore),
 });

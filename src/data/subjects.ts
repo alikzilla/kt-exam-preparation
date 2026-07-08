@@ -14,15 +14,22 @@ export const subjects: Subject[] = [
     id: "algorithms",
     name: "Алгоритмы и структуры данных",
     defaultQuestionCount: 30,
+    // Первая профильная дисциплина — только один правильный ответ, 1 балл.
+    pointsPerQuestion: 1,
   },
   {
     id: "databases",
     name: "Базы данных",
     defaultQuestionCount: 20,
+    // Вторая профильная дисциплина КТ: задания с одним ИЛИ несколькими
+    // правильными ответами оцениваются в 2 балла — 20 заданий = 40 баллов.
+    // Частичный балл: 2 — без ошибок, 1 — одна ошибка, 0 — две и более.
+    pointsPerQuestion: 2,
   },
   {
     id: "readiness",
     name: "Готовность к обучению",
     defaultQuestionCount: 30,
+    pointsPerQuestion: 1,
   },
 ];

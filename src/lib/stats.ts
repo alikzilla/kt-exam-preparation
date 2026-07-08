@@ -18,11 +18,19 @@ export interface DashboardStats {
   timeline: { takenAt: number; percent: number }[];
 }
 
+/** Points earned in a discipline, falling back to correct count for old attempts. */
+export function subjectPoints(s: {
+  points?: number;
+  correct: number;
+}): number {
+  return s.points ?? s.correct;
+}
+
 function attemptPassed(a: Attempt): boolean {
   const threshold = a.passThreshold ?? DEFAULT_PASS_THRESHOLD;
   return (
     a.mode === "exam" &&
-    a.result.perSubject.every((s) => s.correct >= threshold)
+    a.result.perSubject.every((s) => subjectPoints(s) >= threshold)
   );
 }
 

@@ -14,7 +14,14 @@ function examAttempt(localId: string, correct: number, total: number) {
     passThreshold: 7,
     test: { id: `t-${localId}`, createdAt: 1, subjectIds: ["asd"], questions: [] },
     answers: {},
-    result: { correct, total, perQuestion: [], perSubject: [] },
+    result: {
+      correct,
+      total,
+      points: correct,
+      maxPoints: total,
+      perQuestion: [],
+      perSubject: [],
+    },
   };
 }
 
