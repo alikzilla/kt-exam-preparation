@@ -39,17 +39,20 @@ used by `toTestQuestion` via `./shuffle`); remove it from this file only if unus
 
 ### 2. `src/lib/groups.ts` (new, pure + testable)
 ```ts
+export interface GroupItem { question: TestQuestion; index: number; }
 export interface QuestionGroup {
   subjectId: string;
   name: string;            // getSubjectName(subjectId)
-  questions: TestQuestion[];
-  startIndex: number;      // index of the group's first question in test.questions
+  items: GroupItem[];      // questions + their real index in test.questions
+  startIndex: number;      // index of the group's first question
 }
 export function groupQuestions(test: GeneratedTest): QuestionGroup[];
 ```
-Walks `test.questions` and starts a new group whenever `subjectId` changes from the
-previous question (consecutive-run grouping). Works for old saved attempts too. For a
-single-discipline test it returns one group.
+Groups by **distinct subject** (one group per discipline, in first-appearance order),
+not by consecutive runs. This guarantees a two-discipline exam always yields exactly
+two tabs even if questions are interleaved. Each item keeps its real position in the
+flat list so navigation works regardless of ordering. Works for single-discipline
+tests (one group) and old saved attempts.
 
 ### 3. `src/pages/TestPage.tsx`
 Keep the single flat `index` from `useTestSession` (timer, grading, Next/Prev/Finish,

@@ -63,21 +63,20 @@ function TestRunner({
   const selected = session.answers[current.id] ?? [];
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  // Дисциплины идут непрерывными блоками — экзамен показывается группа за
-  // группой. Активная группа определяется тем, в какой блок попал текущий индекс.
+  // Экзамен делится по дисциплинам — одна вкладка на дисциплину. Активная
+  // вкладка определяется тем, в какую группу попал текущий вопрос.
   const groups = useMemo(() => groupQuestions(test), [test]);
   const grouped = groups.length > 1;
   const activeGroupIndex = Math.max(
     0,
-    groups.findIndex(
-      (g) =>
-        session.index >= g.startIndex &&
-        session.index < g.startIndex + g.questions.length
-    )
+    groups.findIndex((g) => g.items.some((it) => it.index === session.index))
   );
   const activeGroup = groups[activeGroupIndex];
+  const positionInGroup =
+    activeGroup.items.findIndex((it) => it.index === session.index) + 1;
   const answeredInGroup = (g: (typeof groups)[number]) =>
-    g.questions.filter((q) => (session.answers[q.id] ?? []).length > 0).length;
+    g.items.filter((it) => (session.answers[it.question.id] ?? []).length > 0)
+      .length;
 
   // Пока тест не завершён явно, уход со страницы блокируется: случайный
   // клик по ссылке не должен молча терять прогресс. Ref, а не state —
@@ -135,10 +134,10 @@ function TestRunner({
             )}
             <span className="tabular-nums text-ink">
               {" · "}
-              {session.index - activeGroup.startIndex + 1}
+              {positionInGroup}
             </span>
             <span className="tabular-nums text-ink-faint">
-              /{activeGroup.questions.length}
+              /{activeGroup.items.length}
             </span>
           </span>
           <div className="flex items-center gap-3">
@@ -172,7 +171,7 @@ function TestRunner({
               >
                 {g.name}{" "}
                 <span className="tabular-nums opacity-70">
-                  ({done}/{g.questions.length})
+                  ({done}/{g.items.length})
                 </span>
               </button>
             );
@@ -183,8 +182,7 @@ function TestRunner({
       {/* Навигатор по вопросам активной дисциплины */}
       <div>
         <div className="flex flex-wrap gap-1.5">
-          {activeGroup.questions.map((q, local) => {
-            const i = activeGroup.startIndex + local;
+          {activeGroup.items.map(({ question: q, index: i }, local) => {
             const answered = (session.answers[q.id] ?? []).length > 0;
             const isCurrent = i === session.index;
             return (
