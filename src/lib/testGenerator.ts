@@ -8,11 +8,30 @@ export interface TestConfig {
   perSubjectCount?: Record<string, number>;
 }
 
+/**
+ * Shuffles options and guarantees the result is not the original order, so an
+ * answer never lands in its source position and positions can't be memorised
+ * across attempts. A plain shuffle can, by chance, reproduce the input order
+ * (probability 1/n!); this reshuffles until the layout actually changes.
+ */
+function shuffleOptions(options: Question["options"]): Question["options"] {
+  if (options.length < 2) return options.slice();
+
+  const isOriginalOrder = (candidate: Question["options"]) =>
+    candidate.every((opt, i) => opt.id === options[i].id);
+
+  let shuffled = shuffle(options);
+  for (let tries = 0; tries < 8 && isOriginalOrder(shuffled); tries++) {
+    shuffled = shuffle(options);
+  }
+  return shuffled;
+}
+
 function toTestQuestion(question: Question): TestQuestion {
   return {
     ...question,
     // Shuffle the options so answer positions differ between attempts.
-    options: shuffle(question.options),
+    options: shuffleOptions(question.options),
     multiCorrect: question.correctOptionIds.length > 1,
   };
 }
