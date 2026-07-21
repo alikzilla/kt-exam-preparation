@@ -32,4 +32,13 @@ export const subjects: Subject[] = [
     defaultQuestionCount: 30,
     pointsPerQuestion: 1,
   },
+  {
+    id: "english",
+    name: "Иностранный язык (английский)",
+    // Блок для научно-педагогической магистратуры: лексико-грамматический
+    // тест + чтение = 50 заданий по 1 баллу. Аудирование не моделируется —
+    // для него нет аудиоматериалов.
+    defaultQuestionCount: 50,
+    pointsPerQuestion: 1,
+  },
 ];

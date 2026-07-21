@@ -1,8 +1,10 @@
-import type { Question, Subject } from "../types";
+import type { Passage, Question, Subject } from "../types";
 import { subjects } from "./subjects";
+import passages from "./passages.json";
 import algorithms from "./questions/algorithms.json";
 import databases from "./questions/databases.json";
 import readiness from "./questions/readiness.json";
+import english from "./questions/english.json";
 
 /**
  * Единая точка доступа к банку вопросов — «точка замены».
@@ -15,6 +17,7 @@ const questionsBySubject: Record<string, Question[]> = {
   algorithms: algorithms as Question[],
   databases: databases as Question[],
   readiness: readiness as Question[],
+  english: english as Question[],
 };
 
 export function getSubjects(): Subject[] {
@@ -35,4 +38,8 @@ export function getQuestionsBySubject(subjectId: string): Question[] {
 
 export function getAllQuestions(): Question[] {
   return subjects.flatMap((s) => getQuestionsBySubject(s.id));
+}
+
+export function getPassage(passageId: string): Passage | undefined {
+  return (passages as Passage[]).find((p) => p.id === passageId);
 }

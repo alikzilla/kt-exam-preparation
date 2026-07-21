@@ -31,8 +31,15 @@ export function buildTest(config: TestConfig): GeneratedTest {
     const count =
       config.perSubjectCount?.[subjectId] ?? subject.defaultQuestionCount;
     const pool = getQuestionsBySubject(subjectId);
-    const chosen = sample(pool, count).map(toTestQuestion);
-    picked.push(...chosen);
+    const drawn = sample(pool, count);
+    // Вопросы по тексту/аудио идут в конце блока в порядке банка (как в
+    // реальном бланке), остальные остаются перемешанными после sample.
+    const bankIndex = new Map(pool.map((q, i) => [q.id, i]));
+    const regular = drawn.filter((q) => !q.textBased);
+    const textBased = drawn
+      .filter((q) => q.textBased)
+      .sort((a, b) => bankIndex.get(a.id)! - bankIndex.get(b.id)!);
+    picked.push(...[...regular, ...textBased].map(toTestQuestion));
   }
 
   return {

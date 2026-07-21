@@ -8,6 +8,8 @@ import { gradeTest } from "../lib/grading";
 import { useSaveAttempt } from "../hooks/useAttempts";
 import { getSubjectName } from "../data";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
+import PassageCard from "../components/PassageCard";
+import MathText from "../components/MathText";
 import ProgressBar from "../components/ProgressBar";
 import Timer from "../components/Timer";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -212,8 +214,13 @@ function TestRunner({
         <div className="text-xs font-medium text-accent">
           {getSubjectName(current.subjectId)}
         </div>
+        {current.passageId && (
+          <div className="mt-3">
+            <PassageCard passageId={current.passageId} defaultOpen />
+          </div>
+        )}
         <h2 className="mt-2 text-lg font-semibold leading-snug text-ink">
-          {current.text}
+          <MathText text={current.text} />
         </h2>
         {current.multiCorrect && (
           <p className="mt-1.5 inline-flex rounded-md bg-warning/10 px-2 py-0.5 text-xs font-medium text-warning">
@@ -224,7 +231,7 @@ function TestRunner({
           <img
             src={current.imageUrl}
             alt=""
-            className="mt-4 max-h-64 rounded-lg border border-line"
+            className="mt-4 max-h-80 rounded-lg border border-line bg-white p-2"
           />
         )}
 

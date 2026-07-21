@@ -1,0 +1,1394 @@
+[
+  {
+    "id": "en-1",
+    "subjectId": "english",
+    "text": "Money can't buy you ____ happiness.",
+    "options": [
+      {
+        "id": "a",
+        "text": "the"
+      },
+      {
+        "id": "b",
+        "text": "some"
+      },
+      {
+        "id": "c",
+        "text": "any"
+      },
+      {
+        "id": "d",
+        "text": "-"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Абстрактное существительное happiness употребляется без артикля: Money can't buy you happiness."
+  },
+  {
+    "id": "en-2",
+    "subjectId": "english",
+    "text": "He could read for _ hours.",
+    "options": [
+      {
+        "id": "a",
+        "text": "an"
+      },
+      {
+        "id": "b",
+        "text": "-"
+      },
+      {
+        "id": "c",
+        "text": "a"
+      },
+      {
+        "id": "d",
+        "text": "the"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Устойчивое выражение for hours — «часами» — употребляется без артикля."
+  },
+  {
+    "id": "en-3",
+    "subjectId": "english",
+    "text": "He'll need to be able to run ..…….than this if he's going to do the competition.",
+    "options": [
+      {
+        "id": "a",
+        "text": "farther"
+      },
+      {
+        "id": "b",
+        "text": "more far"
+      },
+      {
+        "id": "c",
+        "text": "far"
+      },
+      {
+        "id": "d",
+        "text": "less far"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Сравнительная степень far — farther (further): run farther than this."
+  },
+  {
+    "id": "en-4",
+    "subjectId": "english",
+    "text": "Marat works very hard. It's not _ that he's always tired.",
+    "options": [
+      {
+        "id": "a",
+        "text": "surprise"
+      },
+      {
+        "id": "b",
+        "text": "surprising"
+      },
+      {
+        "id": "c",
+        "text": "surprised"
+      },
+      {
+        "id": "d",
+        "text": "surprissed"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Ситуация вызывает чувство — прилагательное на -ing: It's not surprising."
+  },
+  {
+    "id": "en-5",
+    "subjectId": "english",
+    "text": "We went shopping and spent _ money.",
+    "options": [
+      {
+        "id": "a",
+        "text": "many"
+      },
+      {
+        "id": "b",
+        "text": "a lot of"
+      },
+      {
+        "id": "c",
+        "text": "a lot"
+      },
+      {
+        "id": "d",
+        "text": "lots"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Money — неисчисляемое существительное: a lot of money (many — только с исчисляемыми)."
+  },
+  {
+    "id": "en-6",
+    "subjectId": "english",
+    "text": "Which unit is still often used in Britain to talk about distance despite the metric system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "centimeters"
+      },
+      {
+        "id": "b",
+        "text": "kilometres"
+      },
+      {
+        "id": "c",
+        "text": "metres"
+      },
+      {
+        "id": "d",
+        "text": "miles"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "В Великобритании расстояния по-прежнему часто измеряют в милях (miles)."
+  },
+  {
+    "id": "en-7",
+    "subjectId": "english",
+    "text": "I ________ home when I met Daniel. He looked sad. Maybe, he was sick.",
+    "options": [
+      {
+        "id": "a",
+        "text": "walked"
+      },
+      {
+        "id": "b",
+        "text": "had walked"
+      },
+      {
+        "id": "c",
+        "text": "was walking"
+      },
+      {
+        "id": "d",
+        "text": "to walk"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Past Continuous — действие в процессе, прерванное другим: I was walking home when I met Daniel."
+  },
+  {
+    "id": "en-8",
+    "subjectId": "english",
+    "text": "I will return your book ___ .",
+    "options": [
+      {
+        "id": "a",
+        "text": "on two weeks"
+      },
+      {
+        "id": "b",
+        "text": "in two weeks"
+      },
+      {
+        "id": "c",
+        "text": "to two weeks"
+      },
+      {
+        "id": "d",
+        "text": "about two weeks"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "«Через какой-то срок» — предлог in: in two weeks."
+  },
+  {
+    "id": "en-9",
+    "subjectId": "english",
+    "text": "I've just started to learn how to drive. Now I _ how difficult it is.",
+    "options": [
+      {
+        "id": "a",
+        "text": "am knowing"
+      },
+      {
+        "id": "b",
+        "text": "knowing"
+      },
+      {
+        "id": "c",
+        "text": "know"
+      },
+      {
+        "id": "d",
+        "text": "knew"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Know — глагол состояния, не употребляется в Continuous: Now I know."
+  },
+  {
+    "id": "en-10",
+    "subjectId": "english",
+    "text": "I  ____by a loud noise at night.",
+    "options": [
+      {
+        "id": "a",
+        "text": "woke up"
+      },
+      {
+        "id": "b",
+        "text": "was woken up"
+      },
+      {
+        "id": "c",
+        "text": "were woken up"
+      },
+      {
+        "id": "d",
+        "text": "was woke"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Страдательный залог в Past Simple: I was woken up by a loud noise."
+  },
+  {
+    "id": "en-11",
+    "subjectId": "english",
+    "text": "Our company …. significantly over the past year.",
+    "options": [
+      {
+        "id": "a",
+        "text": "has grown"
+      },
+      {
+        "id": "b",
+        "text": "was grown"
+      },
+      {
+        "id": "c",
+        "text": "grown"
+      },
+      {
+        "id": "d",
+        "text": "grow"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Present Perfect с указателем over the past year: has grown."
+  },
+  {
+    "id": "en-12",
+    "subjectId": "english",
+    "text": "_ the music awards live tomorrow nights?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Are they gone to broadcast"
+      },
+      {
+        "id": "b",
+        "text": "Are they going broadcast"
+      },
+      {
+        "id": "c",
+        "text": "Are they go to broadcast"
+      },
+      {
+        "id": "d",
+        "text": "Are they going to broadcast"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Оборот to be going to в вопросе: Are they going to broadcast…?"
+  },
+  {
+    "id": "en-13",
+    "subjectId": "english",
+    "text": "At the time the company closed down I ____ there for several years.",
+    "options": [
+      {
+        "id": "a",
+        "text": "had been working"
+      },
+      {
+        "id": "b",
+        "text": "have had working"
+      },
+      {
+        "id": "c",
+        "text": "was been working"
+      },
+      {
+        "id": "d",
+        "text": "was working"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Past Perfect Continuous — действие длилось вплоть до момента в прошлом: had been working for several years."
+  },
+  {
+    "id": "en-14",
+    "subjectId": "english",
+    "text": "…. I have a look at that bag in the window, please.",
+    "options": [
+      {
+        "id": "a",
+        "text": "could"
+      },
+      {
+        "id": "b",
+        "text": "must"
+      },
+      {
+        "id": "c",
+        "text": "need"
+      },
+      {
+        "id": "d",
+        "text": "should"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Вежливая просьба: Could I have a look…?"
+  },
+  {
+    "id": "en-15",
+    "subjectId": "english",
+    "text": "The company is expected … a healthy profit this year.",
+    "options": [
+      {
+        "id": "a",
+        "text": "to make"
+      },
+      {
+        "id": "b",
+        "text": "make"
+      },
+      {
+        "id": "c",
+        "text": "for making"
+      },
+      {
+        "id": "d",
+        "text": "making"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Конструкция be expected + to-инфинитив: is expected to make."
+  },
+  {
+    "id": "en-16",
+    "subjectId": "english",
+    "text": "On _ home, I found my daughter waiting outside her front door.",
+    "options": [
+      {
+        "id": "a",
+        "text": "returning"
+      },
+      {
+        "id": "b",
+        "text": "returns"
+      },
+      {
+        "id": "c",
+        "text": "return"
+      },
+      {
+        "id": "d",
+        "text": "to return"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "После предлога on употребляется герундий: On returning home…"
+  },
+  {
+    "id": "en-17",
+    "subjectId": "english",
+    "text": "If you … too much fast food, it's not good for your health.",
+    "options": [
+      {
+        "id": "a",
+        "text": "eat"
+      },
+      {
+        "id": "b",
+        "text": "would eat"
+      },
+      {
+        "id": "c",
+        "text": "are eaten"
+      },
+      {
+        "id": "d",
+        "text": "eating"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Условное предложение нулевого типа: If you eat…, it's not good…"
+  },
+  {
+    "id": "en-18",
+    "subjectId": "english",
+    "text": "What if your cat suddenly … to you right now? How would you react?",
+    "options": [
+      {
+        "id": "a",
+        "text": "started talking"
+      },
+      {
+        "id": "b",
+        "text": "had started talking"
+      },
+      {
+        "id": "c",
+        "text": "start talking"
+      },
+      {
+        "id": "d",
+        "text": "starting to talk"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Нереальная ситуация в настоящем (второй тип): What if your cat suddenly started talking…?"
+  },
+  {
+    "id": "en-19",
+    "subjectId": "english",
+    "text": "Popular way of having a green home is using",
+    "options": [
+      {
+        "id": "a",
+        "text": "energy from the earth"
+      },
+      {
+        "id": "b",
+        "text": "energy from the sun"
+      },
+      {
+        "id": "c",
+        "text": "energy from the wind"
+      },
+      {
+        "id": "d",
+        "text": "energy from the sky"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "В тексте: Using solar energy is a very popular way — энергия солнца.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-20",
+    "subjectId": "english",
+    "text": "There are many volunteers who show their _____ to make a contribution to the Earth's protection.",
+    "options": [
+      {
+        "id": "a",
+        "text": "difference"
+      },
+      {
+        "id": "b",
+        "text": "hatred"
+      },
+      {
+        "id": "c",
+        "text": "opinion"
+      },
+      {
+        "id": "d",
+        "text": "desire"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Волонтёры демонстрируют желание (desire) внести вклад в защиту Земли.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-21",
+    "subjectId": "english",
+    "text": "The quality of green homes depends on",
+    "options": [
+      {
+        "id": "a",
+        "text": "cheap raw materials"
+      },
+      {
+        "id": "b",
+        "text": "up-to-date building materials"
+      },
+      {
+        "id": "c",
+        "text": "regular building materials"
+      },
+      {
+        "id": "d",
+        "text": "long-lasting building materials"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Green builders want to use materials that last a very long time — долговечные материалы.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-22",
+    "subjectId": "english",
+    "text": "According to the text, eco-friendly way of life is",
+    "options": [
+      {
+        "id": "a",
+        "text": "not affordable for the population"
+      },
+      {
+        "id": "b",
+        "text": "less popular among population"
+      },
+      {
+        "id": "c",
+        "text": "a future plan of the state"
+      },
+      {
+        "id": "d",
+        "text": "approved by the majority"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Most owners say it's a good idea — такой образ жизни одобряется большинством.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-23",
+    "subjectId": "english",
+    "text": "Building a regular home is often",
+    "options": [
+      {
+        "id": "a",
+        "text": "more expensive than building green home"
+      },
+      {
+        "id": "b",
+        "text": "much more expensive than building green home"
+      },
+      {
+        "id": "c",
+        "text": "cheaper than building green home"
+      },
+      {
+        "id": "d",
+        "text": "more reasonable than building green home"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Зелёный дом обычно дороже обычного, значит обычный дом дешевле (cheaper).",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-24",
+    "subjectId": "english",
+    "text": "If people need to build eco-friendly houses",
+    "options": [
+      {
+        "id": "a",
+        "text": "it is not efficient for the economy of a country"
+      },
+      {
+        "id": "b",
+        "text": "it is good for the Earth"
+      },
+      {
+        "id": "c",
+        "text": "it is cheap"
+      },
+      {
+        "id": "d",
+        "text": "it is good for homeless people"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Экологичное строительство приносит пользу Земле: important benefits to the Earth.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-25",
+    "subjectId": "english",
+    "text": "These days people use",
+    "options": [
+      {
+        "id": "a",
+        "text": "eco-friendly shopping bags a lot"
+      },
+      {
+        "id": "b",
+        "text": "paper shopping bags a lot"
+      },
+      {
+        "id": "c",
+        "text": "modern shopping bags a lot"
+      },
+      {
+        "id": "d",
+        "text": "plastic shopping bags a lot"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "В тексте упоминаются eco-friendly shopping bags как повседневная привычка.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-26",
+    "subjectId": "english",
+    "text": "The green movement",
+    "options": [
+      {
+        "id": "a",
+        "text": "started many years ago"
+      },
+      {
+        "id": "b",
+        "text": "started several years ago"
+      },
+      {
+        "id": "c",
+        "text": "has lasted for a decade"
+      },
+      {
+        "id": "d",
+        "text": "has started recently"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The green movement started about 40 years ago — много лет назад.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-27",
+    "subjectId": "english",
+    "text": "According to the text “Green Homes, Dream Homes”, how much of all its raw materials does the United States use on new buildings?",
+    "options": [
+      {
+        "id": "a",
+        "text": "14 percent"
+      },
+      {
+        "id": "b",
+        "text": "25 percent"
+      },
+      {
+        "id": "c",
+        "text": "40 percent"
+      },
+      {
+        "id": "d",
+        "text": "60 percent"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "В тексте: The United States uses 40 percent of all its raw materials on new buildings.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-28",
+    "subjectId": "english",
+    "text": "According to the text “Green Homes, Dream Homes”, green homes need to be located",
+    "options": [
+      {
+        "id": "a",
+        "text": "far away from big cities"
+      },
+      {
+        "id": "b",
+        "text": "close to the things people need or to public transportation"
+      },
+      {
+        "id": "c",
+        "text": "next to industrial areas"
+      },
+      {
+        "id": "d",
+        "text": "in places with a lot of sunlight only"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Homes need to be close to the things people need for their daily lives, or to public transportation.",
+    "textBased": true,
+    "passageId": "green-homes"
+  },
+  {
+    "id": "en-29",
+    "subjectId": "english",
+    "text": "Music improves:",
+    "options": [
+      {
+        "id": "a",
+        "text": "reading skills in the brain"
+      },
+      {
+        "id": "b",
+        "text": "writing skills in the brain"
+      },
+      {
+        "id": "c",
+        "text": "hearing abilities in the brain"
+      },
+      {
+        "id": "d",
+        "text": "language abilities in the brain"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Music boosts certain language abilities in the brain.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-30",
+    "subjectId": "english",
+    "text": "The text is about:",
+    "options": [
+      {
+        "id": "a",
+        "text": "a connection between music and language abilities"
+      },
+      {
+        "id": "b",
+        "text": "playing different types of musical instruments"
+      },
+      {
+        "id": "c",
+        "text": "different instruments and musicians"
+      },
+      {
+        "id": "d",
+        "text": "brain functioning and different types of patients"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Текст посвящён связи музыки и языковых способностей.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-31",
+    "subjectId": "english",
+    "text": "According to the researcher Nina Kraus playing a musical instrument:",
+    "options": [
+      {
+        "id": "a",
+        "text": "can boost a person's hearing ability"
+      },
+      {
+        "id": "b",
+        "text": "can boost a person's dancing skills"
+      },
+      {
+        "id": "c",
+        "text": "can boost a person's ability to talk in a noisy room"
+      },
+      {
+        "id": "d",
+        "text": "can boost a person's writing skills"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Исследование Нины Краус: игра на инструменте улучшает слуховые способности (hearing ability).",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-32",
+    "subjectId": "english",
+    "text": "The synonym of improve is",
+    "options": [
+      {
+        "id": "a",
+        "text": "roast"
+      },
+      {
+        "id": "b",
+        "text": "boost"
+      },
+      {
+        "id": "c",
+        "text": "toast"
+      },
+      {
+        "id": "d",
+        "text": "goast"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Boost — синоним improve («улучшать, усиливать»).",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-33",
+    "subjectId": "english",
+    "text": "The reason why musicians can hear better is",
+    "options": [
+      {
+        "id": "a",
+        "text": "that they are trained to pay attention to particular sounds"
+      },
+      {
+        "id": "b",
+        "text": "that they are trained to sing and play different instruments"
+      },
+      {
+        "id": "c",
+        "text": "that they hear their own instruments and many others"
+      },
+      {
+        "id": "d",
+        "text": "that they use certain language abilities in the brain"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Musicians learn to pay attention to certain sounds — умеют выделять нужные звуки.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-34",
+    "subjectId": "english",
+    "text": "Find the true statement",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nina Kraus plays in an orchestra"
+      },
+      {
+        "id": "b",
+        "text": "Nina Kraus is a violinist"
+      },
+      {
+        "id": "c",
+        "text": "Nina Kraus is a  graduate of Harvard University"
+      },
+      {
+        "id": "d",
+        "text": "Nina Kraus is a researcher"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "В тексте Нина Краус названа researcher — исследователь.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-35",
+    "subjectId": "english",
+    "text": "Music helps people to improve",
+    "options": [
+      {
+        "id": "a",
+        "text": "reading, speaking and dancing"
+      },
+      {
+        "id": "b",
+        "text": "sleeping, swimming and walking"
+      },
+      {
+        "id": "c",
+        "text": "memory, listening and concentration"
+      },
+      {
+        "id": "d",
+        "text": "writing, listening and painting"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Music improves concentration, memory, listening skills.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-36",
+    "subjectId": "english",
+    "text": "The synonym of to ignore:",
+    "options": [
+      {
+        "id": "a",
+        "text": "to stay for"
+      },
+      {
+        "id": "b",
+        "text": "to look for"
+      },
+      {
+        "id": "c",
+        "text": "to vote for"
+      },
+      {
+        "id": "d",
+        "text": "to pay no attention to"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "To ignore = to pay no attention to — «не обращать внимания».",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-37",
+    "subjectId": "english",
+    "text": "According to the text “A Musical Boost”, where does Gottfried Schlaug work?",
+    "options": [
+      {
+        "id": "a",
+        "text": "at Harvard Medical School"
+      },
+      {
+        "id": "b",
+        "text": "in a symphony orchestra"
+      },
+      {
+        "id": "c",
+        "text": "at a music school"
+      },
+      {
+        "id": "d",
+        "text": "at a research laboratory in Japan"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Gottfried Schlaug — a doctor at Harvard Medical School.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-38",
+    "subjectId": "english",
+    "text": "Although Dr. Schlaug's stroke patients could not speak normally, they could still",
+    "options": [
+      {
+        "id": "a",
+        "text": "write letters"
+      },
+      {
+        "id": "b",
+        "text": "sing"
+      },
+      {
+        "id": "c",
+        "text": "play the violin"
+      },
+      {
+        "id": "d",
+        "text": "read aloud"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "However, they can still sing — пациенты сохраняли способность петь.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-39",
+    "subjectId": "english",
+    "text": "According to the text, singing helps stroke patients to speak because music",
+    "options": [
+      {
+        "id": "a",
+        "text": "activates different parts of the brain, including the damaged parts"
+      },
+      {
+        "id": "b",
+        "text": "helps them to relax and sleep better"
+      },
+      {
+        "id": "c",
+        "text": "reminds them of their childhood"
+      },
+      {
+        "id": "d",
+        "text": "makes them repeat words many times"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Music seems to activate different parts of the brain, including the damaged parts.",
+    "textBased": true,
+    "passageId": "musical-boost"
+  },
+  {
+    "id": "en-40",
+    "subjectId": "english",
+    "text": "By the time we arrived at the cinema, the film ___.",
+    "options": [
+      {
+        "id": "a",
+        "text": "already started"
+      },
+      {
+        "id": "b",
+        "text": "had already started"
+      },
+      {
+        "id": "c",
+        "text": "has already started"
+      },
+      {
+        "id": "d",
+        "text": "starts"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Past Perfect — действие произошло до другого действия в прошлом: had already started."
+  },
+  {
+    "id": "en-41",
+    "subjectId": "english",
+    "text": "She has been living in Almaty ___ 2019.",
+    "options": [
+      {
+        "id": "a",
+        "text": "for"
+      },
+      {
+        "id": "b",
+        "text": "since"
+      },
+      {
+        "id": "c",
+        "text": "from"
+      },
+      {
+        "id": "d",
+        "text": "during"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Present Perfect Continuous с точкой отсчёта — предлог since: since 2019."
+  },
+  {
+    "id": "en-42",
+    "subjectId": "english",
+    "text": "If I ___ you, I would apply for this master's programme.",
+    "options": [
+      {
+        "id": "a",
+        "text": "am"
+      },
+      {
+        "id": "b",
+        "text": "had been"
+      },
+      {
+        "id": "c",
+        "text": "were"
+      },
+      {
+        "id": "d",
+        "text": "will be"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Второй тип условного предложения: If I were you, I would…"
+  },
+  {
+    "id": "en-43",
+    "subjectId": "english",
+    "text": "The final report must ___ by Friday.",
+    "options": [
+      {
+        "id": "a",
+        "text": "submit"
+      },
+      {
+        "id": "b",
+        "text": "be submitted"
+      },
+      {
+        "id": "c",
+        "text": "submitted"
+      },
+      {
+        "id": "d",
+        "text": "being submitted"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Модальный глагол + пассивный инфинитив: must be submitted."
+  },
+  {
+    "id": "en-44",
+    "subjectId": "english",
+    "text": "I look forward to ___ from you soon.",
+    "options": [
+      {
+        "id": "a",
+        "text": "hear"
+      },
+      {
+        "id": "b",
+        "text": "hearing"
+      },
+      {
+        "id": "c",
+        "text": "be heard"
+      },
+      {
+        "id": "d",
+        "text": "heard"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Look forward to + герундий: look forward to hearing from you."
+  },
+  {
+    "id": "en-45",
+    "subjectId": "english",
+    "text": "Neither of the answers ___ correct.",
+    "options": [
+      {
+        "id": "a",
+        "text": "are"
+      },
+      {
+        "id": "b",
+        "text": "is"
+      },
+      {
+        "id": "c",
+        "text": "were"
+      },
+      {
+        "id": "d",
+        "text": "be"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После neither of глагол стоит в единственном числе: Neither of the answers is correct."
+  },
+  {
+    "id": "en-46",
+    "subjectId": "english",
+    "text": "This exercise is ___ than the previous one.",
+    "options": [
+      {
+        "id": "a",
+        "text": "more difficult"
+      },
+      {
+        "id": "b",
+        "text": "difficulter"
+      },
+      {
+        "id": "c",
+        "text": "most difficult"
+      },
+      {
+        "id": "d",
+        "text": "the most difficult"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Многосложные прилагательные образуют сравнительную степень с more: more difficult."
+  },
+  {
+    "id": "en-47",
+    "subjectId": "english",
+    "text": "She asked me where ___.",
+    "options": [
+      {
+        "id": "a",
+        "text": "did I live"
+      },
+      {
+        "id": "b",
+        "text": "I lived"
+      },
+      {
+        "id": "c",
+        "text": "do I live"
+      },
+      {
+        "id": "d",
+        "text": "I live"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Косвенный вопрос: прямой порядок слов и сдвиг времени — She asked me where I lived."
+  },
+  {
+    "id": "en-48",
+    "subjectId": "english",
+    "text": "You ___ smoke in the laboratory. It is forbidden.",
+    "options": [
+      {
+        "id": "a",
+        "text": "mustn't"
+      },
+      {
+        "id": "b",
+        "text": "don't have to"
+      },
+      {
+        "id": "c",
+        "text": "needn't"
+      },
+      {
+        "id": "d",
+        "text": "shouldn't have"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Строгий запрет выражается mustn't: You mustn't smoke…"
+  },
+  {
+    "id": "en-49",
+    "subjectId": "english",
+    "text": "The results ___ analysed at the moment.",
+    "options": [
+      {
+        "id": "a",
+        "text": "are being"
+      },
+      {
+        "id": "b",
+        "text": "is being"
+      },
+      {
+        "id": "c",
+        "text": "have been being"
+      },
+      {
+        "id": "d",
+        "text": "being"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Present Continuous в страдательном залоге: The results are being analysed."
+  },
+  {
+    "id": "en-50",
+    "subjectId": "english",
+    "text": "Choose the synonym of accomplish:",
+    "options": [
+      {
+        "id": "a",
+        "text": "achieve"
+      },
+      {
+        "id": "b",
+        "text": "abandon"
+      },
+      {
+        "id": "c",
+        "text": "avoid"
+      },
+      {
+        "id": "d",
+        "text": "announce"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Accomplish = achieve — «достигать, выполнять»."
+  }
+]

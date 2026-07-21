@@ -1,4 +1,5 @@
 import type { QuestionOption } from "../types";
+import MathText from "./MathText";
 
 type Variant = "default" | "correct" | "incorrect" | "missed";
 
@@ -71,7 +72,9 @@ export default function OptionCard({
       >
         {letter ?? (selected ? "✓" : "")}
       </span>
-      <span className="flex-1 leading-snug">{option.text}</span>
+      <span className="flex-1 leading-snug">
+        <MathText text={option.text} />
+      </span>
     </button>
   );
 }

@@ -6,6 +6,8 @@ import { subjectPoints } from "../lib/stats";
 import { getSubjectName } from "../data";
 import ScoreBadge from "../components/ScoreBadge";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
+import PassageCard from "../components/PassageCard";
+import MathText from "../components/MathText";
 import Loader from "../components/Loader";
 import {
   CheckIcon,
@@ -162,7 +164,7 @@ export default function ResultsPage() {
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <h3 className="font-semibold leading-snug text-ink">
                     <span className="tabular-nums text-ink-faint">{i + 1}.</span>{" "}
-                    {q.text}
+                    <MathText text={q.text} />
                   </h3>
                   <span
                     className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
@@ -188,6 +190,19 @@ export default function ResultsPage() {
                 <div className="text-xs text-ink-faint">
                   {getSubjectName(q.subjectId)}
                 </div>
+
+                {q.passageId && (
+                  <div className="mt-3">
+                    <PassageCard passageId={q.passageId} />
+                  </div>
+                )}
+                {q.imageUrl && (
+                  <img
+                    src={q.imageUrl}
+                    alt=""
+                    className="mt-3 max-h-72 rounded-lg border border-line bg-white p-2"
+                  />
+                )}
 
                 <div className="mt-3 space-y-2">
                   {q.options.map((opt, idx) => {

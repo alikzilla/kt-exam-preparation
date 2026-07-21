@@ -14,6 +14,22 @@ export interface Question {
   imageUrl?: string;
   /** Optional explanation shown in the review screen. */
   explanation?: string;
+  /**
+   * Вопрос привязан к тексту/аудио (чтение, аудирование): при генерации теста
+   * такие вопросы ставятся в конец блока дисциплины в исходном порядке банка,
+   * а не перемешиваются с остальными.
+   */
+  textBased?: boolean;
+  /** Текст (пассаж) из ./data/passages.json, к которому относится вопрос. */
+  passageId?: string;
+}
+
+/** Текст для чтения, на который ссылаются вопросы через passageId. */
+export interface Passage {
+  id: string;
+  title: string;
+  /** Абзацы разделяются пустой строкой (\n\n). */
+  text: string;
 }
 
 export interface Subject {

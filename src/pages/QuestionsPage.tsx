@@ -7,6 +7,8 @@ import {
   getSubjects,
 } from "../data";
 import { CheckIcon } from "../components/icons";
+import PassageCard from "../components/PassageCard";
+import MathText from "../components/MathText";
 
 /** Значение фильтра «Все» — не совпадает ни с одним subjectId. */
 const ALL = "all";
@@ -96,7 +98,7 @@ export default function QuestionsPage() {
               <div className="mb-2 flex items-start justify-between gap-3">
                 <h3 className="font-semibold leading-snug text-ink">
                   <span className="tabular-nums text-ink-faint">{i + 1}.</span>{" "}
-                  {q.text}
+                  <MathText text={q.text} />
                 </h3>
                 <button
                   type="button"
@@ -110,6 +112,19 @@ export default function QuestionsPage() {
                 {getSubjectName(q.subjectId)}
               </div>
 
+              {q.passageId && (
+                <div className="mt-3">
+                  <PassageCard passageId={q.passageId} />
+                </div>
+              )}
+              {q.imageUrl && (
+                <img
+                  src={q.imageUrl}
+                  alt=""
+                  className="mt-3 max-h-72 rounded-lg border border-line bg-white p-2"
+                />
+              )}
+
               {isRevealed && (
                 <div className="mt-3 space-y-2">
                   {q.options
@@ -122,7 +137,9 @@ export default function QuestionsPage() {
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-success text-white">
                           <CheckIcon className="h-4 w-4" strokeWidth={2.6} />
                         </span>
-                        <span className="flex-1 leading-snug">{opt.text}</span>
+                        <span className="flex-1 leading-snug">
+                          <MathText text={opt.text} />
+                        </span>
                       </div>
                     ))}
                   {q.explanation && (
