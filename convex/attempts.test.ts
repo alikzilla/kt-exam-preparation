@@ -56,6 +56,15 @@ function makeAttempt(
   };
 }
 
+function makeExam(localId: string, takenAt: number) {
+  return {
+    ...makeAttempt(localId, takenAt),
+    mode: "exam" as const,
+    examTitle: "КТ",
+    passThreshold: 7,
+  };
+}
+
 describe("attempts", () => {
   test("unauthenticated saveAttempt throws", async () => {
     const t = convexTest(schema, modules);
@@ -126,5 +135,73 @@ describe("attempts", () => {
     await expect(
       asA.mutation(api.attempts.importAttempts, { attempts: many })
     ).rejects.toThrow();
+  });
+
+  test("publicExamAttempts returns exam summaries to strangers, newest first", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    await asA.mutation(api.attempts.saveAttempt, { attempt: makeExam("e1", 100) });
+    await asA.mutation(api.attempts.saveAttempt, { attempt: makeExam("e2", 200) });
+    await asA.mutation(api.attempts.saveAttempt, {
+      attempt: makeAttempt("p1", 300), // practice — не публикуется
+    });
+
+    // Неавторизованный посетитель видит список
+    const list = await t.query(api.attempts.publicExamAttempts, {
+      userId: "user_a",
+    });
+    expect(list.map((a) => a.localId)).toEqual(["e2", "e1"]);
+    // Только сводка — без теста, ответов и повопросных результатов
+    expect(list[0]).not.toHaveProperty("test");
+    expect(list[0]).not.toHaveProperty("answers");
+    expect(list[0].result).not.toHaveProperty("perQuestion");
+    expect(list[0].result.perSubject).toHaveLength(1);
+    expect(list[0].examTitle).toBe("КТ");
+  });
+
+  test("publicExamAttempts hidden when examsPublic=false or isPublic=false; owner still sees", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    await asA.mutation(api.attempts.saveAttempt, { attempt: makeExam("e1", 100) });
+
+    await asA.mutation(api.profiles.setExamsPublic, { examsPublic: false });
+    expect(
+      await t.query(api.attempts.publicExamAttempts, { userId: "user_a" })
+    ).toEqual([]);
+    expect(
+      await asA.query(api.attempts.publicExamAttempts, { userId: "user_a" })
+    ).toHaveLength(1); // владелец видит всегда
+
+    await asA.mutation(api.profiles.setExamsPublic, { examsPublic: true });
+    await asA.mutation(api.profiles.setPublic, { isPublic: false });
+    expect(
+      await t.query(api.attempts.publicExamAttempts, { userId: "user_a" })
+    ).toEqual([]);
+  });
+
+  test("publicAttempt returns full doc for visible exams only", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    await asA.mutation(api.attempts.saveAttempt, { attempt: makeExam("e1", 100) });
+    await asA.mutation(api.attempts.saveAttempt, { attempt: makeAttempt("p1", 200) });
+
+    const doc = await t.query(api.attempts.publicAttempt, { localId: "e1" });
+    expect(doc?.localId).toBe("e1");
+    expect(doc?.test.questions).toHaveLength(1); // полный документ для разбора
+
+    // Чужая тренировка недоступна, своя — доступна
+    expect(await t.query(api.attempts.publicAttempt, { localId: "p1" })).toBeNull();
+    const own = await asA.query(api.attempts.publicAttempt, { localId: "p1" });
+    expect(own?.localId).toBe("p1");
+
+    // Скрытые экзамены недоступны чужим, но доступны владельцу
+    await asA.mutation(api.profiles.setExamsPublic, { examsPublic: false });
+    expect(await t.query(api.attempts.publicAttempt, { localId: "e1" })).toBeNull();
+    expect(
+      (await asA.query(api.attempts.publicAttempt, { localId: "e1" }))?.localId
+    ).toBe("e1");
+
+    // Неизвестный id
+    expect(await t.query(api.attempts.publicAttempt, { localId: "nope" })).toBeNull();
   });
 });
