@@ -118,4 +118,30 @@ describe("profiles", () => {
     const rankB = await asB.query(api.profiles.myRank, {});
     expect(rankB?.rank).toBe(2);
   });
+
+  test("setExamsPublic toggles examsVisible; default is visible", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    await asA.mutation(api.attempts.saveAttempt, {
+      attempt: examAttempt("e1", 40, 50),
+    });
+
+    let p = await t.query(api.profiles.publicProfile, { userId: "user_a" });
+    expect(p?.examsVisible).toBe(true); // examsPublic не задан — видимо по умолчанию
+
+    await asA.mutation(api.profiles.setExamsPublic, { examsPublic: false });
+    p = await t.query(api.profiles.publicProfile, { userId: "user_a" });
+    expect(p?.examsVisible).toBe(false);
+
+    await asA.mutation(api.profiles.setExamsPublic, { examsPublic: true });
+    p = await t.query(api.profiles.publicProfile, { userId: "user_a" });
+    expect(p?.examsVisible).toBe(true);
+  });
+
+  test("setExamsPublic requires auth", async () => {
+    const t = convexTest(schema, modules);
+    await expect(
+      t.mutation(api.profiles.setExamsPublic, { examsPublic: false })
+    ).rejects.toThrow();
+  });
 });

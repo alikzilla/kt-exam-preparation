@@ -139,6 +139,7 @@ export const publicProfile = query({
       bestExamPercent: p.bestExamPercent,
       examAttempts: p.examAttempts,
       streakDays: p.streakDays,
+      examsVisible: p.examsPublic ?? true,
     };
   },
 });
@@ -153,5 +154,18 @@ export const setPublic = mutation({
       .withIndex("by_user", (q) => q.eq("userId", identity.subject))
       .unique();
     if (p) await ctx.db.patch(p._id, { isPublic });
+  },
+});
+
+export const setExamsPublic = mutation({
+  args: { examsPublic: v.boolean() },
+  handler: async (ctx, { examsPublic }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Требуется вход в аккаунт");
+    const p = await ctx.db
+      .query("profiles")
+      .withIndex("by_user", (q) => q.eq("userId", identity.subject))
+      .unique();
+    if (p) await ctx.db.patch(p._id, { examsPublic });
   },
 });

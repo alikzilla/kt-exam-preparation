@@ -19,6 +19,7 @@ export default defineSchema({
     lastStudyDay: v.string(),
     streakDays: v.number(),
     isPublic: v.boolean(),
+    examsPublic: v.optional(v.boolean()),
   })
     .index("by_user", ["userId"])
     .index("by_best", ["bestExamPercent"]),
