@@ -13,6 +13,8 @@ const testQuestion = v.object({
   correctOptionIds: v.array(v.string()),
   imageUrl: v.optional(v.string()),
   explanation: v.optional(v.string()),
+  textBased: v.optional(v.boolean()),
+  passageId: v.optional(v.string()),
   multiCorrect: v.boolean(),
 });
 

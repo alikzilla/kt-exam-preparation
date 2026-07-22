@@ -5,7 +5,11 @@ import schema from "./schema";
 
 const modules = import.meta.glob("./**/*.ts");
 
-function makeAttempt(localId: string, takenAt: number) {
+function makeAttempt(
+  localId: string,
+  takenAt: number,
+  questionExtras: { textBased?: boolean; passageId?: string } = {}
+) {
   return {
     localId,
     takenAt,
@@ -25,6 +29,7 @@ function makeAttempt(localId: string, takenAt: number) {
           ],
           correctOptionIds: ["o1"],
           multiCorrect: false,
+          ...questionExtras,
         },
       ],
     },
@@ -57,6 +62,16 @@ describe("attempts", () => {
     await expect(
       t.mutation(api.attempts.saveAttempt, { attempt: makeAttempt("a1", 1) })
     ).rejects.toThrow();
+  });
+
+  test("saveAttempt accepts text-based questions with passageId", async () => {
+    const t = convexTest(schema, modules);
+    const asA = t.withIdentity({ subject: "user_a", name: "A" });
+    const attempt = makeAttempt("a1", 100, { textBased: true, passageId: "p1" });
+    await asA.mutation(api.attempts.saveAttempt, { attempt });
+    const list = await asA.query(api.attempts.myAttempts, {});
+    expect(list).toHaveLength(1);
+    expect(list[0].test.questions[0].passageId).toBe("p1");
   });
 
   test("myAttempts returns own attempts newest first", async () => {
