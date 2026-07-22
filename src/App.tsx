@@ -8,6 +8,7 @@ import ResultsPage from "./pages/ResultsPage";
 import HistoryPage from "./pages/HistoryPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import ProfilePage from "./pages/ProfilePage";
+import PublicResultsPage from "./pages/PublicResultsPage";
 
 // Data-router (createBrowserRouter) вместо BrowserRouter: нужен для
 // useBlocker — перехвата навигации при незавершённом тесте.
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/history", element: <HistoryPage /> },
       { path: "/leaderboard", element: <LeaderboardPage /> },
       { path: "/u/:userId", element: <ProfilePage /> },
+      { path: "/u/:userId/results/:localId", element: <PublicResultsPage /> },
     ],
   },
 ]);

@@ -101,7 +101,9 @@ export function gradeTest(test: GeneratedTest, answers: AnswerMap): GradeResult 
  * weighs more than a 30-point one). Falls back to the correct/total ratio for
  * attempts saved before points were tracked.
  */
-export function scorePercent(result: GradeResult): number {
+export function scorePercent(
+  result: Pick<GradeResult, "correct" | "total" | "points" | "maxPoints">
+): number {
   const maxPoints = result.maxPoints ?? 0;
   if (maxPoints > 0) return Math.round((result.points / maxPoints) * 100);
   if (result.total === 0) return 0;
