@@ -9,6 +9,7 @@ import {
 import { CheckIcon } from "../components/icons";
 import PassageCard from "../components/PassageCard";
 import MathText from "../components/MathText";
+import QuestionText from "../components/QuestionText";
 
 /** Значение фильтра «Все» — не совпадает ни с одним subjectId. */
 const ALL = "all";
@@ -98,7 +99,7 @@ export default function QuestionsPage() {
               <div className="mb-2 flex items-start justify-between gap-3">
                 <h3 className="font-semibold leading-snug text-ink">
                   <span className="tabular-nums text-ink-faint">{i + 1}.</span>{" "}
-                  <MathText text={q.text} />
+                  <QuestionText text={q.text} />
                 </h3>
                 <button
                   type="button"

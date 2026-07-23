@@ -18,6 +18,27 @@ function toTestQuestion(question: Question): TestQuestion {
 }
 
 /**
+ * Draws `count` questions from a subject's pool, guaranteeing at least
+ * `minSql` of them are SQL-query questions (Question.sqlQuery) when the pool
+ * has enough. SQL questions are drawn first, the rest fill from the remaining
+ * (theory) pool, and the combined draw is reshuffled so the guaranteed SQL
+ * questions land in random positions rather than clustered together.
+ */
+function drawQuestions(
+  pool: readonly Question[],
+  count: number,
+  minSql: number
+): Question[] {
+  if (minSql <= 0) return sample(pool, count);
+
+  const sqlPool = pool.filter((q) => q.sqlQuery);
+  const rest = pool.filter((q) => !q.sqlQuery);
+  const sqlCount = Math.min(minSql, sqlPool.length, count);
+  const drawn = [...sample(sqlPool, sqlCount), ...sample(rest, count - sqlCount)];
+  return shuffle(drawn);
+}
+
+/**
  * Builds a test by drawing questions from each requested subject, shuffling
  * both the question order and each question's options.
  */
@@ -31,7 +52,7 @@ export function buildTest(config: TestConfig): GeneratedTest {
     const count =
       config.perSubjectCount?.[subjectId] ?? subject.defaultQuestionCount;
     const pool = getQuestionsBySubject(subjectId);
-    const drawn = sample(pool, count);
+    const drawn = drawQuestions(pool, count, subject.minSqlQuestions ?? 0);
     // Вопросы по тексту/аудио идут в конце блока в порядке банка (как в
     // реальном бланке), остальные остаются перемешанными после sample.
     const bankIndex = new Map(pool.map((q, i) => [q.id, i]));

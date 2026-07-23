@@ -30,6 +30,26 @@ describe("buildTest discipline grouping", () => {
   });
 });
 
+describe("buildTest guaranteed SQL questions", () => {
+  it("includes at least the configured minimum of SQL-query questions in the databases block", () => {
+    // Full 20-question databases block; run several times since the draw is random.
+    const cfg = { subjectIds: ["databases"], perSubjectCount: { databases: 20 } };
+    for (let i = 0; i < 25; i++) {
+      const test = buildTest(cfg);
+      const sqlCount = test.questions.filter((q) => q.sqlQuery).length;
+      expect(sqlCount).toBeGreaterThanOrEqual(4);
+    }
+  });
+
+  it("does not exceed the block size when the block is smaller than the minimum", () => {
+    const cfg = { subjectIds: ["databases"], perSubjectCount: { databases: 2 } };
+    const test = buildTest(cfg);
+    expect(test.questions).toHaveLength(2);
+    // Every drawn question here should be an SQL one (min clamps to block size).
+    expect(test.questions.every((q) => q.sqlQuery)).toBe(true);
+  });
+});
+
 describe("buildTest text-based questions", () => {
   const cfg = { subjectIds: ["english"], perSubjectCount: { english: 50 } };
 

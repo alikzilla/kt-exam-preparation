@@ -867,7 +867,7 @@
   {
     "id": "db-28",
     "subjectId": "databases",
-    "text": "Укажите влияние предиката ORDER BY на результат выполнения запроса: SELECT ename, job, sal FROM emp WHERE deptno = 10 ORDER BY sal DESC",
+    "text": "Укажите влияние предиката ORDER BY на результат выполнения запроса:\n\n```sql\nSELECT ename, job, sal\nFROM emp\nWHERE deptno = 10\nORDER BY sal DESC\n```",
     "options": [
       {
         "id": "a",
@@ -897,7 +897,8 @@
     "correctOptionIds": [
       "d"
     ],
-    "explanation": "ORDER BY сортирует строки (записи) результата; здесь — по убыванию sal (DESC), поэтому вариант «в порядке возрастания» неверен."
+    "explanation": "ORDER BY сортирует строки (записи) результата; здесь — по убыванию sal (DESC), поэтому вариант «в порядке возрастания» неверен.",
+    "sqlQuery": true
   },
   {
     "id": "db-29",
@@ -1016,7 +1017,7 @@
   {
     "id": "db-32",
     "subjectId": "databases",
-    "text": "Укажите влияние выражения UPDATE на результат выполнения запроса: UPDATE emp SET sal = sal*1.10 WHERE deptno = 20",
+    "text": "Укажите влияние выражения UPDATE на результат выполнения запроса:\n\n```sql\nUPDATE emp\nSET sal = sal * 1.10\nWHERE deptno = 20\n```",
     "options": [
       {
         "id": "a",
@@ -1046,12 +1047,13 @@
     "correctOptionIds": [
       "c"
     ],
-    "explanation": "UPDATE ... SET sal = sal*1.10 изменяет только столбец sal, и только у строк, удовлетворяющих условию WHERE (deptno = 20)."
+    "explanation": "UPDATE ... SET sal = sal*1.10 изменяет только столбец sal, и только у строк, удовлетворяющих условию WHERE (deptno = 20).",
+    "sqlQuery": true
   },
   {
     "id": "db-33",
     "subjectId": "databases",
-    "text": "Какое изменение произойдёт в базе при выполнении SQL-запроса: UPDATE DISTINCTROW Сотрудник INNER JOIN Дети ... WHERE Сотрудник.Код_сотрудника <> ALL (SELECT Код_сотрудника FROM Дети) SET Сотрудник.Зарплата = [Сотрудник]![Зарплата]*0.8",
+    "text": "Какое изменение произойдёт в базе при выполнении SQL-запроса:\n\n```sql\nUPDATE DISTINCTROW Сотрудник\nINNER JOIN Дети ...\nWHERE Сотрудник.Код_сотрудника <> ALL (SELECT Код_сотрудника FROM Дети)\nSET Сотрудник.Зарплата = [Сотрудник]![Зарплата] * 0.8\n```",
     "options": [
       {
         "id": "a",
@@ -1081,12 +1083,13 @@
     "correctOptionIds": [
       "f"
     ],
-    "explanation": "Условие «<> ALL (SELECT Код_сотрудника FROM Дети)» отбирает сотрудников, чьих кодов нет в таблице Дети (бездетных), и их зарплата умножается на 0.8, т.е. уменьшается на 20%."
+    "explanation": "Условие «<> ALL (SELECT Код_сотрудника FROM Дети)» отбирает сотрудников, чьих кодов нет в таблице Дети (бездетных), и их зарплата умножается на 0.8, т.е. уменьшается на 20%.",
+    "sqlQuery": true
   },
   {
     "id": "db-34",
     "subjectId": "databases",
-    "text": "Что будет выведено при выполнении вложенного SQL-запроса: SELECT Сотрудник.ФИО FROM Сотрудник WHERE Сотрудник.Код_сотрудника = ANY (SELECT Код_сотрудника FROM Дети)",
+    "text": "Что будет выведено при выполнении вложенного SQL-запроса:\n\n```sql\nSELECT Сотрудник.ФИО\nFROM Сотрудник\nWHERE Сотрудник.Код_сотрудника = ANY (SELECT Код_сотрудника FROM Дети)\n```",
     "options": [
       {
         "id": "a",
@@ -1116,12 +1119,13 @@
     "correctOptionIds": [
       "d"
     ],
-    "explanation": "«= ANY (подзапрос)» истинно, если код сотрудника встречается среди кодов в таблице Дети, — выводятся ФИО сотрудников, имеющих детей."
+    "explanation": "«= ANY (подзапрос)» истинно, если код сотрудника встречается среди кодов в таблице Дети, — выводятся ФИО сотрудников, имеющих детей.",
+    "sqlQuery": true
   },
   {
     "id": "db-35",
     "subjectId": "databases",
-    "text": "Какое изменение произойдёт в базе при выполнении SQL-запроса: INSERT INTO Сотрудник VALUES (32, \"Ли\", #12/30/1899 12:14:46#, \"м\", 1, #12/12/1970#, 2000, 1000, yes, \"доцент\", 21)",
+    "text": "Какое изменение произойдёт в базе при выполнении SQL-запроса:\n\n```sql\nINSERT INTO Сотрудник\nVALUES (32, \"Ли\", #12/30/1899 12:14:46#, \"м\", 1, #12/12/1970#, 2000, 1000, yes, \"доцент\", 21)\n```",
     "options": [
       {
         "id": "a",
@@ -1159,7 +1163,8 @@
     "correctOptionIds": [
       "d"
     ],
-    "explanation": "INSERT INTO ... VALUES добавляет в таблицу ровно одну новую строку с перечисленными значениями."
+    "explanation": "INSERT INTO ... VALUES добавляет в таблицу ровно одну новую строку с перечисленными значениями.",
+    "sqlQuery": true
   },
   {
     "id": "db-36",
@@ -1549,7 +1554,7 @@
   {
     "id": "db-46",
     "subjectId": "databases",
-    "text": "Что будет выведено при выполнении вложенного SQL-запроса: SELECT Сотрудник.ФИО FROM Сотрудник WHERE Сотрудник.Код_сотрудника <> ALL (SELECT Код_сотрудника FROM Дети)",
+    "text": "Что будет выведено при выполнении вложенного SQL-запроса:\n\n```sql\nSELECT Сотрудник.ФИО\nFROM Сотрудник\nWHERE Сотрудник.Код_сотрудника <> ALL (SELECT Код_сотрудника FROM Дети)\n```",
     "options": [
       {
         "id": "a",
@@ -1583,12 +1588,13 @@
     "correctOptionIds": [
       "c"
     ],
-    "explanation": "«<> ALL (подзапрос)» истинно, когда код сотрудника не равен ни одному коду из таблицы Дети, — выводятся сотрудники без детей."
+    "explanation": "«<> ALL (подзапрос)» истинно, когда код сотрудника не равен ни одному коду из таблицы Дети, — выводятся сотрудники без детей.",
+    "sqlQuery": true
   },
   {
     "id": "db-47",
     "subjectId": "databases",
-    "text": "Результат выполнения SQL-оператора: SELECT ID, NAME, CITY, GROUP FROM STUDENT WHERE GROUP = 1",
+    "text": "Результат выполнения SQL-оператора:\n\n```sql\nSELECT ID, NAME, CITY, GROUP\nFROM STUDENT\nWHERE GROUP = 1\n```",
     "options": [
       {
         "id": "a",
@@ -1628,7 +1634,8 @@
       "e",
       "h"
     ],
-    "explanation": "Результат должен содержать ровно четыре столбца (ID, NAME, CITY, GROUP) и только строки со значением GROUP = 1 — этому соответствуют три варианта."
+    "explanation": "Результат должен содержать ровно четыре столбца (ID, NAME, CITY, GROUP) и только строки со значением GROUP = 1 — этому соответствуют три варианта.",
+    "sqlQuery": true
   },
   {
     "id": "db-48",
@@ -2018,7 +2025,7 @@
   {
     "id": "db-57",
     "subjectId": "databases",
-    "text": "Укажите влияние выражения DELETE на результат выполнения запроса: DELETE FROM EMP",
+    "text": "Укажите влияние выражения DELETE на результат выполнения запроса:\n\n```sql\nDELETE FROM EMP\n```",
     "options": [
       {
         "id": "a",
@@ -2052,7 +2059,8 @@
     "correctOptionIds": [
       "f"
     ],
-    "explanation": "DELETE FROM EMP без условия WHERE удаляет все строки таблицы; сама таблица (схема) остаётся — её удаляет DROP TABLE."
+    "explanation": "DELETE FROM EMP без условия WHERE удаляет все строки таблицы; сама таблица (схема) остаётся — её удаляет DROP TABLE.",
+    "sqlQuery": true
   },
   {
     "id": "db-58",
@@ -11467,5 +11475,1257 @@
     "correctOptionIds": [
       "b"
     ]
+  },
+  {
+    "id": "db-388",
+    "subjectId": "databases",
+    "text": "Что вернёт следующий SQL-запрос?\n\n```sql\nSELECT name, salary\nFROM employees\nWHERE salary > 100000\nORDER BY salary DESC;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Имена и зарплаты всех сотрудников, отсортированные по возрастанию зарплаты"
+      },
+      {
+        "id": "b",
+        "text": "Имена и зарплаты сотрудников с зарплатой больше 100000, от большей к меньшей"
+      },
+      {
+        "id": "c",
+        "text": "Только максимальную зарплату среди сотрудников"
+      },
+      {
+        "id": "d",
+        "text": "Количество сотрудников с зарплатой больше 100000"
+      },
+      {
+        "id": "e",
+        "text": "Всех сотрудников без какой-либо сортировки"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "WHERE отбирает строки с salary > 100000, ORDER BY salary DESC сортирует их по убыванию зарплаты.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-389",
+    "subjectId": "databases",
+    "text": "Какие строки вернёт этот запрос?\n\n```sql\nSELECT o.id, c.name\nFROM orders o\nJOIN customers c ON o.customer_id = c.id;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Все заказы, даже те, у которых нет соответствующего клиента"
+      },
+      {
+        "id": "b",
+        "text": "Только заказы, у которых есть соответствующий клиент в таблице customers"
+      },
+      {
+        "id": "c",
+        "text": "Всех клиентов, даже тех, у кого нет заказов"
+      },
+      {
+        "id": "d",
+        "text": "Декартово произведение таблиц orders и customers"
+      },
+      {
+        "id": "e",
+        "text": "Только клиентов, у которых нет ни одного заказа"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Обычный (INNER) JOIN возвращает только те пары строк, для которых выполнено условие соединения, — заказы без клиента отбрасываются.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-390",
+    "subjectId": "databases",
+    "text": "Что вычисляет следующий запрос?\n\n```sql\nSELECT department, AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Среднюю зарплату по каждому отделу"
+      },
+      {
+        "id": "b",
+        "text": "Суммарную зарплату всех сотрудников компании"
+      },
+      {
+        "id": "c",
+        "text": "Среднюю зарплату по всей компании одним числом"
+      },
+      {
+        "id": "d",
+        "text": "Максимальную зарплату в каждом отделе"
+      },
+      {
+        "id": "e",
+        "text": "Количество сотрудников в каждом отделе"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "GROUP BY department группирует строки по отделам, а AVG(salary) считает среднюю зарплату внутри каждой группы.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-391",
+    "subjectId": "databases",
+    "text": "Что вернёт этот запрос?\n\n```sql\nSELECT department, COUNT(*) AS cnt\nFROM employees\nWHERE salary > 50000\nGROUP BY department\nHAVING COUNT(*) > 3;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Отделы, в которых больше 3 сотрудников с зарплатой выше 50000"
+      },
+      {
+        "id": "b",
+        "text": "Всех сотрудников с зарплатой выше 50000"
+      },
+      {
+        "id": "c",
+        "text": "Отделы, в которых всего больше 3 сотрудников (без учёта зарплаты)"
+      },
+      {
+        "id": "d",
+        "text": "Среднюю зарплату по каждому отделу"
+      },
+      {
+        "id": "e",
+        "text": "Ошибку: WHERE и HAVING нельзя использовать в одном запросе"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "WHERE отбирает строки до группировки (salary > 50000), затем HAVING фильтрует уже сгруппированные отделы, оставляя те, где таких сотрудников больше трёх.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-392",
+    "subjectId": "databases",
+    "text": "Что возвращает следующий запрос?\n\n```sql\nSELECT COUNT(DISTINCT department)\nFROM employees;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Общее число сотрудников в таблице"
+      },
+      {
+        "id": "b",
+        "text": "Число уникальных отделов"
+      },
+      {
+        "id": "c",
+        "text": "Число сотрудников в каждом отделе отдельно"
+      },
+      {
+        "id": "d",
+        "text": "Список названий всех отделов"
+      },
+      {
+        "id": "e",
+        "text": "Число сотрудников без указанного отдела"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "DISTINCT убирает повторяющиеся значения department, а COUNT считает их количество — то есть число различных отделов.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-393",
+    "subjectId": "databases",
+    "text": "Что делает этот запрос?\n\n```sql\nUPDATE products\nSET price = price * 1.1\nWHERE category = 'books';\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Увеличивает цену всех товаров на 10%"
+      },
+      {
+        "id": "b",
+        "text": "Увеличивает цену товаров категории 'books' на 10%"
+      },
+      {
+        "id": "c",
+        "text": "Устанавливает цену товаров категории 'books' равной 1.1"
+      },
+      {
+        "id": "d",
+        "text": "Удаляет все товары категории 'books'"
+      },
+      {
+        "id": "e",
+        "text": "Уменьшает цену товаров категории 'books' на 10%"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "price = price * 1.1 умножает текущую цену на 1.1 (то есть +10%), а WHERE ограничивает изменение строками с category = 'books'.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-394",
+    "subjectId": "databases",
+    "text": "Каких сотрудников выберет запрос?\n\n```sql\nSELECT name\nFROM employees\nWHERE salary > (SELECT AVG(salary) FROM employees);\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Сотрудников с зарплатой выше средней по компании"
+      },
+      {
+        "id": "b",
+        "text": "Только сотрудника с максимальной зарплатой"
+      },
+      {
+        "id": "c",
+        "text": "Всех сотрудников без исключения"
+      },
+      {
+        "id": "d",
+        "text": "Сотрудников с зарплатой ниже средней по компании"
+      },
+      {
+        "id": "e",
+        "text": "Одно число — среднюю зарплату по компании"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Вложенный запрос вычисляет среднюю зарплату, а внешний оставляет только тех, у кого salary больше этого значения.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-395",
+    "subjectId": "databases",
+    "text": "Что попадёт в результат для клиентов, у которых нет ни одного заказа?\n\n```sql\nSELECT c.name, o.id\nFROM customers c\nLEFT JOIN orders o ON o.customer_id = c.id;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Такие клиенты не попадут в результат вовсе"
+      },
+      {
+        "id": "b",
+        "text": "Такие клиенты попадут, а в колонке o.id будет NULL"
+      },
+      {
+        "id": "c",
+        "text": "Запрос вернёт ошибку"
+      },
+      {
+        "id": "d",
+        "text": "В колонке o.id будет 0"
+      },
+      {
+        "id": "e",
+        "text": "Такие клиенты продублируются несколько раз"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "LEFT JOIN сохраняет все строки левой таблицы; при отсутствии пары справа её колонки заполняются NULL.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-396",
+    "subjectId": "databases",
+    "text": "Чем будут различаться два значения, если у части клиентов phone = NULL?\n\n```sql\nSELECT COUNT(*), COUNT(phone)\nFROM customers;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Они всегда равны"
+      },
+      {
+        "id": "b",
+        "text": "COUNT(*) считает все строки, а COUNT(phone) — только строки с ненулевым phone"
+      },
+      {
+        "id": "c",
+        "text": "COUNT(phone) считает все строки, а COUNT(*) — только ненулевые"
+      },
+      {
+        "id": "d",
+        "text": "COUNT(*) вернёт ошибку из-за NULL"
+      },
+      {
+        "id": "e",
+        "text": "Оба выражения игнорируют строки с NULL"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "COUNT(*) считает строки целиком, а COUNT(столбец) не учитывает строки, где этот столбец равен NULL.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-397",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT DISTINCT city\nFROM customers\nORDER BY city;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Все города, включая повторяющиеся"
+      },
+      {
+        "id": "b",
+        "text": "Уникальные названия городов, отсортированные по алфавиту"
+      },
+      {
+        "id": "c",
+        "text": "Количество различных городов"
+      },
+      {
+        "id": "d",
+        "text": "Только первый город по алфавиту"
+      },
+      {
+        "id": "e",
+        "text": "Города, отсортированные по числу клиентов"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "DISTINCT убирает дубли значений city, а ORDER BY city сортирует их по алфавиту.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-398",
+    "subjectId": "databases",
+    "text": "Каких товаров коснётся выборка?\n\n```sql\nSELECT name\nFROM products\nWHERE category IN ('books', 'music');\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только категории 'books'"
+      },
+      {
+        "id": "b",
+        "text": "Товаров категории 'books' или 'music'"
+      },
+      {
+        "id": "c",
+        "text": "Товаров, которые одновременно и 'books', и 'music'"
+      },
+      {
+        "id": "d",
+        "text": "Всех товаров, кроме 'books' и 'music'"
+      },
+      {
+        "id": "e",
+        "text": "Товаров без указанной категории"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "IN (...) истинно, если значение совпадает с любым из перечисленных, то есть category = 'books' ИЛИ category = 'music'.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-399",
+    "subjectId": "databases",
+    "text": "Какие товары попадут в результат?\n\n```sql\nSELECT name, price\nFROM products\nWHERE price BETWEEN 100 AND 200;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "С ценой строго больше 100 и строго меньше 200"
+      },
+      {
+        "id": "b",
+        "text": "С ценой от 100 до 200 включительно"
+      },
+      {
+        "id": "c",
+        "text": "С ценой меньше 100 или больше 200"
+      },
+      {
+        "id": "d",
+        "text": "Только с ценой ровно 100 и ровно 200"
+      },
+      {
+        "id": "e",
+        "text": "С любой ценой"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "BETWEEN a AND b включает обе границы: это эквивалент price >= 100 AND price <= 200.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-400",
+    "subjectId": "databases",
+    "text": "Кого выберет запрос?\n\n```sql\nSELECT name\nFROM customers\nWHERE name LIKE 'А%';\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиентов, чьё имя заканчивается на «А»"
+      },
+      {
+        "id": "b",
+        "text": "Клиентов, чьё имя начинается с «А»"
+      },
+      {
+        "id": "c",
+        "text": "Клиентов, у которых где-либо в имени есть «А»"
+      },
+      {
+        "id": "d",
+        "text": "Клиентов с именем ровно «А»"
+      },
+      {
+        "id": "e",
+        "text": "Всех клиентов подряд"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Символ % означает любую последовательность символов, поэтому 'А%' — это «начинается с А».",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-401",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT department, MAX(salary)\nFROM employees\nGROUP BY department;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Максимальную зарплату по всей компании одним числом"
+      },
+      {
+        "id": "b",
+        "text": "Максимальную зарплату в каждом отделе"
+      },
+      {
+        "id": "c",
+        "text": "Сумму зарплат по каждому отделу"
+      },
+      {
+        "id": "d",
+        "text": "Полную строку сотрудника с максимальной зарплатой"
+      },
+      {
+        "id": "e",
+        "text": "Среднюю зарплату по каждому отделу"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "GROUP BY department разбивает строки по отделам, а MAX(salary) возвращает наибольшую зарплату внутри каждой группы.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-402",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT name, salary\nFROM employees\nORDER BY salary DESC\nLIMIT 3;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Троих сотрудников с самой низкой зарплатой"
+      },
+      {
+        "id": "b",
+        "text": "Троих сотрудников с самой высокой зарплатой"
+      },
+      {
+        "id": "c",
+        "text": "Всех сотрудников, отсортированных по зарплате"
+      },
+      {
+        "id": "d",
+        "text": "Три случайные строки"
+      },
+      {
+        "id": "e",
+        "text": "Сумму трёх самых высоких зарплат"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Сортировка по убыванию зарплаты плюс LIMIT 3 даёт первые три строки — тех, у кого зарплата наибольшая.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-403",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT p.name, c.title\nFROM products p\nJOIN categories c ON p.category_id = c.id\nWHERE c.title = 'Электроника';\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Все товары независимо от категории"
+      },
+      {
+        "id": "b",
+        "text": "Товары, относящиеся к категории «Электроника»"
+      },
+      {
+        "id": "c",
+        "text": "Список всех категорий"
+      },
+      {
+        "id": "d",
+        "text": "Товары, у которых нет категории"
+      },
+      {
+        "id": "e",
+        "text": "Только названия категорий без товаров"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "JOIN связывает товар с его категорией, а WHERE оставляет только строки категории «Электроника».",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-404",
+    "subjectId": "databases",
+    "text": "Что произойдёт при выполнении запроса?\n\n```sql\nDELETE FROM logs;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Будет удалена только первая строка"
+      },
+      {
+        "id": "b",
+        "text": "Будут удалены все строки таблицы logs"
+      },
+      {
+        "id": "c",
+        "text": "Будет удалена сама таблица logs вместе со структурой"
+      },
+      {
+        "id": "d",
+        "text": "Запрос вернёт ошибку из-за отсутствия WHERE"
+      },
+      {
+        "id": "e",
+        "text": "Ничего не изменится"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "DELETE без WHERE удаляет все строки таблицы, но сама таблица (её структура) сохраняется — в отличие от DROP TABLE.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-405",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT city FROM customers\nUNION\nSELECT city FROM suppliers;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только города, встречающиеся в обеих таблицах"
+      },
+      {
+        "id": "b",
+        "text": "Все города из обеих таблиц без повторов"
+      },
+      {
+        "id": "c",
+        "text": "Все города из обеих таблиц, включая повторы"
+      },
+      {
+        "id": "d",
+        "text": "Только города поставщиков"
+      },
+      {
+        "id": "e",
+        "text": "Ошибку: две таблицы объединять нельзя"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "UNION объединяет результаты двух запросов и убирает дубликаты; чтобы сохранить повторы, используют UNION ALL.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-406",
+    "subjectId": "databases",
+    "text": "Что делает запрос?\n\n```sql\nINSERT INTO customers (name, city)\nVALUES ('Иван', 'Алматы');\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Обновляет существующего клиента «Иван»"
+      },
+      {
+        "id": "b",
+        "text": "Добавляет новую строку с именем «Иван» и городом «Алматы»"
+      },
+      {
+        "id": "c",
+        "text": "Удаляет клиента «Иван»"
+      },
+      {
+        "id": "d",
+        "text": "Создаёт таблицу customers"
+      },
+      {
+        "id": "e",
+        "text": "Возвращает данные клиента «Иван»"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "INSERT INTO ... VALUES добавляет в таблицу новую строку с указанными значениями столбцов.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-407",
+    "subjectId": "databases",
+    "text": "Что вернёт этот запрос?\n\n```sql\nSELECT name\nFROM customers\nWHERE phone = NULL;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиентов, у которых phone не заполнен"
+      },
+      {
+        "id": "b",
+        "text": "Пустой результат — сравнение с NULL через «=» не срабатывает"
+      },
+      {
+        "id": "c",
+        "text": "Всех клиентов подряд"
+      },
+      {
+        "id": "d",
+        "text": "Клиентов с заполненным phone"
+      },
+      {
+        "id": "e",
+        "text": "Синтаксическую ошибку"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Любое сравнение с NULL через = даёт UNKNOWN, поэтому строк не будет; для проверки на NULL нужен оператор IS NULL.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-408",
+    "subjectId": "databases",
+    "text": "Кого вернёт запрос?\n\n```sql\nSELECT customer_id, COUNT(*) AS orders_count\nFROM orders\nGROUP BY customer_id\nHAVING COUNT(*) > 1;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиентов (по id), сделавших больше одного заказа"
+      },
+      {
+        "id": "b",
+        "text": "Всех клиентов, у которых есть хотя бы один заказ"
+      },
+      {
+        "id": "c",
+        "text": "Клиентов ровно с одним заказом"
+      },
+      {
+        "id": "d",
+        "text": "Общее число заказов в таблице"
+      },
+      {
+        "id": "e",
+        "text": "Клиентов, у которых нет заказов"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Группировка по customer_id считает число заказов каждого клиента, а HAVING COUNT(*) > 1 оставляет тех, у кого их больше одного.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-409",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT name\nFROM products\nWHERE category_id IN (SELECT id FROM categories WHERE active = 1);\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Все товары независимо от категории"
+      },
+      {
+        "id": "b",
+        "text": "Товары, относящиеся к активным категориям"
+      },
+      {
+        "id": "c",
+        "text": "Список активных категорий"
+      },
+      {
+        "id": "d",
+        "text": "Товары без категории"
+      },
+      {
+        "id": "e",
+        "text": "Только неактивные категории"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Подзапрос возвращает id активных категорий, а внешний запрос выбирает товары, чей category_id входит в этот список.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-410",
+    "subjectId": "databases",
+    "text": "Отметьте все запросы, которые изменяют данные в таблице (а не только читают их).",
+    "options": [
+      {
+        "id": "a",
+        "text": "SELECT * FROM emp"
+      },
+      {
+        "id": "b",
+        "text": "UPDATE emp SET sal = 0"
+      },
+      {
+        "id": "c",
+        "text": "DELETE FROM emp WHERE id = 5"
+      },
+      {
+        "id": "d",
+        "text": "INSERT INTO emp (id, name) VALUES (7, 'Ли')"
+      },
+      {
+        "id": "e",
+        "text": "SELECT COUNT(*) FROM emp"
+      }
+    ],
+    "correctOptionIds": [
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "SELECT только читает данные (DQL); данные изменяют операторы DML — INSERT, UPDATE и DELETE.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-411",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT name,\n       CASE WHEN salary >= 100000 THEN 'высокая'\n            ELSE 'обычная' END AS grade\nFROM employees;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только сотрудников с высокой зарплатой"
+      },
+      {
+        "id": "b",
+        "text": "Имя каждого сотрудника и метку 'высокая'/'обычная' в зависимости от зарплаты"
+      },
+      {
+        "id": "c",
+        "text": "Среднюю зарплату по компании"
+      },
+      {
+        "id": "d",
+        "text": "Количество сотрудников в каждой группе"
+      },
+      {
+        "id": "e",
+        "text": "Синтаксическую ошибку"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "CASE вычисляет для каждой строки значение по условию, поэтому к имени добавляется метка 'высокая' или 'обычная'.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-412",
+    "subjectId": "databases",
+    "text": "Что окажется в колонке contact, если у клиента phone = NULL?\n\n```sql\nSELECT name, COALESCE(phone, 'нет телефона') AS contact\nFROM customers;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "NULL"
+      },
+      {
+        "id": "b",
+        "text": "Пустая строка"
+      },
+      {
+        "id": "c",
+        "text": "Текст 'нет телефона'"
+      },
+      {
+        "id": "d",
+        "text": "Число 0"
+      },
+      {
+        "id": "e",
+        "text": "Имя клиента"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "COALESCE возвращает первый аргумент, не равный NULL; при phone = NULL это будет 'нет телефона'.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-413",
+    "subjectId": "databases",
+    "text": "Кого вернёт запрос?\n\n```sql\nSELECT c.name\nFROM customers c\nLEFT JOIN orders o ON o.customer_id = c.id\nWHERE o.id IS NULL;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиентов, у которых есть заказы"
+      },
+      {
+        "id": "b",
+        "text": "Клиентов, у которых нет ни одного заказа"
+      },
+      {
+        "id": "c",
+        "text": "Всех клиентов подряд"
+      },
+      {
+        "id": "d",
+        "text": "Заказы, у которых нет клиента"
+      },
+      {
+        "id": "e",
+        "text": "Клиентов, у которых больше одного заказа"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "LEFT JOIN оставляет клиентов без пары справа с NULL в o.id, а условие o.id IS NULL отбирает именно их — это «антисоединение».",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-414",
+    "subjectId": "databases",
+    "text": "Что делает этот запрос?\n\n```sql\nSELECT e.name AS employee, m.name AS manager\nFROM employees e\nJOIN employees m ON e.manager_id = m.id;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Соединяет таблицу сотрудников саму с собой, сопоставляя сотрудника с его руководителем"
+      },
+      {
+        "id": "b",
+        "text": "Удаляет дублирующихся сотрудников"
+      },
+      {
+        "id": "c",
+        "text": "Находит сотрудников без руководителя"
+      },
+      {
+        "id": "d",
+        "text": "Считает количество руководителей"
+      },
+      {
+        "id": "e",
+        "text": "Возвращает ошибку — таблицу нельзя соединять с собой"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Это self-join: одна и та же таблица используется под двумя псевдонимами, чтобы связать сотрудника (e) с его руководителем (m).",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-415",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT department, position, SUM(salary)\nFROM employees\nGROUP BY department, position;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Общую зарплату по всей компании"
+      },
+      {
+        "id": "b",
+        "text": "Суммарную зарплату для каждой пары «отдел + должность»"
+      },
+      {
+        "id": "c",
+        "text": "Среднюю зарплату по отделам"
+      },
+      {
+        "id": "d",
+        "text": "Число сотрудников по отделам"
+      },
+      {
+        "id": "e",
+        "text": "Максимальную зарплату по должностям"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Группировка по двум столбцам создаёт группу на каждую уникальную пару (department, position), и SUM считает сумму внутри группы.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-416",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT name\nFROM products\nWHERE category NOT IN ('books', 'music');\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Товары категорий 'books' и 'music'"
+      },
+      {
+        "id": "b",
+        "text": "Товары всех категорий, кроме 'books' и 'music'"
+      },
+      {
+        "id": "c",
+        "text": "Все товары без исключения"
+      },
+      {
+        "id": "d",
+        "text": "Товары без указанной категории"
+      },
+      {
+        "id": "e",
+        "text": "Только категорию 'books'"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "NOT IN (...) истинно, когда значение не совпадает ни с одним из перечисленных, то есть исключает 'books' и 'music'.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-417",
+    "subjectId": "databases",
+    "text": "Какие строки вернёт запрос?\n\n```sql\nSELECT name\nFROM employees\nORDER BY name\nLIMIT 10 OFFSET 20;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Первые 10 строк по алфавиту"
+      },
+      {
+        "id": "b",
+        "text": "Строки с 21-й по 30-ю в порядке сортировки"
+      },
+      {
+        "id": "c",
+        "text": "Последние 20 строк"
+      },
+      {
+        "id": "d",
+        "text": "Все строки, начиная с 20-й"
+      },
+      {
+        "id": "e",
+        "text": "Ровно 20 строк"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "OFFSET 20 пропускает первые 20 строк, а LIMIT 10 берёт следующие десять — то есть строки с 21-й по 30-ю.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-418",
+    "subjectId": "databases",
+    "text": "Кого вернёт запрос?\n\n```sql\nSELECT c.name\nFROM customers c\nWHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id);\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиентов, у которых есть хотя бы один заказ"
+      },
+      {
+        "id": "b",
+        "text": "Клиентов, у которых нет заказов"
+      },
+      {
+        "id": "c",
+        "text": "Всех клиентов подряд"
+      },
+      {
+        "id": "d",
+        "text": "Список всех заказов"
+      },
+      {
+        "id": "e",
+        "text": "Только первого клиента"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "EXISTS истинно, если подзапрос возвращает хотя бы одну строку, — значит останутся клиенты, у которых есть заказ.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-419",
+    "subjectId": "databases",
+    "text": "Что делает запрос?\n\n```sql\nALTER TABLE employees\nADD COLUMN email VARCHAR(255);\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Создаёт новую таблицу employees"
+      },
+      {
+        "id": "b",
+        "text": "Добавляет столбец email в таблицу employees"
+      },
+      {
+        "id": "c",
+        "text": "Удаляет столбец email"
+      },
+      {
+        "id": "d",
+        "text": "Изменяет значения в столбце email"
+      },
+      {
+        "id": "e",
+        "text": "Переименовывает таблицу"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "ALTER TABLE ... ADD COLUMN изменяет структуру таблицы, добавляя новый столбец.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-420",
+    "subjectId": "databases",
+    "text": "Что гарантирует такое определение таблицы?\n\n```sql\nCREATE TABLE users (\n  id INT PRIMARY KEY,\n  email VARCHAR(255) UNIQUE\n);\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Значения id и email могут свободно повторяться"
+      },
+      {
+        "id": "b",
+        "text": "id уникален и не может быть NULL, а email не может повторяться"
+      },
+      {
+        "id": "c",
+        "text": "email обязателен и не может быть NULL"
+      },
+      {
+        "id": "d",
+        "text": "id заполняется автоматически при вставке"
+      },
+      {
+        "id": "e",
+        "text": "Оба столбца могут быть NULL"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "PRIMARY KEY делает id уникальным и NOT NULL; ограничение UNIQUE запрещает повторяющиеся значения email.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-421",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT SUM(amount)\nFROM orders\nWHERE status = 'paid';\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Общую сумму всех заказов"
+      },
+      {
+        "id": "b",
+        "text": "Суммарную сумму только оплаченных заказов"
+      },
+      {
+        "id": "c",
+        "text": "Количество оплаченных заказов"
+      },
+      {
+        "id": "d",
+        "text": "Среднюю сумму заказа"
+      },
+      {
+        "id": "e",
+        "text": "Самый крупный заказ"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "WHERE отбирает строки со status = 'paid' до агрегации, поэтому SUM складывает суммы только оплаченных заказов.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-422",
+    "subjectId": "databases",
+    "text": "Как будут отсортированы строки?\n\n```sql\nSELECT name, department, salary\nFROM employees\nORDER BY department ASC, salary DESC;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Сначала по зарплате по убыванию, затем по отделу"
+      },
+      {
+        "id": "b",
+        "text": "По отделу по алфавиту, а внутри отдела — по зарплате от большей к меньшей"
+      },
+      {
+        "id": "c",
+        "text": "В случайном порядке"
+      },
+      {
+        "id": "d",
+        "text": "Только по отделу"
+      },
+      {
+        "id": "e",
+        "text": "Только по зарплате по возрастанию"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "При сортировке по нескольким ключам сначала применяется первый (department ASC), а внутри одинаковых отделов — второй (salary DESC).",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-423",
+    "subjectId": "databases",
+    "text": "Чем результат этого запроса отличается от такого же с UNION вместо UNION ALL?\n\n```sql\nSELECT product_id FROM order_items\nUNION ALL\nSELECT product_id FROM returns;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Отличий нет"
+      },
+      {
+        "id": "b",
+        "text": "UNION ALL сохраняет дубликаты, тогда как UNION их убирает"
+      },
+      {
+        "id": "c",
+        "text": "UNION ALL убирает дубликаты, а UNION оставляет"
+      },
+      {
+        "id": "d",
+        "text": "UNION ALL автоматически сортирует результат"
+      },
+      {
+        "id": "e",
+        "text": "UNION ALL вернёт ошибку"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "UNION удаляет дубликаты строк, а UNION ALL их сохраняет и потому обычно работает быстрее.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-424",
+    "subjectId": "databases",
+    "text": "Что окажется в колонке orders для клиента, у которого нет заказов?\n\n```sql\nSELECT c.name, COUNT(o.id) AS orders\nFROM customers c\nLEFT JOIN orders o ON o.customer_id = c.id\nGROUP BY c.name;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Клиент не попадёт в результат"
+      },
+      {
+        "id": "b",
+        "text": "Клиент попадёт со значением orders = 0"
+      },
+      {
+        "id": "c",
+        "text": "Клиент попадёт со значением orders = NULL"
+      },
+      {
+        "id": "d",
+        "text": "Запрос вернёт ошибку"
+      },
+      {
+        "id": "e",
+        "text": "orders = 1"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "LEFT JOIN сохраняет клиента без заказов, а COUNT(o.id) не считает NULL, поэтому получается 0 (в отличие от COUNT(*)).",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-425",
+    "subjectId": "databases",
+    "text": "Что вернёт запрос?\n\n```sql\nSELECT UPPER(name)\nFROM customers;\n```",
+    "options": [
+      {
+        "id": "a",
+        "text": "Имена клиентов в нижнем регистре"
+      },
+      {
+        "id": "b",
+        "text": "Имена клиентов в верхнем регистре"
+      },
+      {
+        "id": "c",
+        "text": "Длину каждого имени"
+      },
+      {
+        "id": "d",
+        "text": "Только первую букву имени"
+      },
+      {
+        "id": "e",
+        "text": "Имена без изменений"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Функция UPPER переводит строку в верхний регистр.",
+    "sqlQuery": true
+  },
+  {
+    "id": "db-426",
+    "subjectId": "databases",
+    "text": "Отметьте все операторы, которые относятся к языку определения данных (DDL).",
+    "options": [
+      {
+        "id": "a",
+        "text": "CREATE TABLE users (...)"
+      },
+      {
+        "id": "b",
+        "text": "SELECT * FROM users"
+      },
+      {
+        "id": "c",
+        "text": "ALTER TABLE users ADD COLUMN age INT"
+      },
+      {
+        "id": "d",
+        "text": "UPDATE users SET age = 30"
+      },
+      {
+        "id": "e",
+        "text": "DROP TABLE users"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "c",
+      "e"
+    ],
+    "explanation": "DDL описывает структуру данных: CREATE, ALTER, DROP. SELECT — это DQL, а UPDATE — DML.",
+    "sqlQuery": true
   }
 ]

@@ -9,7 +9,7 @@ import { useSaveAttempt } from "../hooks/useAttempts";
 import { getSubjectName } from "../data";
 import OptionCard, { OPTION_LETTERS } from "../components/OptionCard";
 import PassageCard from "../components/PassageCard";
-import MathText from "../components/MathText";
+import QuestionText from "../components/QuestionText";
 import ProgressBar from "../components/ProgressBar";
 import Timer from "../components/Timer";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -220,7 +220,7 @@ function TestRunner({
           </div>
         )}
         <h2 className="mt-2 text-lg font-semibold leading-snug text-ink">
-          <MathText text={current.text} />
+          <QuestionText text={current.text} />
         </h2>
         {current.multiCorrect && (
           <p className="mt-1.5 inline-flex rounded-md bg-warning/10 px-2 py-0.5 text-xs font-medium text-warning">

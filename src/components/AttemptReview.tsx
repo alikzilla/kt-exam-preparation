@@ -6,7 +6,7 @@ import { getSubjectName } from "../data";
 import ScoreBadge from "./ScoreBadge";
 import OptionCard, { OPTION_LETTERS } from "./OptionCard";
 import PassageCard from "./PassageCard";
-import MathText from "./MathText";
+import QuestionText from "./QuestionText";
 import { CheckIcon, CloseIcon } from "./icons";
 
 /** Разбор попытки: сводка + ответы по вопросам. Используется на странице
@@ -150,7 +150,7 @@ export default function AttemptReview({
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <h3 className="font-semibold leading-snug text-ink">
                     <span className="tabular-nums text-ink-faint">{i + 1}.</span>{" "}
-                    <MathText text={q.text} />
+                    <QuestionText text={q.text} />
                   </h3>
                   <span
                     className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${

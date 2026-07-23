@@ -1390,5 +1390,1395 @@
       "a"
     ],
     "explanation": "Accomplish = achieve — «достигать, выполнять»."
+  },
+  {
+    "id": "en-51",
+    "subjectId": "english",
+    "text": "By the time she arrived at the station, the train ___.",
+    "options": [
+      {
+        "id": "a",
+        "text": "has left"
+      },
+      {
+        "id": "b",
+        "text": "had left"
+      },
+      {
+        "id": "c",
+        "text": "left"
+      },
+      {
+        "id": "d",
+        "text": "was leaving"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Действие, завершившееся до другого действия в прошлом, — Past Perfect: the train had left."
+  },
+  {
+    "id": "en-52",
+    "subjectId": "english",
+    "text": "I have known him ___ ten years.",
+    "options": [
+      {
+        "id": "a",
+        "text": "since"
+      },
+      {
+        "id": "b",
+        "text": "for"
+      },
+      {
+        "id": "c",
+        "text": "during"
+      },
+      {
+        "id": "d",
+        "text": "from"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "С периодом времени (ten years) в Present Perfect используется for."
+  },
+  {
+    "id": "en-53",
+    "subjectId": "english",
+    "text": "___ you mind opening the window?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Would"
+      },
+      {
+        "id": "b",
+        "text": "Do"
+      },
+      {
+        "id": "c",
+        "text": "Should"
+      },
+      {
+        "id": "d",
+        "text": "May"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Вежливая просьба: Would you mind + герундий (opening)."
+  },
+  {
+    "id": "en-54",
+    "subjectId": "english",
+    "text": "The report ___ by the team last week.",
+    "options": [
+      {
+        "id": "a",
+        "text": "was written"
+      },
+      {
+        "id": "b",
+        "text": "written"
+      },
+      {
+        "id": "c",
+        "text": "is written"
+      },
+      {
+        "id": "d",
+        "text": "has written"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Пассив в прошедшем времени: was + III форма (written)."
+  },
+  {
+    "id": "en-55",
+    "subjectId": "english",
+    "text": "She is the ___ student in the whole class.",
+    "options": [
+      {
+        "id": "a",
+        "text": "more intelligent"
+      },
+      {
+        "id": "b",
+        "text": "most intelligent"
+      },
+      {
+        "id": "c",
+        "text": "intelligentest"
+      },
+      {
+        "id": "d",
+        "text": "much intelligent"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Превосходная степень длинного прилагательного: the most intelligent."
+  },
+  {
+    "id": "en-56",
+    "subjectId": "english",
+    "text": "If it ___ tomorrow, we will stay at home.",
+    "options": [
+      {
+        "id": "a",
+        "text": "will rain"
+      },
+      {
+        "id": "b",
+        "text": "rains"
+      },
+      {
+        "id": "c",
+        "text": "rained"
+      },
+      {
+        "id": "d",
+        "text": "would rain"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Первое условное: в придаточном с if — Present Simple (rains)."
+  },
+  {
+    "id": "en-57",
+    "subjectId": "english",
+    "text": "Choose the synonym of significant:",
+    "options": [
+      {
+        "id": "a",
+        "text": "important"
+      },
+      {
+        "id": "b",
+        "text": "small"
+      },
+      {
+        "id": "c",
+        "text": "rare"
+      },
+      {
+        "id": "d",
+        "text": "quick"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "significant означает «значительный, важный» — синоним important."
+  },
+  {
+    "id": "en-58",
+    "subjectId": "english",
+    "text": "He asked me if I ___ help him with the project.",
+    "options": [
+      {
+        "id": "a",
+        "text": "can"
+      },
+      {
+        "id": "b",
+        "text": "could"
+      },
+      {
+        "id": "c",
+        "text": "will"
+      },
+      {
+        "id": "d",
+        "text": "may"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "В косвенной речи can меняется на could."
+  },
+  {
+    "id": "en-59",
+    "subjectId": "english",
+    "text": "There isn't ___ milk left in the fridge.",
+    "options": [
+      {
+        "id": "a",
+        "text": "many"
+      },
+      {
+        "id": "b",
+        "text": "much"
+      },
+      {
+        "id": "c",
+        "text": "a few"
+      },
+      {
+        "id": "d",
+        "text": "several"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "milk — неисчисляемое существительное, с ним используется much."
+  },
+  {
+    "id": "en-60",
+    "subjectId": "english",
+    "text": "I'm not used to ___ up so early.",
+    "options": [
+      {
+        "id": "a",
+        "text": "get"
+      },
+      {
+        "id": "b",
+        "text": "getting"
+      },
+      {
+        "id": "c",
+        "text": "got"
+      },
+      {
+        "id": "d",
+        "text": "gets"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После be used to употребляется герундий: getting up."
+  },
+  {
+    "id": "en-61",
+    "subjectId": "english",
+    "text": "Neither Tom nor his friends ___ coming to the party.",
+    "options": [
+      {
+        "id": "a",
+        "text": "is"
+      },
+      {
+        "id": "b",
+        "text": "are"
+      },
+      {
+        "id": "c",
+        "text": "was"
+      },
+      {
+        "id": "d",
+        "text": "has"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "При neither...nor глагол согласуется с ближайшим подлежащим (friends) — are."
+  },
+  {
+    "id": "en-62",
+    "subjectId": "english",
+    "text": "That's the man ___ car was stolen yesterday.",
+    "options": [
+      {
+        "id": "a",
+        "text": "who"
+      },
+      {
+        "id": "b",
+        "text": "whose"
+      },
+      {
+        "id": "c",
+        "text": "which"
+      },
+      {
+        "id": "d",
+        "text": "whom"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Принадлежность выражает относительное местоимение whose."
+  },
+  {
+    "id": "en-63",
+    "subjectId": "english",
+    "text": "You ___ to wear a helmet on a motorcycle. It's the law.",
+    "options": [
+      {
+        "id": "a",
+        "text": "have"
+      },
+      {
+        "id": "b",
+        "text": "must"
+      },
+      {
+        "id": "c",
+        "text": "can"
+      },
+      {
+        "id": "d",
+        "text": "should"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Обязанность, установленная правилом, выражается конструкцией have to: have to wear."
+  },
+  {
+    "id": "en-64",
+    "subjectId": "english",
+    "text": "My sister is very good ___ mathematics.",
+    "options": [
+      {
+        "id": "a",
+        "text": "in"
+      },
+      {
+        "id": "b",
+        "text": "at"
+      },
+      {
+        "id": "c",
+        "text": "on"
+      },
+      {
+        "id": "d",
+        "text": "for"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Устойчивое сочетание good at (something)."
+  },
+  {
+    "id": "en-65",
+    "subjectId": "english",
+    "text": "By next June, I ___ here for ten years.",
+    "options": [
+      {
+        "id": "a",
+        "text": "will work"
+      },
+      {
+        "id": "b",
+        "text": "will have worked"
+      },
+      {
+        "id": "c",
+        "text": "have worked"
+      },
+      {
+        "id": "d",
+        "text": "worked"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Действие, которое завершится к моменту в будущем, — Future Perfect: will have worked."
+  },
+  {
+    "id": "en-66",
+    "subjectId": "english",
+    "text": "Choose the synonym of purchase:",
+    "options": [
+      {
+        "id": "a",
+        "text": "sell"
+      },
+      {
+        "id": "b",
+        "text": "buy"
+      },
+      {
+        "id": "c",
+        "text": "rent"
+      },
+      {
+        "id": "d",
+        "text": "borrow"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "purchase означает «покупать» — синоним buy."
+  },
+  {
+    "id": "en-67",
+    "subjectId": "english",
+    "text": "___ the heavy rain, we decided to go for a walk.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Although"
+      },
+      {
+        "id": "b",
+        "text": "Despite"
+      },
+      {
+        "id": "c",
+        "text": "However"
+      },
+      {
+        "id": "d",
+        "text": "Because"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Despite + существительное (the heavy rain) вводит уступку."
+  },
+  {
+    "id": "en-68",
+    "subjectId": "english",
+    "text": "The novel ___ I read last month was fascinating.",
+    "options": [
+      {
+        "id": "a",
+        "text": "who"
+      },
+      {
+        "id": "b",
+        "text": "that"
+      },
+      {
+        "id": "c",
+        "text": "whose"
+      },
+      {
+        "id": "d",
+        "text": "what"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Для неодушевлённого предмета в определительном придаточном — that (или which)."
+  },
+  {
+    "id": "en-69",
+    "subjectId": "english",
+    "text": "If I ___ known about the meeting, I would have come.",
+    "options": [
+      {
+        "id": "a",
+        "text": "have"
+      },
+      {
+        "id": "b",
+        "text": "had"
+      },
+      {
+        "id": "c",
+        "text": "has"
+      },
+      {
+        "id": "d",
+        "text": "would"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Третье условное: в придаточном Past Perfect — had known."
+  },
+  {
+    "id": "en-70",
+    "subjectId": "english",
+    "text": "It's high time we ___ this problem.",
+    "options": [
+      {
+        "id": "a",
+        "text": "solve"
+      },
+      {
+        "id": "b",
+        "text": "solved"
+      },
+      {
+        "id": "c",
+        "text": "solving"
+      },
+      {
+        "id": "d",
+        "text": "will solve"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После It's high time используется прошедшее время: solved."
+  },
+  {
+    "id": "en-71",
+    "subjectId": "english",
+    "text": "He plays the guitar ___ than his brother.",
+    "options": [
+      {
+        "id": "a",
+        "text": "better"
+      },
+      {
+        "id": "b",
+        "text": "gooder"
+      },
+      {
+        "id": "c",
+        "text": "more good"
+      },
+      {
+        "id": "d",
+        "text": "best"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Сравнительная степень от well — better."
+  },
+  {
+    "id": "en-72",
+    "subjectId": "english",
+    "text": "I'd rather you ___ smoke in here.",
+    "options": [
+      {
+        "id": "a",
+        "text": "don't"
+      },
+      {
+        "id": "b",
+        "text": "didn't"
+      },
+      {
+        "id": "c",
+        "text": "not"
+      },
+      {
+        "id": "d",
+        "text": "won't"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После would rather (о другом человеке) используется прошедшее время: didn't."
+  },
+  {
+    "id": "en-73",
+    "subjectId": "english",
+    "text": "The success of the project depends ___ careful planning.",
+    "options": [
+      {
+        "id": "a",
+        "text": "of"
+      },
+      {
+        "id": "b",
+        "text": "on"
+      },
+      {
+        "id": "c",
+        "text": "from"
+      },
+      {
+        "id": "d",
+        "text": "at"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Устойчивое сочетание depend on."
+  },
+  {
+    "id": "en-74",
+    "subjectId": "english",
+    "text": "Hardly ___ sat down when the phone rang.",
+    "options": [
+      {
+        "id": "a",
+        "text": "I had"
+      },
+      {
+        "id": "b",
+        "text": "had I"
+      },
+      {
+        "id": "c",
+        "text": "did I"
+      },
+      {
+        "id": "d",
+        "text": "I have"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После Hardly в начале предложения — инверсия: had I sat down."
+  },
+  {
+    "id": "en-75",
+    "subjectId": "english",
+    "text": "Choose the synonym of enormous:",
+    "options": [
+      {
+        "id": "a",
+        "text": "tiny"
+      },
+      {
+        "id": "b",
+        "text": "huge"
+      },
+      {
+        "id": "c",
+        "text": "average"
+      },
+      {
+        "id": "d",
+        "text": "narrow"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "enormous означает «огромный» — синоним huge."
+  },
+  {
+    "id": "en-76",
+    "subjectId": "english",
+    "text": "The news ___ really shocking this morning.",
+    "options": [
+      {
+        "id": "a",
+        "text": "were"
+      },
+      {
+        "id": "b",
+        "text": "was"
+      },
+      {
+        "id": "c",
+        "text": "are"
+      },
+      {
+        "id": "d",
+        "text": "have"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "news — неисчисляемое существительное в единственном числе: was."
+  },
+  {
+    "id": "en-77",
+    "subjectId": "english",
+    "text": "The teacher made the students ___ the exercise again.",
+    "options": [
+      {
+        "id": "a",
+        "text": "to do"
+      },
+      {
+        "id": "b",
+        "text": "do"
+      },
+      {
+        "id": "c",
+        "text": "doing"
+      },
+      {
+        "id": "d",
+        "text": "done"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "После make (в активе) используется инфинитив без to: make somebody do."
+  },
+  {
+    "id": "en-78",
+    "subjectId": "english",
+    "text": "___ arriving home, she realised she had lost her keys.",
+    "options": [
+      {
+        "id": "a",
+        "text": "At"
+      },
+      {
+        "id": "b",
+        "text": "On"
+      },
+      {
+        "id": "c",
+        "text": "In"
+      },
+      {
+        "id": "d",
+        "text": "For"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "On + герундий означает «как только»: On arriving = as soon as she arrived."
+  },
+  {
+    "id": "en-79",
+    "subjectId": "english",
+    "text": "I wish I ___ more free time to travel.",
+    "options": [
+      {
+        "id": "a",
+        "text": "have"
+      },
+      {
+        "id": "b",
+        "text": "had"
+      },
+      {
+        "id": "c",
+        "text": "will have"
+      },
+      {
+        "id": "d",
+        "text": "would have"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Wish о нереальном настоящем требует Past Simple: I wish I had."
+  },
+  {
+    "id": "en-80",
+    "subjectId": "english",
+    "text": "Choose the synonym of reduce:",
+    "options": [
+      {
+        "id": "a",
+        "text": "increase"
+      },
+      {
+        "id": "b",
+        "text": "decrease"
+      },
+      {
+        "id": "c",
+        "text": "expand"
+      },
+      {
+        "id": "d",
+        "text": "raise"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "reduce означает «уменьшать» — синоним decrease."
+  },
+  {
+    "id": "en-81",
+    "subjectId": "english",
+    "text": "The text “A Trip to the Stars” is mainly about",
+    "options": [
+      {
+        "id": "a",
+        "text": "the training of professional astronauts"
+      },
+      {
+        "id": "b",
+        "text": "the growth of space tourism for ordinary people"
+      },
+      {
+        "id": "c",
+        "text": "the history of the International Space Station"
+      },
+      {
+        "id": "d",
+        "text": "the pollution caused by rockets"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "Текст в целом посвящён развитию космического туризма для обычных людей."
+  },
+  {
+    "id": "en-82",
+    "subjectId": "english",
+    "text": "According to the text, the first space tourist travelled in",
+    "options": [
+      {
+        "id": "a",
+        "text": "1991"
+      },
+      {
+        "id": "b",
+        "text": "2001"
+      },
+      {
+        "id": "c",
+        "text": "2011"
+      },
+      {
+        "id": "d",
+        "text": "2021"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«Back in 2001, an American businessman ... spend several days on the ISS.»"
+  },
+  {
+    "id": "en-83",
+    "subjectId": "english",
+    "text": "A typical tourist flight lasts about",
+    "options": [
+      {
+        "id": "a",
+        "text": "ten minutes"
+      },
+      {
+        "id": "b",
+        "text": "ten hours"
+      },
+      {
+        "id": "c",
+        "text": "several days"
+      },
+      {
+        "id": "d",
+        "text": "a week"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«The whole experience lasts only about ten minutes.»"
+  },
+  {
+    "id": "en-84",
+    "subjectId": "english",
+    "text": "During the flight, passengers",
+    "options": [
+      {
+        "id": "a",
+        "text": "stay in their seats the whole time"
+      },
+      {
+        "id": "b",
+        "text": "float weightlessly for a few minutes"
+      },
+      {
+        "id": "c",
+        "text": "control the spacecraft themselves"
+      },
+      {
+        "id": "d",
+        "text": "walk in open space"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«For a few minutes passengers float weightlessly and admire the curve of the planet.»"
+  },
+  {
+    "id": "en-85",
+    "subjectId": "english",
+    "text": "Critics of space tourism argue that the flights",
+    "options": [
+      {
+        "id": "a",
+        "text": "are too slow and boring"
+      },
+      {
+        "id": "b",
+        "text": "are expensive and pollute the atmosphere"
+      },
+      {
+        "id": "c",
+        "text": "are dangerous for astronauts"
+      },
+      {
+        "id": "d",
+        "text": "will soon become free"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«Critics argue that these flights are expensive toys for the rich and that the rockets pollute the atmosphere.»"
+  },
+  {
+    "id": "en-86",
+    "subjectId": "english",
+    "text": "Supporters believe that space tourism will",
+    "options": [
+      {
+        "id": "a",
+        "text": "replace normal air travel"
+      },
+      {
+        "id": "b",
+        "text": "help fund important scientific research"
+      },
+      {
+        "id": "c",
+        "text": "stop all pollution"
+      },
+      {
+        "id": "d",
+        "text": "make astronauts unnecessary"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«Tourism will help fund important scientific research.»"
+  },
+  {
+    "id": "en-87",
+    "subjectId": "english",
+    "text": "According to the text, ticket prices are",
+    "options": [
+      {
+        "id": "a",
+        "text": "still very high but slowly falling"
+      },
+      {
+        "id": "b",
+        "text": "already cheap for everyone"
+      },
+      {
+        "id": "c",
+        "text": "rising every year"
+      },
+      {
+        "id": "d",
+        "text": "the same as air tickets"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«Prices, although still enormous, are slowly falling.»"
+  },
+  {
+    "id": "en-88",
+    "subjectId": "english",
+    "text": "The synonym of enormous is",
+    "options": [
+      {
+        "id": "a",
+        "text": "huge"
+      },
+      {
+        "id": "b",
+        "text": "cheap"
+      },
+      {
+        "id": "c",
+        "text": "small"
+      },
+      {
+        "id": "d",
+        "text": "safe"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "enormous означает «огромный» — синоним huge."
+  },
+  {
+    "id": "en-89",
+    "subjectId": "english",
+    "text": "The synonym of unforgettable is",
+    "options": [
+      {
+        "id": "a",
+        "text": "boring"
+      },
+      {
+        "id": "b",
+        "text": "memorable"
+      },
+      {
+        "id": "c",
+        "text": "ordinary"
+      },
+      {
+        "id": "d",
+        "text": "short"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "unforgettable означает «незабываемый» — синоним memorable."
+  },
+  {
+    "id": "en-90",
+    "subjectId": "english",
+    "text": "Which statement is TRUE according to the text?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only astronauts can travel to space today."
+      },
+      {
+        "id": "b",
+        "text": "Space tourism is becoming a reality faster than expected."
+      },
+      {
+        "id": "c",
+        "text": "No tourists have ever reached space."
+      },
+      {
+        "id": "d",
+        "text": "Space travel is described only in science fiction now."
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "space-tourism",
+    "textBased": true,
+    "explanation": "«The dream ... is becoming a reality faster than anyone expected.»"
+  },
+  {
+    "id": "en-91",
+    "subjectId": "english",
+    "text": "The text “Working from Home” is mainly about",
+    "options": [
+      {
+        "id": "a",
+        "text": "how to build a bigger office"
+      },
+      {
+        "id": "b",
+        "text": "the rise of remote and hybrid working"
+      },
+      {
+        "id": "c",
+        "text": "the history of the laptop computer"
+      },
+      {
+        "id": "d",
+        "text": "why offices are always noisy"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "Текст рассказывает о распространении удалённой и гибридной работы."
+  },
+  {
+    "id": "en-92",
+    "subjectId": "english",
+    "text": "According to the text, one advantage of remote work is that employees",
+    "options": [
+      {
+        "id": "a",
+        "text": "earn much higher salaries"
+      },
+      {
+        "id": "b",
+        "text": "no longer waste hours travelling"
+      },
+      {
+        "id": "c",
+        "text": "never have to attend meetings"
+      },
+      {
+        "id": "d",
+        "text": "get longer holidays"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«They no longer wasted hours travelling ... spend more time with their families.»"
+  },
+  {
+    "id": "en-93",
+    "subjectId": "english",
+    "text": "According to the text, companies saved money by",
+    "options": [
+      {
+        "id": "a",
+        "text": "renting smaller offices"
+      },
+      {
+        "id": "b",
+        "text": "hiring fewer workers"
+      },
+      {
+        "id": "c",
+        "text": "buying new laptops"
+      },
+      {
+        "id": "d",
+        "text": "closing down completely"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Companies ... could save money by renting smaller offices.»"
+  },
+  {
+    "id": "en-94",
+    "subjectId": "english",
+    "text": "One problem of remote work mentioned in the text is that some people",
+    "options": [
+      {
+        "id": "a",
+        "text": "worked too few hours"
+      },
+      {
+        "id": "b",
+        "text": "felt lonely and missed their colleagues"
+      },
+      {
+        "id": "c",
+        "text": "forgot how to use computers"
+      },
+      {
+        "id": "d",
+        "text": "had no internet at home"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Some people felt lonely and missed talking to their colleagues face to face.»"
+  },
+  {
+    "id": "en-95",
+    "subjectId": "english",
+    "text": "In the text, “hybrid” work means",
+    "options": [
+      {
+        "id": "a",
+        "text": "working only at night"
+      },
+      {
+        "id": "b",
+        "text": "working partly in the office and partly at home"
+      },
+      {
+        "id": "c",
+        "text": "working in two jobs at once"
+      },
+      {
+        "id": "d",
+        "text": "working without any breaks"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Employees spend part of the week in the office and part at home.»"
+  },
+  {
+    "id": "en-96",
+    "subjectId": "english",
+    "text": "According to the experts in the text, flexible work",
+    "options": [
+      {
+        "id": "a",
+        "text": "will soon disappear"
+      },
+      {
+        "id": "b",
+        "text": "is here to stay"
+      },
+      {
+        "id": "c",
+        "text": "is only for managers"
+      },
+      {
+        "id": "d",
+        "text": "never really worked"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Experts believe that this flexible approach is here to stay.»"
+  },
+  {
+    "id": "en-97",
+    "subjectId": "english",
+    "text": "Some remote workers found it difficult to",
+    "options": [
+      {
+        "id": "a",
+        "text": "separate their work from their private life"
+      },
+      {
+        "id": "b",
+        "text": "learn new languages"
+      },
+      {
+        "id": "c",
+        "text": "travel to other countries"
+      },
+      {
+        "id": "d",
+        "text": "find a quiet office"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Others found it difficult to separate their working hours from their private life.»"
+  },
+  {
+    "id": "en-98",
+    "subjectId": "english",
+    "text": "The synonym of benefits is",
+    "options": [
+      {
+        "id": "a",
+        "text": "problems"
+      },
+      {
+        "id": "b",
+        "text": "advantages"
+      },
+      {
+        "id": "c",
+        "text": "costs"
+      },
+      {
+        "id": "d",
+        "text": "delays"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "benefits означает «преимущества, выгоды» — синоним advantages."
+  },
+  {
+    "id": "en-99",
+    "subjectId": "english",
+    "text": "The synonym of disappearing is",
+    "options": [
+      {
+        "id": "a",
+        "text": "vanishing"
+      },
+      {
+        "id": "b",
+        "text": "growing"
+      },
+      {
+        "id": "c",
+        "text": "returning"
+      },
+      {
+        "id": "d",
+        "text": "staying"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "disappearing означает «исчезающий» — синоним vanishing."
+  },
+  {
+    "id": "en-100",
+    "subjectId": "english",
+    "text": "Which statement is TRUE according to the text?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Remote work has no disadvantages at all."
+      },
+      {
+        "id": "b",
+        "text": "Many companies now use a hybrid model combining home and office."
+      },
+      {
+        "id": "c",
+        "text": "All companies have banned working from home."
+      },
+      {
+        "id": "d",
+        "text": "Working from home was common ten years ago."
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "passageId": "remote-work",
+    "textBased": true,
+    "explanation": "«Many companies have chosen a middle path known as hybrid work.»"
   }
 ]

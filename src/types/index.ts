@@ -22,6 +22,12 @@ export interface Question {
   textBased?: boolean;
   /** Текст (пассаж) из ./data/passages.json, к которому относится вопрос. */
   passageId?: string;
+  /**
+   * Вопрос-задача с SQL-запросом (нужно прочитать/понять запрос), а не
+   * теоретический. Генератор теста гарантирует минимум таких вопросов в блоке
+   * дисциплины — см. Subject.minSqlQuestions.
+   */
+  sqlQuery?: boolean;
 }
 
 /** Текст для чтения, на который ссылаются вопросы через passageId. */
@@ -43,6 +49,13 @@ export interface Subject {
    * points per question. Defaults to 1 when omitted.
    */
   pointsPerQuestion: number;
+  /**
+   * Минимум вопросов-задач с SQL-запросом (Question.sqlQuery), которые
+   * гарантированно попадают в блок этой дисциплины при генерации теста.
+   * Остальные вопросы добираются из общего банка. Если в банке меньше таких
+   * вопросов или блок меньше минимума — берётся сколько есть. По умолчанию 0.
+   */
+  minSqlQuestions?: number;
 }
 
 /** A single question as it appears inside a generated test (options already shuffled). */
