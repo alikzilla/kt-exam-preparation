@@ -50,12 +50,11 @@ export const getByLocalId = query({
   handler: async (ctx, { localId }) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return null;
-    const doc = await ctx.db
+    const docs = await ctx.db
       .query("attempts")
       .withIndex("by_local", (q) => q.eq("localId", localId))
-      .unique();
-    if (!doc || doc.userId !== identity.subject) return null;
-    return doc;
+      .collect();
+    return docs.find((d) => d.userId === identity.subject) ?? null;
   },
 });
 
@@ -99,12 +98,13 @@ export const publicExamAttempts = query({
 });
 
 export const publicAttempt = query({
-  args: { localId: v.string() },
-  handler: async (ctx, { localId }) => {
-    const doc = await ctx.db
+  args: { userId: v.string(), localId: v.string() },
+  handler: async (ctx, { userId, localId }) => {
+    const docs = await ctx.db
       .query("attempts")
       .withIndex("by_local", (q) => q.eq("localId", localId))
-      .unique();
+      .collect();
+    const doc = docs.find((d) => d.userId === userId) ?? null;
     if (!doc) return null;
     const identity = await ctx.auth.getUserIdentity();
     const isOwner = identity?.subject === doc.userId;

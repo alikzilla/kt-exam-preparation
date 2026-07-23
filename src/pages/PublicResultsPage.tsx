@@ -10,7 +10,7 @@ export default function PublicResultsPage() {
   const { userId, localId } = useParams();
   const doc = useQuery(
     api.attempts.publicAttempt,
-    localId ? { localId } : "skip"
+    userId && localId ? { userId, localId } : "skip"
   );
   const profile = useQuery(
     api.profiles.publicProfile,
@@ -18,7 +18,7 @@ export default function PublicResultsPage() {
   );
 
   if (doc === undefined) return <Loader label="Загружаем результаты…" />;
-  if (!doc || doc.userId !== userId) {
+  if (!doc) {
     return (
       <div className="surface p-10 text-center text-sm text-ink-soft">
         Результат скрыт или не найден.
