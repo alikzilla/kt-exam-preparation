@@ -70,10 +70,11 @@ export interface QuestionResult {
   /**
    * Points earned for this question. Can be partial for the 2-point profile
    * discipline: 2 = no mistakes, 1 = exactly one mistake, 0 = two or more.
+   * Absent on attempts saved before points were tracked.
    */
-  pointsEarned: number;
+  pointsEarned?: number;
   /** Maximum points this question is worth. */
-  maxPoints: number;
+  maxPoints?: number;
 }
 
 export interface SubjectScore {
@@ -82,10 +83,10 @@ export interface SubjectScore {
   correct: number;
   /** Number of questions in this discipline. */
   total: number;
-  /** Points earned (correct × pointsPerQuestion). */
-  points: number;
+  /** Points earned (correct × pointsPerQuestion). Absent on legacy attempts. */
+  points?: number;
   /** Maximum points available (total × pointsPerQuestion). */
-  maxPoints: number;
+  maxPoints?: number;
 }
 
 export interface GradeResult {
@@ -93,10 +94,10 @@ export interface GradeResult {
   correct: number;
   /** Number of questions in the test. */
   total: number;
-  /** Points earned across all disciplines. */
-  points: number;
+  /** Points earned across all disciplines. Absent on legacy attempts. */
+  points?: number;
   /** Maximum points available across all disciplines. */
-  maxPoints: number;
+  maxPoints?: number;
   perQuestion: QuestionResult[];
   perSubject: SubjectScore[];
 }

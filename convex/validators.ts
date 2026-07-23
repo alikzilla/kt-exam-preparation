@@ -25,28 +25,29 @@ const generatedTest = v.object({
   questions: v.array(testQuestion),
 });
 
+// Поля баллов опциональны: попытки, сохранённые до подсчёта баллов, их не имеют.
 const questionResult = v.object({
   questionId: v.string(),
   correct: v.boolean(),
   selectedOptionIds: v.array(v.string()),
   correctOptionIds: v.array(v.string()),
-  pointsEarned: v.number(),
-  maxPoints: v.number(),
+  pointsEarned: v.optional(v.number()),
+  maxPoints: v.optional(v.number()),
 });
 
 const subjectScore = v.object({
   subjectId: v.string(),
   correct: v.number(),
   total: v.number(),
-  points: v.number(),
-  maxPoints: v.number(),
+  points: v.optional(v.number()),
+  maxPoints: v.optional(v.number()),
 });
 
 const gradeResult = v.object({
   correct: v.number(),
   total: v.number(),
-  points: v.number(),
-  maxPoints: v.number(),
+  points: v.optional(v.number()),
+  maxPoints: v.optional(v.number()),
   perQuestion: v.array(questionResult),
   perSubject: v.array(subjectScore),
 });

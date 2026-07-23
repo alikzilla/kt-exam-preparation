@@ -75,16 +75,16 @@ export function gradeTest(test: GeneratedTest, answers: AnswerMap): GradeResult 
       bySubject.get(q.subjectId) ??
       { subjectId: q.subjectId, correct: 0, total: 0, points: 0, maxPoints: 0 };
     entry.total += 1;
-    entry.maxPoints += r.maxPoints;
-    entry.points += r.pointsEarned;
+    entry.maxPoints = (entry.maxPoints ?? 0) + (r.maxPoints ?? 0);
+    entry.points = (entry.points ?? 0) + (r.pointsEarned ?? 0);
     if (r.correct) entry.correct += 1;
     bySubject.set(q.subjectId, entry);
   });
 
   const perSubject = Array.from(bySubject.values());
   const correct = perQuestion.filter((r) => r.correct).length;
-  const points = perSubject.reduce((sum, s) => sum + s.points, 0);
-  const maxPoints = perSubject.reduce((sum, s) => sum + s.maxPoints, 0);
+  const points = perSubject.reduce((sum, s) => sum + (s.points ?? 0), 0);
+  const maxPoints = perSubject.reduce((sum, s) => sum + (s.maxPoints ?? 0), 0);
 
   return {
     correct,
@@ -105,7 +105,7 @@ export function scorePercent(
   result: Pick<GradeResult, "correct" | "total" | "points" | "maxPoints">
 ): number {
   const maxPoints = result.maxPoints ?? 0;
-  if (maxPoints > 0) return Math.round((result.points / maxPoints) * 100);
+  if (maxPoints > 0) return Math.round(((result.points ?? 0) / maxPoints) * 100);
   if (result.total === 0) return 0;
   return Math.round((result.correct / result.total) * 100);
 }

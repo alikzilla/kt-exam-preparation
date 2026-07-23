@@ -48,7 +48,7 @@ export default function AttemptReview({
               из{" "}
               <span className="tabular-nums text-ink-soft">{result.total}</span>
             </p>
-            {result.maxPoints > 0 && (
+            {(result.maxPoints ?? 0) > 0 && (
               <p className="mt-0.5 text-sm text-ink-soft">
                 Баллов{" "}
                 <span className="font-semibold tabular-nums text-ink">
